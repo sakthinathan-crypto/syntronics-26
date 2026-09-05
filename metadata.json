@@ -1,7 +1,6 @@
 {
-  "name": "NEXORA '26",
-  "description": "SYNTRONICS '26 — International Symposium on Human-Centered Computing. Exploring sustainable, inclusive, and ethical frontiers of technology.",
+  "name": "SYNTRONIX '26",
+  "description": "SYNTRONIX '26 — International Technical Symposium organized by the Department of Computer Science and Engineering, EGS Pillay Engineering College. Theme: Humanizing Technology.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
-

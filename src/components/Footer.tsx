@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Mail, MapPin, Globe, Shield, Terminal, Heart, Check } from 'lucide-react';
-import { SYMPOSIUM_META } from '../data/symposiumData';
+import { ArrowUp, Mail, MapPin, Globe, Shield, Terminal, Heart, Check, Building2, Phone } from 'lucide-react';
+import { SYMPOSIUM_META, INSTITUTION_INFO } from '../data/symposiumData';
 
 export const Footer: React.FC = () => {
-  const [utcTime, setUtcTime] = useState('');
+  const [istTime, setIstTime] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      setUtcTime(now.toUTCString().replace('GMT', 'UTC'));
+      setIstTime(now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' IST');
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
@@ -34,33 +34,44 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Top Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
-          {/* Col 1: Brand & Identity */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
+          {/* Col 1: Brand & Institution Details */}
+          <div className="lg:col-span-5 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-9 h-9 bg-white/5 border border-white/20 text-[#FFD166] font-mono font-bold text-sm">
-                SY
+              <div className="flex items-center justify-center w-9 h-9 bg-gradient-to-tr from-[#FF8C42] to-[#FF6B2B] text-white font-mono font-bold text-sm rounded shadow-[0_0_15px_rgba(255,140,66,0.35)]">
+                SX
               </div>
               <span className="text-2xl font-black text-white tracking-tighter uppercase">
-                SYNTRONICS <span className="text-[#FF8C42]">'26</span>
+                SYNTRONIX <span className="text-[#FF8C42]">'26</span>
               </span>
             </div>
 
-            <p className="text-sm font-serif italic leading-relaxed text-[#A7A7A7] max-w-sm">
-              Annual International Symposium on Human-Centered Computing. Fostering verifiable, sustainable, and empathetic intelligence frameworks for our shared computational future.
+            <div className="text-xs font-mono text-[#FFD166] tracking-wider uppercase font-semibold">
+              EGS PILLAY ENGINEERING COLLEGE (AUTONOMOUS)
+            </div>
+            <div className="text-xs font-mono text-white/70">
+              Department of Computer Science and Engineering
+            </div>
+
+            <p className="text-xs sm:text-sm font-serif italic leading-relaxed text-[#A7A7A7] max-w-sm">
+              International Technical Symposium exploring human-centered computing, ethical systems, and collaborative engineering paradigms.
             </p>
 
-            <div className="flex flex-col gap-1.5 pt-2 text-xs font-mono text-neutral-400">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#FFB347]" />
-                <span>Grand Horizon Tech Pavilion, San Francisco, CA</span>
+            <div className="flex flex-col gap-2 pt-2 text-xs font-mono text-neutral-400">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[#FFB347] shrink-0 mt-0.5" />
+                <span>{INSTITUTION_INFO.campusLocation}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#FFB347]" />
-                <span>secretariat@syntronics2026.org</span>
+                <Mail className="w-3.5 h-3.5 text-[#FFB347] shrink-0" />
+                <span>{INSTITUTION_INFO.contactEmail}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Terminal className="w-3.5 h-3.5 text-[#FFD166]" />
-                <span>Synchronized UTC: {utcTime}</span>
+                <Phone className="w-3.5 h-3.5 text-[#FFB347] shrink-0" />
+                <span>{INSTITUTION_INFO.contactPhone}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Terminal className="w-3.5 h-3.5 text-[#FFD166] shrink-0" />
+                <span>Nagapattinam Campus Clock: {istTime}</span>
               </div>
             </div>
           </div>
@@ -72,25 +83,25 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="flex flex-col gap-2 text-xs font-medium">
               <li><a href="#hero" className="hover:text-[#FFB347] transition-colors">Home Viewport</a></li>
-              <li><a href="#about" className="hover:text-[#FFB347] transition-colors">Genesis & Pillars</a></li>
+              <li><a href="#about" className="hover:text-[#FFB347] transition-colors">About EGSPEC & CSE</a></li>
               <li><a href="#theme" className="hover:text-[#FFB347] transition-colors">Curatorial Theme</a></li>
-              <li><a href="#tracks" className="hover:text-[#FFB347] transition-colors">Research Tracks</a></li>
-              <li><a href="#events" className="hover:text-[#FFB347] transition-colors">Flagship Events</a></li>
-              <li><a href="#speakers" className="hover:text-[#FFB347] transition-colors">Distinguished Speakers</a></li>
+              <li><a href="#tracks" className="hover:text-[#FFB347] transition-colors">Tracks & Open Topics</a></li>
+              <li><a href="#events" className="hover:text-[#FFB347] transition-colors">6 Flagship Events</a></li>
+              <li><a href="#speakers" className="hover:text-[#FFB347] transition-colors">Speakers & Mentors</a></li>
             </ul>
           </div>
 
           {/* Col 3: Research & Submissions */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
+          <div className="lg:col-span-2 flex flex-col gap-3">
             <h4 className="font-mono text-xs font-bold text-[#FF8C42] uppercase tracking-[0.3em]">
-              For Authors & Scholars
+              Important Links
             </h4>
             <ul className="flex flex-col gap-2 text-xs font-medium">
-              <li><a href="#dates" className="hover:text-[#FFB347] transition-colors">Important CFP Deadlines</a></li>
-              <li><a href="#tracks" className="hover:text-[#FFB347] transition-colors">IEEE Formatting Templates</a></li>
-              <li><a href="#timeline" className="hover:text-[#FFB347] transition-colors">Double-Blind Peer Review Policy</a></li>
-              <li><a href="#why-participate" className="hover:text-[#FFB347] transition-colors">Scholar Travel Fellowships</a></li>
-              <li><a href="#sponsors" className="hover:text-[#FFB347] transition-colors">Best Innovation Paper Awards</a></li>
+              <li><a href="#dates" className="hover:text-[#FFB347] transition-colors">Dates & Deadlines</a></li>
+              <li><a href="#timeline" className="hover:text-[#FFB347] transition-colors">Symposium Roadmap</a></li>
+              <li><a href="#why-participate" className="hover:text-[#FFB347] transition-colors">Cash Prizes & Honors</a></li>
+              <li><a href="#sponsors" className="hover:text-[#FFB347] transition-colors">Industry Patrons</a></li>
+              <li><a href="https://egspec.org" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFD166] transition-colors">EGSPEC Official Site ↗</a></li>
             </ul>
           </div>
 
@@ -98,27 +109,27 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-3 flex flex-col justify-between gap-6">
             <div>
               <h4 className="font-mono text-xs font-bold text-[#FF8C42] uppercase tracking-[0.3em] mb-2">
-                Symposium Dispatch
+                Symposium Updates
               </h4>
               <p className="text-xs text-[#A7A7A7] font-serif italic mb-3">
-                Receive camera-ready notifications, speaker announcements, and accepted paper digests.
+                Receive schedule circulars, shortlisting notifications, and event announcements.
               </p>
               {subscribed ? (
-                <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-2">
+                <div className="p-3 bg-[#FF8C42]/15 border border-[#FF8C42]/30 text-[#FF8C42] text-xs font-mono flex items-center gap-2">
                   <Check className="w-4 h-4" />
-                  <span>Subscribed to SYNTRONICS '26 dispatches!</span>
+                  <span>Subscribed to SYNTRONIX '26 updates!</span>
                 </div>
               ) : (
                 <form onSubmit={handleSubscribe} className="flex gap-2">
                   <input
                     type="email"
                     required
-                    placeholder="delegate@institution.edu"
+                    placeholder="student@college.edu"
                     className="px-3 py-2 bg-white/5 border border-white/15 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347] flex-1"
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-[#FFB347] transition-colors"
+                    className="px-4 py-2 bg-[#FF8C42] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#FF7722] transition-colors shadow-[0_0_15px_rgba(255,140,66,0.3)]"
                   >
                     Join
                   </button>
@@ -139,22 +150,22 @@ export const Footer: React.FC = () => {
 
         {/* Massive Editorial Typographic Banner */}
         <div className="py-12 border-b border-white/10 select-none overflow-hidden">
-          <div className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white/[0.04] hover:text-white/[0.08] transition-colors tracking-tighter uppercase text-center">
-            HUMAN × SILICON SYNERGY
+          <div className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white/[0.04] hover:text-white/[0.08] transition-colors tracking-tighter uppercase text-center font-mono">
+            MAKE IT. SHOW IT. ACHIEVE IT.
           </div>
         </div>
 
         {/* Bottom Legal & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#A7A7A7]">
           <div>
-            © 2026 SYNTRONICS Symposium Organizing Committee. All rights reserved.
+            © 2026 SYNTRONIX '26. Department of Computer Science and Engineering, EGS Pillay Engineering College.
           </div>
-          <div className="flex items-center gap-4">
-            <span className="hover:text-white cursor-pointer transition-colors">Code of Conduct</span>
+          <div className="flex items-center gap-3">
+            <span className="text-[#FFD166]">Autonomous Institution</span>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">Peer Review Ethics</span>
+            <span className="text-neutral-400">NAAC 'A++' Accredited</span>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer transition-colors">Privacy & Data</span>
+            <span className="text-neutral-400">NBA Accredited CSE</span>
           </div>
         </div>
       </div>

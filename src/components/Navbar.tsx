@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowUpRight, FileText } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
 
 interface NavbarProps {
@@ -16,7 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      const sections = ['hero', 'about', 'theme', 'tracks', 'events', 'speakers', 'timeline', 'dates', 'why-participate', 'sponsors'];
+      const sections = ['hero', 'about', 'theme', 'events', 'speakers', 'timeline', 'dates', 'why-participate', 'sponsors'];
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -40,7 +40,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
     { label: 'Home', href: '#hero', id: 'hero' },
     { label: 'About', href: '#about', id: 'about' },
     { label: 'Theme', href: '#theme', id: 'theme' },
-    { label: 'Tracks', href: '#tracks', id: 'tracks' },
     { label: 'Events', href: '#events', id: 'events' },
     { label: 'Speakers', href: '#speakers', id: 'speakers' },
     { label: 'Timeline', href: '#timeline', id: 'timeline' },
@@ -61,13 +60,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'py-3.5 bg-[#050505]/85 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.85)]'
-          : 'py-5 sm:py-7 bg-transparent border-b border-white/[0.04]'
+          ? 'py-3 bg-[#050505]/90 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.85)]'
+          : 'py-4 sm:py-5 bg-transparent border-b border-white/[0.05]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo & Edition */}
+          {/* Logo & Branding */}
           <a
             href="#hero"
             onClick={(e) => scrollToSection(e, '#hero')}
@@ -84,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
             </span>
           </a>
 
-          {/* Desktop Nav Links with subtle active indicator */}
+          {/* Desktop Nav Links */}
           <nav className="hidden xl:flex items-center gap-6 sm:gap-7 text-xs font-medium tracking-widest uppercase text-[#A7A7A7]">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -118,7 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
               className="px-4 py-2 border border-white/15 text-white/90 text-xs font-bold tracking-widest uppercase hover:bg-white/10 hover:border-white/30 transition-colors flex items-center gap-1.5"
               data-cursor="interactive"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#FFB347]" />
+              <FileText className="w-3.5 h-3.5 text-[#FFB347]" />
               <span>CFP</span>
             </button>
 
@@ -127,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
               id="nav-register-button"
               onClick={onOpenRegister}
               strength={0.2}
-              className="px-5 py-2 bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-[#FFB347] transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,179,71,0.2)]"
+              className="px-5 py-2 bg-[#FF8C42] text-white text-xs font-bold tracking-widest uppercase hover:bg-[#FF7722] transition-colors flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,140,66,0.35)]"
               data-cursor="interactive"
             >
               <span>Register</span>
@@ -153,8 +152,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
         <div className="xl:hidden fixed inset-x-0 top-full bg-[#080808]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 shadow-2xl transition-all duration-300 animate-in fade-in slide-in-from-top-4">
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono text-[#A7A7A7]">
-              <span>SYMPOSIUM DIRECTORY</span>
-              <span className="text-[#FFD166]">OCTOBER 12–14, 2026</span>
+              <span>EGS PILLAY ENGINEERING COLLEGE // CSE</span>
+              <span className="text-[#FFD166]">14–15 OCT 2026</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2 py-2">
@@ -180,10 +179,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
                   setMobileMenuOpen(false);
                   onOpenAbstractSubmit();
                 }}
-                className="w-full py-2.5 border border-white/15 bg-white/[0.04] text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+                className="w-full py-2.5 border border-white/15 bg-white/[0.04] text-white text-xs font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-2"
               >
-                <Sparkles className="w-4 h-4 text-[#FFB347]" />
-                <span>Submit Research Abstract</span>
+                <FileText className="w-4 h-4 text-[#FFB347]" />
+                <span>Submit Research Abstract (CFP)</span>
               </button>
 
               <button
@@ -191,9 +190,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
                   setMobileMenuOpen(false);
                   onOpenRegister();
                 }}
-                className="w-full py-3 bg-white text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,140,66,0.3)] hover:bg-[#FFB347]"
+                className="w-full py-3 bg-[#FF8C42] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,140,66,0.35)] hover:bg-[#FF7722]"
               >
-                <span>Register for Symposium Pass</span>
+                <span>Register (Online: Free / Offline: ₹100)</span>
                 <ArrowUpRight className="w-4 h-4" />
               </button>
             </div>

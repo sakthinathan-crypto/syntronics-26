@@ -1,7 +1,7 @@
 import React from 'react';
 import { SPEAKERS } from '../data/symposiumData';
 import { Speaker } from '../types';
-import { Sparkles, Calendar, ArrowUpRight } from 'lucide-react';
+import { Clock, ArrowUpRight } from 'lucide-react';
 
 interface SpeakersProps {
   onSelectSpeaker: (speaker: Speaker) => void;
@@ -13,16 +13,16 @@ export const Speakers: React.FC<SpeakersProps> = ({ onSelectSpeaker }) => {
       id="speakers"
       className="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06] overflow-hidden z-10"
     >
-      {/* Background ambient lighting */}
+      {/* Radial glow background */}
       <div className="absolute top-1/2 left-[-8%] w-[550px] h-[550px] rounded-full bg-[#FF8C42]/08 blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+        {/* Header section matching original design */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3 font-mono text-xs text-[#FF8C42] tracking-[0.5em] uppercase">
               <span className="w-8 h-[1px] bg-[#FF8C42]" />
-              <span>05 // GLOBAL KEYNOTES & PLENARY LUMINARIES</span>
+              <span>04 // DISTINGUISHED SPEAKERS & FACULTY</span>
             </div>
             <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tighter uppercase">
               DISTINGUISHED
@@ -36,7 +36,7 @@ export const Speakers: React.FC<SpeakersProps> = ({ onSelectSpeaker }) => {
           </p>
         </div>
 
-        {/* Speakers Grid */}
+        {/* 3-column speakers grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SPEAKERS.map((speaker) => (
             <div
@@ -45,7 +45,6 @@ export const Speakers: React.FC<SpeakersProps> = ({ onSelectSpeaker }) => {
               className="group border border-white/10 bg-[#0B0B0B]/70 overflow-hidden flex flex-col justify-between cursor-pointer relative transition-all duration-500 hover:border-[#FFB347]/80 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.6)] backdrop-blur-xl"
               data-cursor="interactive"
             >
-              {/* Photo Box with Duotone/Grayscale to Vivid Transition */}
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-950">
                 <img
                   src={speaker.photo}
@@ -54,27 +53,20 @@ export const Speakers: React.FC<SpeakersProps> = ({ onSelectSpeaker }) => {
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover grayscale contrast-110 brightness-90 group-hover:grayscale-0 group-hover:brightness-105 group-hover:scale-105 transition-all duration-700 ease-out"
                 />
-                
-                {/* Gradient vignette overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-black/30 pointer-events-none" />
-
-                {/* Session Type Badge */}
                 <div className="absolute top-4 left-4 z-10">
                   <span className="px-3 py-1 text-[10px] font-mono tracking-widest uppercase bg-black/90 text-[#FFD166] border border-white/20">
                     {speaker.sessionType}
                   </span>
                 </div>
-
-                {/* Session Time Tag */}
                 <div className="absolute bottom-4 left-4 right-4 z-10">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/90 border border-white/15 text-xs font-mono text-[#FFB347]">
-                    <Calendar className="w-3 h-3 text-[#FFB347]" />
+                    <Clock className="w-3 h-3 text-[#FFB347]" />
                     <span>{speaker.sessionTime}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Text Info */}
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-2xl font-black text-white group-hover:text-[#FFB347] transition-colors">

@@ -6,7 +6,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { ThemeSection } from './components/ThemeSection';
-import { Tracks } from './components/Tracks';
 import { Events } from './components/Events';
 import { Speakers } from './components/Speakers';
 import { TimelineSection } from './components/TimelineSection';
@@ -88,39 +87,32 @@ export default function App() {
         {/* Curatorial Theme: "HUMANIZING TECHNOLOGY" & Interactive Synergy Slider */}
         <ThemeSection />
 
-        <SectionTransition code="03 // RESEARCH PARADIGMS" accent="orange" />
+        <SectionTransition code="03 // OFFICIAL EVENTS" accent="orange" />
 
-        {/* Research Tracks: 01 to 05 Tracks */}
-        <Tracks
-          onSelectTrackForAbstract={(track) => handleOpenAbstractSubmit(track)}
-        />
-
-        <SectionTransition code="04 // APPLIED CHALLENGES" accent="red" />
-
-        {/* Flagship Events & Competitions */}
+        {/* 6 Flagship Events & Competitions */}
         <Events onSelectEvent={handleSelectEvent} />
 
-        <SectionTransition code="05 // PLENARY FACULTY" accent="yellow" />
+        <SectionTransition code="04 // PLENARY FACULTY" accent="yellow" />
 
         {/* Distinguished Speakers & Keynotes */}
         <Speakers onSelectSpeaker={handleSelectSpeaker} />
 
-        <SectionTransition code="06 // SYNCHRONOUS ROADMAP" accent="orange" />
+        <SectionTransition code="05 // SYNCHRONOUS ROADMAP" accent="orange" />
 
         {/* Chronological Vertical Timeline with glowing progress */}
         <TimelineSection />
 
-        <SectionTransition code="07 // INDEXED TIMELINES" accent="neutral" />
+        <SectionTransition code="06 // INDEXED TIMELINES" accent="neutral" />
 
         {/* Important Editorial Dates Blocks */}
         <ImportantDates />
 
-        <SectionTransition code="08 // VALUE CATALYSTS" accent="orange" />
+        <SectionTransition code="07 // VALUE CATALYSTS" accent="orange" />
 
         {/* Why Participate & Scholar Fellowships */}
         <WhyParticipate onOpenRegister={handleOpenRegister} />
 
-        <SectionTransition code="09 // GLOBAL PATRONS" accent="yellow" />
+        <SectionTransition code="08 // GLOBAL PATRONS" accent="yellow" />
 
         {/* Dark Glassmorphic Sponsors & Partners */}
         <Sponsors />

@@ -108,7 +108,7 @@ export const ThemeSection: React.FC = () => {
                     onClick={() => setActiveTab(key)}
                     className={`py-3 px-3 sm:px-4 text-xs sm:text-sm font-mono tracking-widest uppercase transition-all ${
                       isActive
-                        ? 'bg-[#FFB347] text-black font-bold shadow-[0_0_15px_rgba(255,179,71,0.3)]'
+                        ? 'bg-[#FF8C42] text-white font-bold shadow-[0_0_15px_rgba(255,140,66,0.35)]'
                         : 'text-[#A7A7A7] hover:text-white hover:bg-white/[0.04]'
                     }`}
                     data-cursor="interactive"

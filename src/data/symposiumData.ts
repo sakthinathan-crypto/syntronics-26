@@ -1,215 +1,284 @@
-import { Track, SymposiumEvent, Speaker, TimelineMilestone, ImportantDateItem, Sponsor } from '../types';
+import { Track, SymposiumEvent, Speaker, TimelineMilestone, ImportantDateItem, Sponsor, Coordinator } from '../types';
+
+export const INSTITUTION_INFO = {
+  collegeName: "EGS PILLAY ENGINEERING COLLEGE",
+  collegeTagline: "An Autonomous Institution | Approved by AICTE, Affiliated to Anna University",
+  accreditation: "Accredited by NBA & NAAC 'A' Grade",
+  departmentName: "DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING",
+  departmentTagline: "Innovating for Human Progress & Technological Excellence",
+  campusLocation: "Nagapattinam – 611 002, Tamil Nadu, India",
+  campusMapQuery: "E.G.S. Pillay Engineering College, Nagapattinam",
+  contactEmail: "syntronix@egspec.org",
+  contactPhone: "+91 (0) 4365 251112 / Dept of CSE"
+};
 
 export const SYMPOSIUM_META = {
-  name: "SYNTRONICS '26",
-  edition: "Annual International Symposium on Human-Centered Computing",
+  name: "SYNTRONIX '26",
+  shortName: "SYNTRONIX '26",
+  edition: "2026",
   theme: "HUMANIZING TECHNOLOGY",
   themeSubtitle: "Computing for a Sustainable, Inclusive and Ethical Future",
-  dates: "October 12 – 14, 2026",
-  isoStartDate: "2026-10-12T09:00:00Z",
-  venue: "Grand Horizon Tech Pavilion & Virtual Global Hub",
-  city: "San Francisco, CA & Global Virtual Stream",
+  tagline: "MAKE IT. SHOW IT. ACHIEVE IT.",
+  dates: "14–15 October 2026",
+  mode: "HYBRID",
+  isoStartDate: "2026-10-14T09:00:00+05:30",
+  onlineDetails: {
+    date: "14 October 2026",
+    mode: "ONLINE",
+    platform: "Hosted through the Unstop platform",
+    fee: "FREE",
+    unstopEventUrl: "https://unstop.com" // Placeholder to be replaced when published
+  },
+  offlineDetails: {
+    date: "15 October 2026",
+    mode: "OFFLINE",
+    venue: "EGS Pillay Engineering College, Nagapattinam, Tamil Nadu, India",
+    fee: "₹100 per participant",
+    foodIncluded: "Food provided as part of registration",
+    includedEvents: "Allows participant to attend 2 events",
+    additionalEventNote: "If attending more than 2 events, applicable additional fee applies",
+    googleFormUrl: "https://forms.google.com" // Placeholder to be replaced when published
+  },
+  eligibility: "Open to students, scholars, researchers & innovators worldwide",
+  teamRules: "Individual participation or teams of up to 3 members where applicable",
   stats: [
-    { value: 500, suffix: "+", label: "Global Delegates", detail: "Researchers, scholars, and industry builders" },
-    { value: 50, suffix: "+", label: "Institutions", detail: "Leading universities & research centers" },
-    { value: 20, suffix: "+", label: "Sessions & Tracks", detail: "Peer-reviewed papers, workshops, and panels" },
-    { value: 12, suffix: "+", label: "Global Keynotes", detail: "Turing laureates & industry chiefs" },
-    { value: 25, suffix: "K$", label: "Innovation Awards", detail: "Grant prizes for emerging researchers" }
+    { value: 500, suffix: "+", label: "EXPECTED PARTICIPANTS", detail: "Enthusiastic delegates from across regions" },
+    { value: 50, suffix: "+", label: "EXPECTED COLLEGES", detail: "Academic institutions & universities" },
+    { value: 6, suffix: "", label: "OFFICIAL EVENTS", detail: "1 Online flagship + 5 Offline events" },
+    { value: 6, suffix: "", label: "EXPECTED SPEAKERS", detail: "Distinguished faculty, alumni & luminaries" },
+    { value: 100, suffix: "+", label: "EXPECTED ABSTRACTS", detail: "Manuscripts & presentation submissions" },
+    { value: 50, suffix: "~", label: "SUGGESTED TOPICS", detail: "Or propose your own theme-aligned idea" }
   ]
 };
 
+export const REGISTRATION_CONFIG = {
+  onlineUnstopUrl: "https://unstop.com", // To be replaced after publication
+  offlineGoogleFormUrl: "https://forms.google.com", // To be replaced after publication
+  unstopCfpUrl: "https://unstop.com", // Unstop URL for online submissions
+  googleSheetIntegrationPlaceholder: "https://script.google.com/macros/s/PLACEHOLDER/exec",
+  offlineFeeInRupees: 100,
+  offlineFeeDisplay: "₹100 per participant",
+  onlineFeeDisplay: "FREE",
+  includedEventsCount: 2,
+  additionalEventsNote: "Additional fee applies for >2 events (configurable)"
+};
+
+/* Exactly 6 Official Events */
+export const EVENTS: SymposiumEvent[] = [
+  {
+    id: "online-article-presentation",
+    number: "EVENT 01",
+    title: "ONLINE ARTICLE PRESENTATION",
+    category: "Online Technical",
+    day: "Day 1 — 14 Oct (Online)",
+    date: "14 October 2026",
+    time: "Schedule announced on Unstop",
+    venue: "Hosted through Unstop Platform",
+    mode: "ONLINE",
+    platform: "Unstop",
+    prizePool: "Cash Prizes & Merit Citations",
+    teamSize: "Individual or Team (Up to 3)",
+    feeInfo: "FREE Registration",
+    description: "The premier global online event of SYNTRONIX '26 conducted through the Unstop platform. Present pioneering research articles and technological breakthroughs centered on 'Humanizing Technology' from anywhere in the world.",
+    highlights: [
+      "Conducted entirely online via Unstop",
+      "Cash prizes for top presentation teams",
+      "Interactive evaluation by academic & industry juries",
+      "Digital participation certificate issued by 17 Oct 2026"
+    ],
+    isPlaceholder: false
+  },
+  {
+    id: "offline-paper-presentation",
+    number: "EVENT 02",
+    title: "PAPER PRESENTATION",
+    category: "Paper Presentation",
+    day: "Day 2 — 15 Oct (Offline)",
+    date: "15 October 2026",
+    time: "10:00 AM – 01:00 PM IST",
+    venue: "CSE Seminar Complex, EGSPEC Campus",
+    mode: "OFFLINE",
+    prizePool: "Hardcopy Certificates + Cash Prizes on Event Day",
+    teamSize: "Individual or Team (Up to 3)",
+    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    description: "In-person research symposium presentation. Defend your findings on human-centered computing, AI ethics, sustainable architectures, or your self-proposed theme topic before senior faculty and expert evaluators.",
+    highlights: [
+      "Rigorous evaluation on novelty, methodology & presentation",
+      "Winners & Runners receive cash prizes + hardcopy certificates on event day",
+      "Opportunity for publication recommendation & academic mentoring",
+      "Offline registration ₹100 includes delicious food banquet"
+    ],
+    isPlaceholder: false
+  },
+  {
+    id: "offline-poster-making",
+    number: "EVENT 03",
+    title: "POSTER MAKING",
+    category: "Poster Making",
+    day: "Day 2 — 15 Oct (Offline)",
+    date: "15 October 2026",
+    time: "11:30 AM – 02:00 PM IST",
+    venue: "Main Drawing Hall & Innovation Gallery, EGSPEC",
+    mode: "OFFLINE",
+    prizePool: "Hardcopy Certificates + Cash Prizes on Event Day",
+    teamSize: "Individual or Team (Up to 3)",
+    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    description: "Translate complex computational and societal challenges into visually arresting, conceptually profound scientific posters. Showcase innovative design thinking where human empathy meets state-of-the-art technology.",
+    highlights: [
+      "Judged on conceptual depth, clarity, visual aesthetics & technical rigor",
+      "Interactive Q&A walk-through with visiting evaluators",
+      "Winners receive cash awards and hardcopy certificates at the valedictory",
+      "Standard poster dimensions and guidelines briefed at venue"
+    ],
+    isPlaceholder: false
+  },
+  {
+    id: "offline-non-tech-01",
+    number: "EVENT 04",
+    title: "NON-TECHNICAL EVENT 01",
+    category: "Non-Technical",
+    day: "Day 2 — 15 Oct (Offline)",
+    date: "15 October 2026",
+    time: "01:30 PM – 03:00 PM IST",
+    venue: "Auditorium Hall, EGSPEC Campus",
+    mode: "OFFLINE",
+    prizePool: "Hardcopy Certificates + Cash Prizes",
+    teamSize: "Individual or Team (Up to 3)",
+    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    description: "Exciting non-technical challenge designed to test creative lateral thinking, collaboration, and spontaneous problem-solving under pressure. (Official title and specific round rules to be announced shortly).",
+    highlights: [
+      "High-energy interactive challenge for all participants",
+      "Promotes interdisciplinary thinking and team synergy",
+      "Cash awards and hardcopy certificates for winners and runners",
+      "Final event title and round details will be updated soon"
+    ],
+    isPlaceholder: true
+  },
+  {
+    id: "offline-non-tech-02",
+    number: "EVENT 05",
+    title: "NON-TECHNICAL EVENT 02",
+    category: "Non-Technical",
+    day: "Day 2 — 15 Oct (Offline)",
+    date: "15 October 2026",
+    time: "02:30 PM – 04:00 PM IST",
+    venue: "EGSPEC Campus Arena",
+    mode: "OFFLINE",
+    prizePool: "Hardcopy Certificates + Cash Prizes",
+    teamSize: "Individual or Team (Up to 3)",
+    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    description: "Engaging analytical and communication face-off exploring human instincts, perception, and fast-paced deductive acumen. (Official title and specific round rules to be announced shortly).",
+    highlights: [
+      "Spirited contest blending cognitive agility with humor and intuition",
+      "Open to all registered delegates",
+      "Exciting cash awards for standout performances",
+      "Final event title and round details will be updated soon"
+    ],
+    isPlaceholder: true
+  },
+  {
+    id: "offline-non-tech-03",
+    number: "EVENT 06",
+    title: "NON-TECHNICAL EVENT 03",
+    category: "Non-Technical",
+    day: "Day 2 — 15 Oct (Offline)",
+    date: "15 October 2026",
+    time: "03:30 PM – 05:00 PM IST",
+    venue: "Main Open-Air Amphitheatre / Hall",
+    mode: "OFFLINE",
+    prizePool: "Hardcopy Certificates + Cash Prizes",
+    teamSize: "Individual or Team (Up to 3)",
+    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    description: "Grand finale non-technical showcase celebrating student expression, strategic communication, and cultural wit. (Official title and specific round rules to be announced shortly).",
+    highlights: [
+      "Electrifying multi-round finale",
+      "Immediate audience engagement and live score tallies",
+      "Winners and runners awarded during valedictory session",
+      "Final event title and round details will be updated soon"
+    ],
+    isPlaceholder: true
+  }
+];
+
+/* Core Research Tracks aligned with Humanizing Technology */
 export const TRACKS: Track[] = [
   {
-    id: "ai-human",
-    number: "01",
-    title: "Artificial Intelligence & Cognitive Synergy",
-    subtitle: "Human-centered intelligent systems & ethical agents",
-    description: "Explores the transition from autonomous black-box intelligence to transparent, co-creative systems where machine cognition amplifies human agency, judgment, and collective problem-solving.",
-    chair: "Dr. Elena Rostova",
-    chairAffiliation: "Institute for Ethical Computation, Zurich",
-    topics: [
-      "Explainable & Transparent Agentic Models",
-      "Human-in-the-Loop Reinforcement Learning",
-      "Cognitive Load Optimization in Generative Tools",
-      "Algorithmic Bias, Fairness & Accountability"
+    id: "track-ai-ethics",
+    number: "TRACK 01",
+    title: "AI, Cognitive Systems & Human Empathy",
+    subtitle: "Human-centric intelligent systems & ethical agents",
+    description: "Transitioning from opaque algorithms to transparent, collaborative intelligence that amplifies human potential, ethical decision-making, and societal welfare.",
+    suggestedTopics: [
+      "Explainable & Transparent Artificial Intelligence (XAI)",
+      "Human-in-the-Loop Reinforcement Learning Frameworks",
+      "Ethical Autonomous Agents & Moral Alignment",
+      "Algorithmic Bias Mitigation in Healthcare & Public Systems"
     ],
-    paperDeadline: "Sept 10, 2026",
     accentColor: "#FFB347"
   },
   {
-    id: "cyber-trust",
-    number: "02",
-    title: "Cybersecurity, Privacy & Zero-Trust",
-    subtitle: "Trust, post-quantum cryptography and resilient computing",
-    description: "Addresses foundational paradigms of digital sovereignty, user privacy rights, hardware security enclaves, and cryptographic proofs in an era of automated cyber threats.",
-    chair: "Prof. Tariq Al-Mansoor",
-    chairAffiliation: "Center for Cryptographic Integrity, London",
-    topics: [
-      "Zero-Knowledge Proof Architectures",
-      "Post-Quantum Cryptographic Protocols",
-      "Privacy-Preserving Federated Intelligence",
-      "Autonomous Cyber Defense Systems"
+    id: "track-sustainable-tech",
+    number: "TRACK 02",
+    title: "Sustainable, Green & Carbon-Neutral Computing",
+    subtitle: "Responsible engineering for ecological balance",
+    description: "Architectures, algorithms, and microelectronics engineered to shrink computational carbon footprint, optimize renewable data centers, and ensure eco-resilience.",
+    suggestedTopics: [
+      "Carbon-Intensity Aware Distributed Task Scheduling",
+      "Low-Power Neuromorphic Silicon for Edge Devices",
+      "E-Waste Reduction & Circular Computing Lifecycles",
+      "Renewable Energy Optimization using Deep Learning"
     ],
-    paperDeadline: "Sept 12, 2026",
     accentColor: "#FF8C42"
   },
   {
-    id: "cloud-edge",
-    number: "03",
-    title: "Cloud & Distributed Systems",
-    subtitle: "Scalable infrastructure and decentralized mesh computing",
-    description: "Investigates next-generation cloud architectures, peer-to-peer verifiable computing, distributed consensus without planetary energy waste, and ultra-low-latency edge fabrics.",
-    chair: "Dr. Maya Lin-Sutherland",
-    chairAffiliation: "Distributed Systems Laboratory, MIT",
-    topics: [
-      "Serverless & Edge-Native Runtimes",
-      "Decentralized Data Meshes & Orchestration",
-      "Fault-Tolerant Microservice Fabrics",
-      "Geo-Distributed State Synchronization"
+    id: "track-trust-privacy",
+    number: "TRACK 03",
+    title: "Trustworthy Cybersecurity, Privacy & Data Sovereignty",
+    subtitle: "Protecting human rights in the digital age",
+    description: "Preserving individual privacy, digital identity, and cryptographic integrity against automated adversarial threats through decentralized and zero-trust foundations.",
+    suggestedTopics: [
+      "Privacy-Preserving Federated Machine Learning",
+      "Zero-Knowledge Proof Architectures for Identity Verification",
+      "Post-Quantum Cryptography & Resilient Networks",
+      "Autonomous Threat Hunting with Human Oversight"
     ],
-    paperDeadline: "Sept 15, 2026",
     accentColor: "#FFD166"
   },
   {
-    id: "sustainable-tech",
-    number: "04",
-    title: "Sustainable & Carbon-Aware Computing",
-    subtitle: "Technology engineered with environmental responsibility",
-    description: "Pioneering the roadmap toward net-zero silicon lifecycles, carbon-aware cloud scheduling, energy-proportional software engineering, and circular hardware design.",
-    chair: "Dr. Arvind Sundaram",
-    chairAffiliation: "Nordic Center for Green Informatics, Stockholm",
-    topics: [
-      "Carbon-Intensity Driven Task Scheduling",
-      "Ultra-Low Power Neuromorphic Accelerators",
-      "Lifecycle Carbon Footprint Auditing in AI",
-      "Renewable Energy Microgrid Data Centers"
+    id: "track-assistive-tech",
+    number: "TRACK 04",
+    title: "Inclusive Computing, Assistive Technologies & Healthcare",
+    subtitle: "Accessible systems empowering diverse abilities",
+    description: "Creating accessible digital interfaces, affordable assistive hardware, telemedicine innovations, and technology that bridges demographic and accessibility divides.",
+    suggestedTopics: [
+      "Brain-Computer Interfaces for Neuro-Rehabilitation",
+      "Multilingual Speech & Natural Language Tools for Rural Access",
+      "Computer Vision for Visually & Hearing Impaired Assistive Tools",
+      "Predictive AI for Early Disease Diagnostics & Affordable Care"
     ],
-    paperDeadline: "Sept 18, 2026",
-    accentColor: "#FF8C42"
-  },
-  {
-    id: "emerging-frontiers",
-    number: "05",
-    title: "Emerging Technologies & Quantum Horizons",
-    subtitle: "Exploring the next computational frontier",
-    description: "Unraveling revolutionary modalities spanning practical quantum annealing, brain-computer interfaces (BCIs), biological data storage, and spatial sensory computation.",
-    chair: "Dr. Seraphina Vance",
-    chairAffiliation: "Quantum Information Science Consortium",
-    topics: [
-      "Noisy Intermediate-Scale Quantum (NISQ) Algorithms",
-      "Non-Invasive Brain-Machine Interfaces",
-      "DNA & Synthetic Molecular Storage",
-      "Spatial & Neuromorphic Sensory Arrays"
-    ],
-    paperDeadline: "Sept 20, 2026",
     accentColor: "#FF4D4D"
+  },
+  {
+    id: "track-open-proposal",
+    number: "TRACK 05",
+    title: "Propose Your Own Relevant Topic",
+    subtitle: "Open research proposals aligned with Humanizing Technology",
+    description: "Participants are NOT restricted to suggested topics. Propose your own innovative problem, thesis, or technical implementation aligned with the symposium theme during submission.",
+    suggestedTopics: [
+      "50 Suggested Topics to be Published Soon",
+      "Custom Participant-Proposed Ideas Highly Welcomed",
+      "Interdisciplinary Computing & Humanities Symbiosis",
+      "Mention your proposed topic details during submission"
+    ],
+    accentColor: "#FFB347"
   }
 ];
 
-export const EVENTS: SymposiumEvent[] = [
-  {
-    id: "paper-colloquium",
-    number: "EV-01",
-    title: "International Research Paper Presentation",
-    category: "Paper Presentation",
-    date: "Oct 12 & 13, 2026",
-    time: "10:00 AM – 4:30 PM PST",
-    venue: "Auditorium A & Virtual Stream 1",
-    prizePool: "$8,000 + IEEE Publication",
-    teamSize: "1–4 Authors",
-    description: "Peer-reviewed paper oral presentations across all 5 tracks. Top papers will be recommended for fast-track publication in prestigious indexed journals.",
-    highlights: ["Double-blind peer review", "Session chair Q&A feedback", "Best Paper Trophy & $5K top grant", "Indexed conference proceedings"],
-    coordinator: "Prof. Karen Zhang"
-  },
-  {
-    id: "syntronics-hackathon",
-    number: "EV-02",
-    title: "The Syntronics Sprint: 36-Hour Global AI Hackathon",
-    category: "Hackathon",
-    date: "Oct 12 – 13, 2026 (Continuous)",
-    time: "Kickoff: Oct 12, 11:00 AM PST",
-    venue: "Innovation Arena & Discord Virtual Lab",
-    prizePool: "$12,000 + Cloud Credits",
-    teamSize: "2–4 Innovators",
-    description: "Build groundbreaking human-centric software in 36 continuous hours. Tackle real-world challenges in ethical AI, healthcare access, climate adaptation, and privacy tech.",
-    highlights: ["24/7 Industry mentors", "Direct venture scout pitch", "Free cloud compute quotas", "Hardware loaner kits for IoT"],
-    coordinator: "Julian Thorne"
-  },
-  {
-    id: "project-expo",
-    number: "EV-03",
-    title: "Frontier Project Expo & Startup Showcase",
-    category: "Competition",
-    date: "Oct 13, 2026",
-    time: "02:00 PM – 06:00 PM PST",
-    venue: "Central Exhibition Hall",
-    prizePool: "$5,000 Seed Grant",
-    teamSize: "1–5 Members",
-    description: "Showcase working physical prototypes, research testbeds, and deep-tech prototypes to industry delegates, venture partners, and research directors.",
-    highlights: ["Dedicated exhibition booth", "Direct investor speed-networking", "Public choice voting prize", "Live demo testing stations"],
-    coordinator: "Dr. Liam Zhao"
-  },
-  {
-    id: "algo-quiz",
-    number: "EV-04",
-    title: "Turing's Arena: Technical Quiz & Algorithm Sprint",
-    category: "Competition",
-    date: "Oct 12, 2026",
-    time: "03:30 PM – 05:30 PM PST",
-    venue: "Seminar Hall 2",
-    prizePool: "$2,000 + Gadgets",
-    teamSize: "Teams of 2",
-    description: "High-octane rapid-fire contest challenging delegates in computational complexity, system architecture puzzles, cryptography ciphers, and computer history.",
-    highlights: ["Live visual leaderboard", "Rapid buzzer round", "Cryptographic cipher sprint", "Instant merit certificates"],
-    coordinator: "Siddharth Rao"
-  },
-  {
-    id: "poster-forum",
-    number: "EV-05",
-    title: "Emerging Scholar Poster Presentation",
-    category: "Paper Presentation",
-    date: "Oct 14, 2026",
-    time: "10:30 AM – 01:00 PM PST",
-    venue: "Atrium Gallery",
-    prizePool: "$2,500 Best Poster",
-    teamSize: "1–3 Researchers",
-    description: "Interactive visual presentations providing undergraduate and early doctoral scholars an intimate platform to pitch ongoing research.",
-    highlights: ["Print & digital interactive screens", "1-on-1 mentor evaluations", "Immediate peer networking", "Certificate of research merit"],
-    coordinator: "Dr. Fiona O'Connor"
-  },
-  {
-    id: "frontier-workshops",
-    number: "EV-06",
-    title: "Hands-on Deep Dive: Zero-Knowledge & Neuromorphic Toolchains",
-    category: "Workshop",
-    date: "Oct 14, 2026",
-    time: "09:30 AM – 12:30 PM PST",
-    venue: "Compute Lab 4 & Hybrid Zoom",
-    prizePool: "Pro Toolchain Licences",
-    teamSize: "Individual / Pairs",
-    description: "Intensive 3-hour masterclass by chief research scientists. Hands-on coding of zk-SNARK circuits and training spiking neural networks for edge silicon.",
-    highlights: ["Provided sandbox environments", "Take-home code repositories", "Official certificate of completion", "Industry trainer Q&A"],
-    coordinator: "Marcus Vance"
-  },
-  {
-    id: "ethics-panel",
-    number: "EV-07",
-    title: "The Human Algorithm: International Plenary & Ethics Panel",
-    category: "Panel Discussion",
-    date: "Oct 14, 2026",
-    time: "02:30 PM – 04:30 PM PST",
-    venue: "Grand Plenary Hall",
-    prizePool: "Open Access Manifesto",
-    teamSize: "Open to all attendees",
-    description: "A flagship summit debating governance frameworks for superintelligent agent swarms, equitable digital rights, and the ethical accountability of developers.",
-    highlights: ["Global keynote speakers", "Audience live question voting", "Drafting of the Syntronics '26 Accord", "Broadcast live globally"],
-    coordinator: "Dr. Elena Rostova"
-  }
-];
-
+/* Distinguished Keynote Speakers from reference website */
 export const SPEAKERS: Speaker[] = [
   {
     id: "elena-rostova",
+    number: "01",
     name: "Dr. Elena Rostova",
     designation: "Director of Ethical Artificial Intelligence",
     organization: "Global Institute of Computational Ethics, Zurich",
@@ -218,10 +287,14 @@ export const SPEAKERS: Speaker[] = [
     photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
     bio: "Pioneer in moral alignment architectures and computational linguistics. Former principal advisor to the UN Panel on Autonomous Software Systems.",
     sessionTime: "Oct 12, 10:00 AM PST",
-    socials: { linkedin: "https://linkedin.com", scholar: "https://scholar.google.com" }
+    socials: {
+      linkedin: "https://linkedin.com",
+      scholar: "https://scholar.google.com"
+    }
   },
   {
     id: "marcus-vance",
+    number: "02",
     name: "Marcus Vance",
     designation: "VP of Quantum Systems Architecture",
     organization: "Horizon Quantum Labs & Stanford Adjunct",
@@ -230,10 +303,14 @@ export const SPEAKERS: Speaker[] = [
     photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
     bio: "Architect behind the first 1,000-qubit topological coherence experiment. Author of 'The Geometry of Coherence'.",
     sessionTime: "Oct 12, 02:00 PM PST",
-    socials: { linkedin: "https://linkedin.com", twitter: "https://twitter.com" }
+    socials: {
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com"
+    }
   },
   {
     id: "dr-aris-thorne",
+    number: "03",
     name: "Prof. Aris Thorne",
     designation: "Chair of Human-Computer Interaction",
     organization: "Oxford Humanitas Computing Initiative",
@@ -242,10 +319,14 @@ export const SPEAKERS: Speaker[] = [
     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
     bio: "Lead inventor of electro-tactile neurohaptic feedback fabrics. Recipient of the ACM SIGCHI Lifetime Innovation Fellowship.",
     sessionTime: "Oct 13, 09:30 AM PST",
-    socials: { linkedin: "https://linkedin.com", scholar: "https://scholar.google.com" }
+    socials: {
+      linkedin: "https://linkedin.com",
+      scholar: "https://scholar.google.com"
+    }
   },
   {
     id: "priya-sundaram",
+    number: "04",
     name: "Dr. Priya Sundaram",
     designation: "Chief Sustainability Architect",
     organization: "EcoSilicon Research & Nordic Tech Consortium",
@@ -254,10 +335,14 @@ export const SPEAKERS: Speaker[] = [
     photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
     bio: "Pioneered carbon-intensity reactive cloud task brokers now saving millions of metric tons of data center emissions annually.",
     sessionTime: "Oct 13, 01:30 PM PST",
-    socials: { linkedin: "https://linkedin.com", twitter: "https://twitter.com" }
+    socials: {
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com"
+    }
   },
   {
     id: "liam-chen",
+    number: "05",
     name: "Liam K. Chen",
     designation: "Head of Decentralized Cryptography",
     organization: "ZeroTrust Foundation, Singapore",
@@ -266,10 +351,14 @@ export const SPEAKERS: Speaker[] = [
     photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
     bio: "Co-author of recursive zk-SNARK protocols safeguarding digital identities across millions of sovereign human credentials.",
     sessionTime: "Oct 14, 11:00 AM PST",
-    socials: { linkedin: "https://linkedin.com", scholar: "https://scholar.google.com" }
+    socials: {
+      linkedin: "https://linkedin.com",
+      scholar: "https://scholar.google.com"
+    }
   },
   {
     id: "sarah-al-rashid",
+    number: "06",
     name: "Dr. Sarah Al-Rashid",
     designation: "Director of Bio-Algorithmic Computing",
     organization: "NeuroVerve Biosystems",
@@ -278,214 +367,291 @@ export const SPEAKERS: Speaker[] = [
     photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
     bio: "Leading translational research integrating biological cellular computations with low-energy neuromorphic co-processors.",
     sessionTime: "Oct 14, 03:00 PM PST",
-    socials: { linkedin: "https://linkedin.com", twitter: "https://twitter.com" }
+    socials: {
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com"
+    }
   }
 ];
 
+/* Staff Coordinators & Alumni Placeholders */
+export const STAFF_COORDINATORS: Coordinator[] = [
+  {
+    id: "staff-01",
+    name: "Staff Coordinator 01",
+    role: "Symposium Convener",
+    department: "Department of Computer Science and Engineering",
+    contact: "syntronix@egspec.org"
+  },
+  {
+    id: "staff-02",
+    name: "Staff Coordinator 02",
+    role: "Faculty Co-Convener",
+    department: "Department of Computer Science and Engineering",
+    contact: "syntronix@egspec.org"
+  },
+  {
+    id: "staff-03",
+    name: "Staff Coordinator 03",
+    role: "Technical Committee Head",
+    department: "Department of Computer Science and Engineering",
+    contact: "syntronix@egspec.org"
+  }
+];
+
+export const ALUMNI_MENTORS = [
+  {
+    id: "alumni-01",
+    name: "Alumni Mentor 01",
+    batch: "Department of CSE Alumnus",
+    currentRole: "Lead Software Architect",
+    company: "Global Tech Enterprise"
+  },
+  {
+    id: "alumni-02",
+    name: "Alumni Mentor 02",
+    batch: "Department of CSE Alumnus",
+    currentRole: "AI / ML Research Engineer",
+    company: "Frontier Cloud Systems"
+  }
+];
+
+/* Timeline Milestones matching the exact dates in section 18 */
 export const TIMELINE: TimelineMilestone[] = [
   {
     number: "01",
-    title: "Registration & Portal Inauguration",
-    date: "June 15, 2026",
-    description: "Official portal opens for global delegate registrations, early bird fellowship passes, and track selection.",
-    status: "completed",
-    tag: "Milestone Complete"
+    dateStr: "10 September 2026",
+    title: "Registration Opens",
+    subtitle: "Online & Offline Delegate Portals Live",
+    description: "Official registration begins. Online participants can register via Unstop (Free), while offline delegates register for ₹100 via Google Form.",
+    status: "upcoming",
+    tag: "Registration Opens"
   },
   {
     number: "02",
-    title: "Call for Papers & Abstract Submissions",
-    date: "July 01 – August 30, 2026",
-    description: "Researchers submit extended abstracts and full draft manuscripts via the EasyChair peer portal.",
-    status: "completed",
-    tag: "Submissions Active"
+    dateStr: "20 September 2026",
+    title: "Abstract Submission Opens",
+    subtitle: "Call for Papers & Presentation Submissions",
+    description: "Authors and delegates may submit extended abstracts (theme-based or self-proposed topic) via Unstop (online) or the website CFP portal (offline).",
+    status: "upcoming",
+    tag: "CFP Opens"
   },
   {
     number: "03",
-    title: "Blind Peer Review & Acceptance Notification",
-    date: "September 15, 2026",
-    description: "International committee finalizes double-blind evaluations; author acceptance letters dispatched.",
-    status: "active",
-    tag: "Review Phase"
+    dateStr: "01 October 2026",
+    title: "Registration Deadline",
+    subtitle: "Final Date to Register as a Participant",
+    description: "Registration concludes for both online (Unstop) and offline participation categories.",
+    status: "upcoming",
+    tag: "Important Deadline"
   },
   {
     number: "04",
-    title: "Camera-Ready Papers & Slides Due",
-    date: "September 28, 2026",
-    description: "Final publication-ready manuscripts, author copyright agreements, and presentation slide decks uploaded.",
+    dateStr: "02 October 2026",
+    title: "Abstract Submission Deadline",
+    subtitle: "Manuscripts Queue Finalizes",
+    description: "Final cutoff date for submitting abstracts and presentation drafts for double-blind peer review.",
     status: "upcoming",
-    tag: "Deadline Ahead"
+    tag: "Submission Closes"
   },
   {
     number: "05",
-    title: "Symposium Day 1: Vision & Keynotes",
-    date: "October 12, 2026",
-    description: "Grand inauguration, Dr. Elena Rostova keynote, tracks 01 & 02 presentations, and 36-hr Hackathon kickoff.",
+    dateStr: "04 October 2026",
+    title: "Acceptance Notification",
+    subtitle: "Review Results Dispatched to Authors",
+    description: "Peer-review results and formal acceptance notifications are delivered to all registered authors.",
     status: "upcoming",
-    tag: "Kickoff Day"
+    tag: "Notifications"
   },
   {
     number: "06",
-    title: "Symposium Day 2: Frontiers & Expo",
-    date: "October 13, 2026",
-    description: "Tracks 03 & 04 colloquium, Project Expo, venture scout pitches, and Hackathon prototype evaluations.",
+    dateStr: "TBD / Unstop",
+    title: "PPT Submission Deadline",
+    subtitle: "Slide Deck Upload on Unstop",
+    description: "Presentation slide decks to be submitted. Exact deadline date to be determined and announced via Unstop.",
     status: "upcoming",
-    tag: "Execution Day"
+    tag: "Slide Deck"
   },
   {
     number: "07",
-    title: "Symposium Day 3: Synthesis & Grand Awards",
-    date: "October 14, 2026",
-    description: "Track 05 presentations, Hands-on Workshops, International Ethics Plenary, and $25K Valedictory Gala.",
+    dateStr: "14 October 2026",
+    title: "Symposium Day 1 — ONLINE",
+    subtitle: "Hosted through the Unstop Platform",
+    description: "Flagship Online Article Presentation conducted through Unstop with international delegates, jury evaluations, and cash prizes.",
     status: "upcoming",
-    tag: "Grand Finale"
+    tag: "Online Symposium"
+  },
+  {
+    number: "08",
+    dateStr: "15 October 2026",
+    title: "Symposium Day 2 — OFFLINE",
+    subtitle: "EGS Pillay Engineering College, Nagapattinam",
+    description: "On-campus Paper Presentation, Poster Making, and 3 Non-Technical events. Food provided. Winners receive hardcopy certificates and cash prizes.",
+    status: "upcoming",
+    tag: "Offline Symposium"
+  },
+  {
+    number: "09",
+    dateStr: "17 October 2026",
+    title: "Certificate Distribution",
+    subtitle: "Digital Participation Certificates Issued",
+    description: "Official digital participation certificates issued to all verified online and offline delegates by 17 October 2026.",
+    status: "upcoming",
+    tag: "Certificates"
   }
 ];
 
+/* Exact Dates matching Section 18 */
 export const IMPORTANT_DATES: ImportantDateItem[] = [
   {
-    day: "30",
-    month: "AUG",
+    day: "10",
+    month: "SEP",
     year: "2026",
-    title: "Call for Papers Deadline",
-    description: "Final deadline to submit papers across all 5 symposium research tracks."
+    title: "Registration Opens",
+    description: "Registration commences for both Online (Unstop) and Offline delegates.",
+    badge: "PORTAL OPEN"
   },
   {
-    day: "15",
+    day: "20",
     month: "SEP",
+    year: "2026",
+    title: "Abstract Submission Opens",
+    description: "Submit abstracts on suggested topics or propose your own theme-relevant idea.",
+    badge: "CFP ACTIVE"
+  },
+  {
+    day: "01",
+    month: "OCT",
+    year: "2026",
+    title: "Registration Deadline",
+    description: "Last day to register for SYNTRONIX '26 participation.",
+    badge: "DEADLINE"
+  },
+  {
+    day: "02",
+    month: "OCT",
+    year: "2026",
+    title: "Abstract Submission Deadline",
+    description: "Final cutoff for submitting paper abstracts across all tracks.",
+    badge: "CRITICAL"
+  },
+  {
+    day: "04",
+    month: "OCT",
     year: "2026",
     title: "Acceptance Notification",
-    description: "Formal notifications sent to primary authors with peer reviewer comments."
+    description: "Evaluation results and acceptance letters communicated to authors.",
+    badge: "RESULTS"
   },
   {
-    day: "28",
-    month: "SEP",
-    year: "2026",
-    title: "Camera-Ready Submission",
-    description: "Final formatted paper and presentation slides must be submitted."
-  },
-  {
-    day: "05",
+    day: "TBD",
     month: "OCT",
     year: "2026",
-    title: "Early Bird Delegate Registration",
-    description: "Discounted delegate passes and student fellowship reservations close."
-  },
-  {
-    day: "12",
-    month: "OCT",
-    year: "2026",
-    title: "Symposium Inauguration (Day 1)",
-    description: "Grand opening, opening keynote, and research tracks kickoff.",
-    isMilestone: true
+    title: "PPT Submission Deadline",
+    description: "To be determined through the Unstop platform.",
+    badge: "TBD / UNSTOP"
   },
   {
     day: "14",
     month: "OCT",
     year: "2026",
-    title: "Valedictory & Awards Ceremony",
-    description: "Best Paper awards, $25K innovation grants, and closing banquet.",
-    isMilestone: true
+    title: "Symposium Day 1 (ONLINE)",
+    description: "Online Article Presentation conducted through the Unstop platform.",
+    isMilestone: true,
+    badge: "UNSTOP // ONLINE"
+  },
+  {
+    day: "15",
+    month: "OCT",
+    year: "2026",
+    title: "Symposium Day 2 (OFFLINE)",
+    description: "EGS Pillay Engineering College Campus: Paper Presentation, Poster Making & 3 Non-Technical Events.",
+    isMilestone: true,
+    badge: "CAMPUS // OFFLINE"
+  },
+  {
+    day: "17",
+    month: "OCT",
+    year: "2026",
+    title: "Participation Certificates Issued",
+    description: "Official participation certificates distributed to all eligible attendees.",
+    badge: "CERTIFICATION"
   }
 ];
 
 export const WHY_PARTICIPATE = [
   {
     number: "01",
-    title: "Present Your Research",
-    description: "Earn publication in globally indexed proceedings (IEEE / Springer). Receive rigorous, constructive feedback from world-class editorial boards.",
+    title: "Present on an International Stage",
+    description: "Showcase your technical research and problem-solving solutions to an international academic panel from EGS Pillay Engineering College and partner networks.",
     icon: "BookOpen"
   },
   {
     number: "02",
-    title: "Connect with Global Experts",
-    description: "Engage in intimate breakout roundtables, VIP luncheons, and 1-on-1 office hours with keynote luminaries and institute chairs.",
-    icon: "Users"
+    title: "Cash Prizes & Hardcopy Honors",
+    description: "Winners and runners in both online and offline events receive prestigious cash awards and hardcopy certificates conferred on event day.",
+    icon: "Trophy"
   },
   {
     number: "03",
-    title: "Build Your International Network",
-    description: "Connect with delegates from 50+ world-leading institutions, venture accelerators, and premier technology labs spanning 24 countries.",
+    title: "Flexible Hybrid Participation",
+    description: "Participate online from anywhere in the world on 14 October via Unstop, or join in-person on 15 October at EGSPEC for an energetic campus experience.",
     icon: "Globe"
   },
   {
     number: "04",
-    title: "Showcase Deep Innovation",
-    description: "Compete for $25,000 in non-dilutive innovation grants, cloud compute credits, and venture incubation pipelines for breakthrough ideas.",
-    icon: "Trophy"
-  },
-  {
-    number: "05",
-    title: "Earn Certified Credentials",
-    description: "Receive an internationally recognized IEEE-partnered Symposium Certificate and verifiable cryptographic attendee badge.",
+    title: "Inclusive Registration & Food",
+    description: "Online event registration is 100% FREE. Offline participation is just ₹100 per person and includes delicious food + entry to 2 events.",
     icon: "Award"
   },
   {
+    number: "05",
+    title: "Student, Faculty & Alumni Synergy",
+    description: "Connect with Department of CSE professors, active research scholars, industry alumni, and peer innovators across 50+ colleges.",
+    icon: "Users"
+  },
+  {
     number: "06",
-    title: "Hands-on Frontier Tech Labs",
-    description: "Gain live access to neuromorphic testbeds, quantum simulation SDKs, and zero-knowledge circuit development environments.",
+    title: "Theme Freedom & Propose Your Topic",
+    description: "Choose from ~50 suggested topics or propose any original, relevant topic under 'Humanizing Technology' for your presentation.",
     icon: "Cpu"
   }
 ];
 
 export const SPONSORS: Sponsor[] = [
   {
-    name: "AnthroTech Systems",
+    name: "EGS Pillay Engineering College",
     tier: "Title Sponsor",
-    logoPlaceholder: "AT",
-    role: "Global Leader in Human-Aligned Cognitive Computing"
+    logoPlaceholder: "EGSPEC",
+    role: "Autonomous Institution, Nagapattinam | Patron Institution",
+    isPlaceholder: false
   },
   {
-    name: "QuantumMatrix Labs",
+    name: "Department of CSE",
     tier: "Diamond Sponsor",
-    logoPlaceholder: "QM",
-    role: "Pioneering Coherent Fault-Tolerant Architectures"
+    logoPlaceholder: "CSE",
+    role: "Department of Computer Science & Engineering | Organizing Department",
+    isPlaceholder: false
   },
   {
-    name: "Horizon DeepTech Ventures",
-    tier: "Diamond Sponsor",
-    logoPlaceholder: "HZ",
-    role: "Accelerating Next-Gen Frontier Science"
-  },
-  {
-    name: "EcoSilicon Hardware",
-    tier: "Gold Sponsor",
-    logoPlaceholder: "ES",
-    role: "Net-Zero Thermodynamic Microelectronics"
-  },
-  {
-    name: "NeuralFlux AI",
-    tier: "Gold Sponsor",
-    logoPlaceholder: "NF",
-    role: "Autonomous Multi-Agent Orchestration"
-  },
-  {
-    name: "Veritas Zero-Trust",
-    tier: "Silver Sponsor",
-    logoPlaceholder: "VZ",
-    role: "Cryptographic Privacy & Verifiable Proofs"
-  },
-  {
-    name: "MeshCloud Global",
-    tier: "Silver Sponsor",
-    logoPlaceholder: "MC",
-    role: "High-Performance Edge Data Runtimes"
-  },
-  {
-    name: "International Computing Society",
-    tier: "Knowledge Partner",
-    logoPlaceholder: "ICS",
-    role: "Academic Indexing & Publication Oversight"
-  },
-  {
-    name: "Open Ethics Consortium",
-    tier: "Knowledge Partner",
-    logoPlaceholder: "OEC",
-    role: "Independent Ethical Governance Frameworks"
-  },
-  {
-    name: "Frontier Cloud Network",
+    name: "Unstop",
     tier: "Technology Partner",
-    logoPlaceholder: "FCN",
-    role: "Global Low-Latency Streaming & Hybrid Cloud Infrastructure"
+    logoPlaceholder: "UNSTOP",
+    role: "Official Digital Platform Partner for Online Day 1 Events",
+    isPlaceholder: false
+  },
+  {
+    name: "Industry / Corporate Sponsor 01",
+    tier: "Gold Sponsor",
+    logoPlaceholder: "IND-1",
+    role: "Technology Innovation Sponsor (To be announced upon finalization)",
+    isPlaceholder: true
+  },
+  {
+    name: "Industry / Corporate Sponsor 02",
+    tier: "Silver Sponsor",
+    logoPlaceholder: "IND-2",
+    role: "Student Ecosystem Partner (To be announced upon finalization)",
+    isPlaceholder: true
   }
 ];

@@ -15,7 +15,6 @@ export const TimelineSection: React.FC = () => {
       const newActives: number[] = [];
       nodes.forEach((node, idx) => {
         const rect = node.getBoundingClientRect();
-        // Activate if top of node is past 70% of viewport
         if (rect.top <= windowHeight * 0.72) {
           newActives.push(idx);
         }
@@ -32,27 +31,27 @@ export const TimelineSection: React.FC = () => {
     <section
       id="timeline"
       ref={sectionRef}
-      className="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06] overflow-hidden z-10"
+      className="relative py-24 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06] overflow-hidden z-10"
     >
       {/* Ambient background light */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#FF8C42]/06 blur-[180px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 mb-3 font-mono text-xs text-[#FF8C42] tracking-[0.5em] uppercase">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 mb-3 font-mono text-xs text-[#FF8C42] tracking-[0.4em] uppercase">
             <span className="w-8 h-[1px] bg-[#FF8C42]" />
-            <span>06 // SYMPOSIUM ROADMAP & MILESTONES</span>
+            <span>05 // SYMPOSIUM ROADMAP & DEADLINES</span>
             <span className="w-8 h-[1px] bg-[#FF8C42]" />
           </div>
-          <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tighter uppercase">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[0.95]">
             CHRONOLOGICAL
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-[#FF8C42] to-[#FF4D4D] ml-3">
               TIMELINE.
             </span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-[#A7A7A7] font-serif italic">
-            Track key milestones leading from initial CFP submissions through peer review, live research colloquiums, and the grand innovation valedictory gala.
+          <p className="mt-3 text-xs sm:text-sm text-[#A7A7A7] font-serif italic">
+            Track key milestones leading from initial registration through peer review, PPT submissions on Unstop, live online & offline colloquiums, and certificate issuance.
           </p>
         </div>
 
@@ -61,7 +60,7 @@ export const TimelineSection: React.FC = () => {
           {/* Glowing central progress line */}
           <div className="absolute top-0 bottom-0 left-6 md:left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-[#FFD166] via-[#FF8C42] to-neutral-800" />
 
-          <div className="flex flex-col gap-12 sm:gap-16">
+          <div className="flex flex-col gap-10 sm:gap-14">
             {TIMELINE.map((item, idx) => {
               const isEven = idx % 2 === 0;
               const isScrolledIn = activeIndices.includes(idx);
@@ -79,10 +78,10 @@ export const TimelineSection: React.FC = () => {
                   <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
                     <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
                       isActive
-                        ? 'border-[#FFD166] bg-[#FF8C42] shadow-[0_0_20px_#FFB347] scale-125 text-black'
+                        ? 'border-[#FFD166] bg-[#FF8C42] shadow-[0_0_20px_#FFB347] scale-110 text-white'
                         : isCompleted
                         ? 'border-[#FFB347] bg-neutral-900 text-[#FFD166]'
-                        : 'border-neutral-700 bg-neutral-950 text-neutral-500'
+                        : 'border-neutral-700 bg-neutral-950 text-neutral-400'
                     }`}>
                       {item.status === 'active' ? (
                         <span className="w-2 h-2 rounded-full bg-white animate-ping" />
@@ -96,21 +95,21 @@ export const TimelineSection: React.FC = () => {
 
                   {/* Content Card (Left or Right on desktop) */}
                   <div className={`ml-16 md:ml-0 md:w-1/2 ${isEven ? 'md:pl-12' : 'md:pr-12'}`}>
-                    <div className={`p-6 sm:p-7 bg-[#0B0B0B]/70 border transition-all duration-300 backdrop-blur-xl ${
+                    <div className={`p-5 sm:p-6 bg-[#0B0B0B]/75 border transition-all duration-300 backdrop-blur-xl ${
                       isActive
-                        ? 'border-[#FFB347] bg-white/[0.08] shadow-[0_10px_35px_rgba(255,140,66,0.15)] -translate-y-1'
+                        ? 'border-[#FFB347] bg-white/[0.08] shadow-[0_10px_35px_rgba(255,140,66,0.15)] -translate-y-0.5'
                         : 'border-white/10 hover:border-white/20'
                     }`}>
                       {/* Top Tag & Number */}
-                      <div className="flex items-center justify-between gap-2 mb-3">
+                      <div className="flex items-center justify-between gap-2 mb-2">
                         <span className="font-mono text-xs font-bold text-[#FFD166]">
                           PHASE {item.number}
                         </span>
-                        <span className={`px-2.5 py-0.5 text-[10px] font-mono font-semibold uppercase ${
+                        <span className={`px-2.5 py-0.5 text-[9px] font-mono font-semibold uppercase ${
                           isActive
                             ? 'bg-[#FF8C42]/25 text-[#FFD166] border border-[#FF8C42]/40'
                             : isCompleted
-                            ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                            ? 'bg-[#FF8C42]/15 text-[#FF8C42] border border-[#FF8C42]/30'
                             : 'bg-white/5 text-neutral-400 border border-white/10'
                         }`}>
                           {item.tag}
@@ -118,14 +117,20 @@ export const TimelineSection: React.FC = () => {
                       </div>
 
                       {/* Milestone Title */}
-                      <h3 className="text-xl sm:text-2xl font-black text-white mb-2 uppercase">
+                      <h3 className="text-lg sm:text-xl font-black text-white mb-1 uppercase">
                         {item.title}
                       </h3>
 
+                      {item.subtitle && (
+                        <div className="text-[11px] font-mono text-[#FF8C42] mb-2">
+                          {item.subtitle}
+                        </div>
+                      )}
+
                       {/* Date Indicator */}
-                      <div className="flex items-center gap-1.5 text-xs font-mono text-[#FFB347] mb-3">
-                        <Calendar className="w-3.5 h-3.5" />
-                        <span>{item.date}</span>
+                      <div className="flex items-center gap-1.5 text-xs font-mono text-[#FFD166] mb-3">
+                        <Calendar className="w-3.5 h-3.5 text-[#FFB347]" />
+                        <span className="font-bold">{item.dateStr}</span>
                       </div>
 
                       <p className="text-xs sm:text-sm text-[#A7A7A7] font-serif italic leading-relaxed">
