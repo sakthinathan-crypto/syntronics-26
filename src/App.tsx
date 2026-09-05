@@ -15,6 +15,7 @@ import { WhyParticipate } from './components/WhyParticipate';
 import { Sponsors } from './components/Sponsors';
 import { RegistrationCTA } from './components/RegistrationCTA';
 import { Footer } from './components/Footer';
+import { SectionTransition } from './components/SectionTransition';
 
 import { RegistrationModal } from './components/RegistrationModal';
 import { AbstractSubmissionModal } from './components/AbstractSubmissionModal';
@@ -77,31 +78,49 @@ export default function App() {
           onOpenAbstractSubmit={() => handleOpenAbstractSubmit()}
         />
 
+        <SectionTransition code="01 // GENESIS & MANDATE" accent="orange" />
+
         {/* About Section: Editorial manifesto & dynamic stats */}
         <About />
 
+        <SectionTransition code="02 // HUMAN × SILICON" accent="yellow" />
+
         {/* Curatorial Theme: "HUMANIZING TECHNOLOGY" & Interactive Synergy Slider */}
         <ThemeSection />
+
+        <SectionTransition code="03 // RESEARCH PARADIGMS" accent="orange" />
 
         {/* Research Tracks: 01 to 05 Tracks */}
         <Tracks
           onSelectTrackForAbstract={(track) => handleOpenAbstractSubmit(track)}
         />
 
+        <SectionTransition code="04 // APPLIED CHALLENGES" accent="red" />
+
         {/* Flagship Events & Competitions */}
         <Events onSelectEvent={handleSelectEvent} />
+
+        <SectionTransition code="05 // PLENARY FACULTY" accent="yellow" />
 
         {/* Distinguished Speakers & Keynotes */}
         <Speakers onSelectSpeaker={handleSelectSpeaker} />
 
+        <SectionTransition code="06 // SYNCHRONOUS ROADMAP" accent="orange" />
+
         {/* Chronological Vertical Timeline with glowing progress */}
         <TimelineSection />
+
+        <SectionTransition code="07 // INDEXED TIMELINES" accent="neutral" />
 
         {/* Important Editorial Dates Blocks */}
         <ImportantDates />
 
+        <SectionTransition code="08 // VALUE CATALYSTS" accent="orange" />
+
         {/* Why Participate & Scholar Fellowships */}
         <WhyParticipate onOpenRegister={handleOpenRegister} />
+
+        <SectionTransition code="09 // GLOBAL PATRONS" accent="yellow" />
 
         {/* Dark Glassmorphic Sponsors & Partners */}
         <Sponsors />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { SYMPOSIUM_META } from '../data/symposiumData';
-import { BookOpen, Globe2, Shield, Cpu, Sparkles } from 'lucide-react';
+import { BookOpen, Globe2, Shield, Cpu, Sparkles, TrendingUp } from 'lucide-react';
 
 export const About: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -14,7 +14,7 @@ export const About: React.FC = () => {
           setInView(true);
         }
       },
-      { threshold: 0.25 }
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -29,7 +29,7 @@ export const About: React.FC = () => {
     if (!inView) return;
 
     const targets = SYMPOSIUM_META.stats.map(s => s.value);
-    const duration = 1800; // ms
+    const duration = 2000; // ms
     const startTime = performance.now();
 
     const animate = (currentTime: number) => {
@@ -101,34 +101,37 @@ export const About: React.FC = () => {
           {/* Left Column: Bold Typography & Manifesto */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <p className="text-xl sm:text-2xl font-light italic text-[#FFB347] font-serif leading-relaxed">
-              "NEXORA '26 is an international convergence engineered to dismantle the silos between cutting-edge computational architectures and human societal well-being."
+              "SYNTRONICS '26 is an international convergence engineered to dismantle the silos between cutting-edge computational architectures and human societal well-being."
             </p>
             <p className="text-[#A7A7A7] text-base sm:text-lg leading-relaxed font-light">
               As artificial intelligence, quantum coherence, and distributed systems accelerate beyond prior thresholds, the fundamental question is no longer what technology can calculate — but whose dignity, freedoms, and ecology it elevates.
             </p>
             <p className="text-[#A7A7A7] text-base sm:text-lg leading-relaxed font-light">
-              Over three intensive days, university scholars, pioneering startups, Turing laureates, and industry architects will gather to evaluate groundbreaking peer-reviewed research, battle in high-velocity hackathons, and ratify the Nexora Accord for ethical computing.
+              Over three intensive days, university scholars, pioneering startups, Turing laureates, and industry architects will gather to evaluate groundbreaking peer-reviewed research, battle in high-velocity hackathons, and ratify the Syntronics Accord for ethical computing.
             </p>
 
             <div className="pt-4 flex flex-wrap items-center gap-3 text-xs font-mono text-[#FFD166]">
-              <span className="px-4 py-2 bg-white/5 border border-white/10 uppercase tracking-widest text-[#FFB347] font-bold">
+              <span className="px-4 py-2 bg-white/5 border border-white/10 uppercase tracking-widest text-[#FFB347] font-bold flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FFB347]" />
                 IEEE CO-SPONSORED
               </span>
-              <span className="px-4 py-2 bg-white/5 border border-white/10 uppercase tracking-widest text-[#A7A7A7]">
+              <span className="px-4 py-2 bg-white/5 border border-white/10 uppercase tracking-widest text-[#A7A7A7] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
                 SCOPUS & DBLP INDEXED
               </span>
             </div>
           </div>
 
           {/* Right Column: Architectural Information Panel */}
-          <div className="lg:col-span-6 p-6 sm:p-8 bg-[#0B0B0B]/60 border border-white/10 relative overflow-hidden backdrop-blur-md">
+          <div className="lg:col-span-6 p-6 sm:p-8 bg-[#0B0B0B]/70 border border-white/10 relative overflow-hidden backdrop-blur-xl">
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#FFD166]/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="flex items-baseline justify-between mb-6 pb-3 border-b border-white/10">
-              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-[#A7A7A7]">
-                Foundational Pillars
+              <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-[#A7A7A7] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-[#FF8C42]" />
+                <span>Foundational Pillars</span>
               </h3>
-              <span className="text-[#FF8C42] text-xs font-mono">[01 — 04]</span>
+              <span className="text-[#FF8C42] text-xs font-mono font-bold">[01 — 04]</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -137,7 +140,7 @@ export const About: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="p-4 bg-white/5 border border-white/10 hover:border-[#FFB347] transition-all group"
+                    className="p-4 bg-white/5 border border-white/10 hover:border-[#FFB347]/60 hover:bg-white/[0.07] transition-all group"
                   >
                     <div className="w-9 h-9 bg-white/5 border border-white/10 flex items-center justify-center text-[#FFD166] mb-3 group-hover:bg-[#FFB347] group-hover:text-black transition-colors">
                       <Icon className="w-4 h-4" />
@@ -158,9 +161,12 @@ export const About: React.FC = () => {
         {/* Dynamic Animated Statistics Ribbon */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {SYMPOSIUM_META.stats.map((stat, idx) => (
-            <div key={idx} className="bg-white/5 border border-white/10 p-6 backdrop-blur-md">
-              <div className="flex items-baseline gap-1">
-                <span className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+            <div 
+              key={idx} 
+              className="bg-white/5 border border-white/10 p-6 backdrop-blur-xl hover:border-[#FFB347]/40 transition-all duration-300 group"
+            >
+              <div className="flex items-baseline gap-1 font-mono">
+                <span className="text-3xl sm:text-5xl font-black text-white tracking-tight group-hover:text-[#FFD166] transition-colors">
                   {counts[idx]}
                 </span>
                 <span className="text-xl sm:text-2xl font-black text-[#FFB347]">

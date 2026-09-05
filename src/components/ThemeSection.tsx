@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { HeartHandshake, Leaf, Lock, Sliders, Activity, Sparkles } from 'lucide-react';
+import { HeartHandshake, Leaf, Lock, Sliders, Activity, Sparkles, Cpu } from 'lucide-react';
 
 export const ThemeSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'sustainable' | 'inclusive' | 'ethical'>('sustainable');
   const [humanFactor, setHumanFactor] = useState(78);
+  const [hoveredLetter, setHoveredLetter] = useState<number | null>(null);
 
   const pillars = {
     sustainable: {
@@ -32,6 +33,9 @@ export const ThemeSection: React.FC = () => {
     }
   };
 
+  const word1 = "HUMANIZING".split("");
+  const word2 = "TECHNOLOGY".split("");
+
   return (
     <section
       id="theme"
@@ -47,18 +51,39 @@ export const ThemeSection: React.FC = () => {
           <span>02 // SYMPOSIUM CURATORIAL THEME</span>
         </div>
 
-        {/* Dramatic Large Typography Breakdown */}
+        {/* Dramatic Large Typography Breakdown with interactive letter illumination */}
         <div className="mb-16 select-none">
-          <div className="overflow-hidden">
-            <span className="block text-6xl sm:text-8xl md:text-9xl lg:text-[110px] font-black text-white tracking-tighter uppercase leading-[0.85] hover:tracking-tight transition-all duration-700">
-              HUMANIZING
-            </span>
+          <div className="overflow-hidden flex flex-wrap">
+            {word1.map((char, i) => (
+              <span
+                key={i}
+                onMouseEnter={() => setHoveredLetter(i)}
+                onMouseLeave={() => setHoveredLetter(null)}
+                className={`inline-block text-6xl sm:text-8xl md:text-9xl lg:text-[112px] font-black tracking-tighter uppercase leading-[0.85] transition-all duration-300 cursor-default ${
+                  hoveredLetter === i
+                    ? 'text-[#FFD166] scale-110 drop-shadow-[0_0_20px_#FFD166]'
+                    : 'text-white'
+                }`}
+              >
+                {char}
+              </span>
+            ))}
           </div>
 
-          <div className="overflow-hidden mt-2">
-            <span className="block text-6xl sm:text-8xl md:text-9xl lg:text-[110px] font-black tracking-tighter uppercase leading-[0.85] text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-[#FF8C42] to-[#FF4D4D]">
-              TECHNOLOGY.
-            </span>
+          <div className="overflow-hidden mt-2 flex flex-wrap">
+            {word2.map((char, i) => (
+              <span
+                key={i}
+                onMouseEnter={() => setHoveredLetter(100 + i)}
+                onMouseLeave={() => setHoveredLetter(null)}
+                className={`inline-block text-6xl sm:text-8xl md:text-9xl lg:text-[112px] font-black tracking-tighter uppercase leading-[0.85] transition-all duration-300 cursor-default text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-[#FF8C42] to-[#FF4D4D] ${
+                  hoveredLetter === 100 + i ? 'scale-110 brightness-150' : ''
+                }`}
+              >
+                {char}
+              </span>
+            ))}
+            <span className="text-6xl sm:text-8xl md:text-9xl lg:text-[112px] font-black text-[#FF4D4D] leading-[0.85]">.</span>
           </div>
 
           <div className="mt-8 pt-6 border-t border-white/10 max-w-3xl">
@@ -95,7 +120,7 @@ export const ThemeSection: React.FC = () => {
             </div>
 
             {/* Active Pillar Card */}
-            <div className="p-8 bg-[#0B0B0B]/60 border border-white/10 relative overflow-hidden backdrop-blur-md flex-1 flex flex-col justify-between">
+            <div className="p-8 bg-[#0B0B0B]/70 border border-white/10 relative overflow-hidden backdrop-blur-xl flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-[#FF8C42] uppercase px-3 py-1 bg-white/5 border border-white/10">
@@ -123,7 +148,7 @@ export const ThemeSection: React.FC = () => {
           </div>
 
           {/* Interactive Synergy Simulator (Human Pulse vs Silicon Frequency) */}
-          <div className="lg:col-span-5 p-6 sm:p-8 bg-[#0B0B0B]/60 border border-white/10 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
+          <div className="lg:col-span-5 p-6 sm:p-8 bg-[#0B0B0B]/70 border border-white/10 flex flex-col justify-between relative overflow-hidden backdrop-blur-xl">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
               <div className="flex items-center gap-2 text-xs font-mono text-[#F5F5F5] uppercase tracking-wider">
                 <Activity className="w-4 h-4 text-[#FF8C42] animate-pulse" />
@@ -135,7 +160,7 @@ export const ThemeSection: React.FC = () => {
             </div>
 
             {/* Dynamic Waveform Simulation */}
-            <div className="relative h-44 w-full bg-black/50 rounded-2xl border border-white/10 p-4 flex flex-col justify-center overflow-hidden mb-6">
+            <div className="relative h-44 w-full bg-black/60 rounded-xl border border-white/10 p-4 flex flex-col justify-center overflow-hidden mb-6">
               {/* Harmonic Grid Lines */}
               <div className="absolute inset-0 grid grid-cols-6 grid-rows-4 opacity-15 pointer-events-none">
                 {Array.from({ length: 24 }).map((_, i) => (
@@ -145,7 +170,7 @@ export const ThemeSection: React.FC = () => {
 
               {/* Animated SVG Waveforms */}
               <svg className="w-full h-24 overflow-visible" viewBox="0 0 400 100" fill="none">
-                {/* Silicon rigid square-like pulse */}
+                {/* Silicon rigid pulse */}
                 <path
                   d="M0,50 L40,50 L40,25 L80,25 L80,75 L120,75 L120,50 L180,50 L180,20 L220,20 L220,80 L260,80 L260,50 L340,50 L340,30 L380,30 L380,70 L400,70"
                   stroke="rgba(255, 255, 255, 0.2)"
@@ -184,7 +209,7 @@ export const ThemeSection: React.FC = () => {
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-[#A7A7A7] flex items-center gap-1.5">
                   <Sliders className="w-3.5 h-3.5 text-[#FFB347]" />
-                  Ethical Alignment Factor
+                  <span>Ethical Alignment Factor</span>
                 </span>
                 <span className="text-white font-semibold">{humanFactor} / 100</span>
               </div>
@@ -195,9 +220,10 @@ export const ThemeSection: React.FC = () => {
                 value={humanFactor}
                 onChange={(e) => setHumanFactor(Number(e.target.value))}
                 className="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#FF8C42]"
+                data-cursor="interactive"
               />
               <span className="text-[11px] text-[#A7A7A7] font-light">
-                Drag to explore resonance between silicon logic throughput and moral restraint thresholds.
+                Modulate resonance between computational throughput and human societal empathy.
               </span>
             </div>
           </div>

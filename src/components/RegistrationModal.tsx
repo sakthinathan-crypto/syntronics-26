@@ -71,14 +71,14 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
 
     const randomNum = Math.floor(1000 + Math.random() * 9000);
     const pass: DelegatePass = {
-      passId: `NX26-${randomNum}-${selectedTier.slice(0, 3).toUpperCase()}`,
+      passId: `SY26-${randomNum}-${selectedTier.slice(0, 3).toUpperCase()}`,
       name: formData.name,
       email: formData.email,
       institution: formData.institution,
       tier: selectedTier,
       track: formData.track,
       registeredAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-      qrValue: `https://nexora2026.org/verify/NX26-${randomNum}`
+      qrValue: `https://syntronics2026.org/verify/SY26-${randomNum}`
     };
 
     setGeneratedPass(pass);
@@ -116,7 +116,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
         {/* Modal Top Header */}
         <div className="flex items-center gap-2 font-mono text-xs text-[#FF8C42] mb-2 uppercase tracking-[0.3em]">
           <Sparkles className="w-3.5 h-3.5 text-[#FF8C42]" />
-          <span>NEXORA '26 // OFFICIAL DELEGATE REGISTRATION</span>
+          <span>SYNTRONICS '26 // OFFICIAL DELEGATE REGISTRATION</span>
         </div>
 
         {/* Step 1: Select Tier */}
@@ -313,10 +313,10 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
               <div className="flex items-start justify-between border-b border-white/10 pb-4 mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/10 border border-white/20 flex items-center justify-center text-[#FFD166] font-mono font-bold">
-                    NX
+                    SY
                   </div>
                   <div>
-                    <div className="font-black text-lg text-white uppercase tracking-tight">NEXORA '26</div>
+                    <div className="font-black text-lg text-white uppercase tracking-tight">SYNTRONICS '26</div>
                     <div className="text-[10px] font-mono text-[#FFD166]">OCTOBER 12–14, 2026 // SAN FRANCISCO</div>
                   </div>
                 </div>

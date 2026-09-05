@@ -6,7 +6,7 @@ export const ImportantDates: React.FC = () => {
   const [copiedDate, setCopiedDate] = useState<string | null>(null);
 
   const handleReminder = (item: typeof IMPORTANT_DATES[0]) => {
-    const text = `NEXORA '26 Deadline: ${item.title} (${item.day} ${item.month} ${item.year})`;
+    const text = `SYNTRONICS '26 Deadline: ${item.title} (${item.day} ${item.month} ${item.year})`;
     navigator.clipboard.writeText(text);
     setCopiedDate(item.title);
     setTimeout(() => setCopiedDate(null), 2500);
@@ -45,10 +45,10 @@ export const ImportantDates: React.FC = () => {
           {IMPORTANT_DATES.map((item, idx) => (
             <div
               key={idx}
-              className={`p-6 sm:p-8 border relative overflow-hidden flex flex-col justify-between group transition-all duration-300 backdrop-blur-md ${
+              className={`p-6 sm:p-8 border relative overflow-hidden flex flex-col justify-between group transition-all duration-300 backdrop-blur-xl ${
                 item.isMilestone
-                  ? 'border-[#FFB347] bg-white/5 shadow-[0_10px_30px_rgba(255,140,66,0.12)]'
-                  : 'border-white/10 bg-[#0B0B0B]/60 hover:border-white/20'
+                  ? 'border-[#FFB347] bg-white/[0.08] shadow-[0_10px_35px_rgba(255,140,66,0.15)] hover:-translate-y-1'
+                  : 'border-white/10 bg-[#0B0B0B]/70 hover:border-white/25 hover:-translate-y-1'
               }`}
             >
               {/* Highlight Tag */}
@@ -91,7 +91,7 @@ export const ImportantDates: React.FC = () => {
                   {copiedDate === item.title ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-400">Copied to Clipboard!</span>
+                      <span className="text-emerald-400 font-semibold">Copied to Clipboard!</span>
                     </>
                   ) : (
                     <>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { WHY_PARTICIPATE } from '../data/symposiumData';
 import { BookOpen, Users, Globe, Trophy, Award, Cpu, ArrowUpRight } from 'lucide-react';
+import { MagneticButton } from './MagneticButton';
 
 const iconMap = {
   BookOpen,
@@ -48,7 +49,7 @@ export const WhyParticipate: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
             return (
               <div
                 key={idx}
-                className="group p-7 border border-white/10 bg-[#0B0B0B]/60 flex flex-col justify-between transition-all duration-300 hover:border-[#FFB347] hover:-translate-y-1 backdrop-blur-md"
+                className="group p-7 border border-white/10 bg-[#0B0B0B]/70 flex flex-col justify-between transition-all duration-300 hover:border-[#FFB347] hover:-translate-y-1.5 backdrop-blur-xl shadow-lg"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -79,7 +80,7 @@ export const WhyParticipate: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
         </div>
 
         {/* Registration Fellowship Banner */}
-        <div className="mt-12 p-8 border border-white/20 bg-white/5 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden backdrop-blur-md">
+        <div className="mt-12 p-8 border border-white/20 bg-white/5 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden backdrop-blur-xl">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 text-xs font-mono text-[#FFD166] mb-3 uppercase tracking-widest">
               <span>SCHOLAR TRAVEL FELLOWSHIPS</span>
@@ -88,17 +89,17 @@ export const WhyParticipate: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
               Undergraduate & Early-Career Travel Grants Available
             </h3>
             <p className="text-sm text-[#A7A7A7] mt-1 font-serif italic max-w-2xl">
-              NEXORA Foundation provides 40 full travel fellowships covering lodging, flight stipends, and symposium fees for authors of accepted papers from under-represented regions.
+              SYNTRONICS Foundation provides 40 full travel fellowships covering lodging, flight stipends, and symposium fees for authors of accepted papers from under-represented regions.
             </p>
           </div>
 
-          <button
+          <MagneticButton
             onClick={onOpenRegister}
-            className="shrink-0 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-black bg-white hover:bg-[#FFB347] transition-colors shadow-[0_0_20px_rgba(255,179,71,0.2)]"
+            className="shrink-0 px-7 py-4 text-xs font-bold uppercase tracking-widest text-black bg-white hover:bg-[#FFB347] transition-colors shadow-[0_0_20px_rgba(255,179,71,0.2)]"
             data-cursor="interactive"
           >
             APPLY FOR FELLOWSHIP PASS
-          </button>
+          </MagneticButton>
         </div>
       </div>
     </section>

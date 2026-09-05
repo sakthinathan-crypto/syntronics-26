@@ -1,7 +1,7 @@
 import React from 'react';
 import { SPEAKERS } from '../data/symposiumData';
 import { Speaker } from '../types';
-import { Sparkles, Calendar, ArrowUpRight, ExternalLink } from 'lucide-react';
+import { Sparkles, Calendar, ArrowUpRight } from 'lucide-react';
 
 interface SpeakersProps {
   onSelectSpeaker: (speaker: Speaker) => void;
@@ -42,7 +42,7 @@ export const Speakers: React.FC<SpeakersProps> = ({ onSelectSpeaker }) => {
             <div
               key={speaker.id}
               onClick={() => onSelectSpeaker(speaker)}
-              className="group border border-white/10 bg-[#0B0B0B]/60 overflow-hidden flex flex-col justify-between cursor-pointer relative transition-all duration-300 hover:border-[#FFB347] hover:-translate-y-1 shadow-[0_15px_30px_rgba(0,0,0,0.5)]"
+              className="group border border-white/10 bg-[#0B0B0B]/70 overflow-hidden flex flex-col justify-between cursor-pointer relative transition-all duration-500 hover:border-[#FFB347]/80 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.6)] backdrop-blur-xl"
               data-cursor="interactive"
             >
               {/* Photo Box with Duotone/Grayscale to Vivid Transition */}
@@ -51,7 +51,8 @@ export const Speakers: React.FC<SpeakersProps> = ({ onSelectSpeaker }) => {
                   src={speaker.photo}
                   alt={speaker.name}
                   loading="lazy"
-                  className="w-full h-full object-cover grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover grayscale contrast-110 brightness-90 group-hover:grayscale-0 group-hover:brightness-105 group-hover:scale-105 transition-all duration-700 ease-out"
                 />
                 
                 {/* Gradient vignette overlay */}

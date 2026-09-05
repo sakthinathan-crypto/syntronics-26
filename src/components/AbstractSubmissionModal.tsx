@@ -35,7 +35,7 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
     e.preventDefault();
     if (!title || !authors || !email || !abstractText) return;
 
-    const code = `NEX-CFP-${Math.floor(1000 + Math.random() * 9000)}`;
+    const code = `SYN-CFP-${Math.floor(1000 + Math.random() * 9000)}`;
     setSubmissionId(code);
     setIsSubmitted(true);
   };

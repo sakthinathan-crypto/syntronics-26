@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Mail, MapPin, Globe, Shield, Terminal, Heart } from 'lucide-react';
+import { ArrowUp, Mail, MapPin, Globe, Shield, Terminal, Heart, Check } from 'lucide-react';
 import { SYMPOSIUM_META } from '../data/symposiumData';
 
 export const Footer: React.FC = () => {
   const [utcTime, setUtcTime] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -19,6 +20,12 @@ export const Footer: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubscribed(true);
+    setTimeout(() => setSubscribed(false), 4000);
+  };
+
   return (
     <footer className="relative bg-[#030303] border-t border-white/[0.08] pt-20 pb-12 px-4 sm:px-6 lg:px-8 text-[#A7A7A7] z-10 overflow-hidden">
       {/* Background ambient lighting */}
@@ -30,11 +37,11 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand & Identity */}
           <div className="lg:col-span-4 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-9 h-9 bg-white/5 border border-white/20 text-[#FFD166] font-mono font-bold">
-                NX
+              <div className="flex items-center justify-center w-9 h-9 bg-white/5 border border-white/20 text-[#FFD166] font-mono font-bold text-sm">
+                SY
               </div>
               <span className="text-2xl font-black text-white tracking-tighter uppercase">
-                NEXORA <span className="text-[#FF8C42]">'26</span>
+                SYNTRONICS <span className="text-[#FF8C42]">'26</span>
               </span>
             </div>
 
@@ -49,7 +56,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#FFB347]" />
-                <span>secretariat@nexora2026.org</span>
+                <span>secretariat@syntronics2026.org</span>
               </div>
               <div className="flex items-center gap-2">
                 <Terminal className="w-3.5 h-3.5 text-[#FFD166]" />
@@ -96,20 +103,27 @@ export const Footer: React.FC = () => {
               <p className="text-xs text-[#A7A7A7] font-serif italic mb-3">
                 Receive camera-ready notifications, speaker announcements, and accepted paper digests.
               </p>
-              <form onSubmit={(e) => { e.preventDefault(); alert("Thank you for subscribing to NEXORA '26 dispatches."); }} className="flex gap-2">
-                <input
-                  type="email"
-                  required
-                  placeholder="delegate@institution.edu"
-                  className="px-3 py-2 bg-white/5 border border-white/15 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347] flex-1"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-[#FFB347] transition-colors"
-                >
-                  Join
-                </button>
-              </form>
+              {subscribed ? (
+                <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-2">
+                  <Check className="w-4 h-4" />
+                  <span>Subscribed to SYNTRONICS '26 dispatches!</span>
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex gap-2">
+                  <input
+                    type="email"
+                    required
+                    placeholder="delegate@institution.edu"
+                    className="px-3 py-2 bg-white/5 border border-white/15 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347] flex-1"
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-[#FFB347] transition-colors"
+                  >
+                    Join
+                  </button>
+                </form>
+              )}
             </div>
 
             <button
@@ -133,7 +147,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Legal & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#A7A7A7]">
           <div>
-            © 2026 NEXORA Symposium Organizing Committee. All rights reserved.
+            © 2026 SYNTRONICS Symposium Organizing Committee. All rights reserved.
           </div>
           <div className="flex items-center gap-4">
             <span className="hover:text-white cursor-pointer transition-colors">Code of Conduct</span>

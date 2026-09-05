@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TRACKS } from '../data/symposiumData';
 import { Track } from '../types';
 import { ChevronRight, Sparkles, User, Calendar, FileText, CheckCircle2 } from 'lucide-react';
+import { MagneticButton } from './MagneticButton';
 
 interface TracksProps {
   onSelectTrackForAbstract: (track: Track) => void;
@@ -50,8 +51,8 @@ export const Tracks: React.FC<TracksProps> = ({ onSelectTrackForAbstract }) => {
                   onClick={() => setExpandedTrackId(track.id)}
                   className={`p-6 cursor-pointer border transition-all duration-300 relative group overflow-hidden ${
                     isExpanded
-                      ? 'border-[#FFB347] bg-white/5 shadow-[0_10px_30px_rgba(255,140,66,0.1)]'
-                      : 'border-white/10 bg-[#0B0B0B]/60 hover:border-white/20'
+                      ? 'border-[#FFB347] bg-white/[0.08] shadow-[0_10px_30px_rgba(255,140,66,0.15)]'
+                      : 'border-white/10 bg-[#0B0B0B]/70 hover:border-white/20 hover:bg-white/[0.03]'
                   }`}
                   data-cursor="interactive"
                 >
@@ -99,17 +100,17 @@ export const Tracks: React.FC<TracksProps> = ({ onSelectTrackForAbstract }) => {
             {expandedTrackId && (() => {
               const activeTrack = TRACKS.find(t => t.id === expandedTrackId)!;
               return (
-                <div className="sticky top-28 p-8 bg-[#0B0B0B]/80 border border-white/10 backdrop-blur-md relative overflow-hidden flex flex-col justify-between shadow-2xl">
+                <div className="sticky top-28 p-8 bg-[#0B0B0B]/85 border border-white/15 backdrop-blur-xl relative overflow-hidden flex flex-col justify-between shadow-2xl transition-all duration-500">
                   {/* Glowing ambient accent */}
                   <div 
-                    className="absolute -top-24 -right-24 w-60 h-60 rounded-full blur-3xl opacity-20 pointer-events-none"
+                    className="absolute -top-24 -right-24 w-60 h-60 rounded-full blur-3xl opacity-20 pointer-events-none transition-all duration-700"
                     style={{ backgroundColor: activeTrack.accentColor }}
                   />
 
                   <div>
                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                       <div className="flex items-center gap-2">
-                        <span className="font-black text-2xl sm:text-3xl text-white">
+                        <span className="font-black text-2xl sm:text-3xl text-white font-mono">
                           TRACK {activeTrack.number}
                         </span>
                         <span className="px-2 py-0.5 text-[10px] font-mono font-bold bg-[#FF8C42]/20 text-[#FFD166] border border-[#FF8C42]/30 uppercase">
@@ -165,14 +166,14 @@ export const Tracks: React.FC<TracksProps> = ({ onSelectTrackForAbstract }) => {
                       <span>IEEE 6-page double-column format</span>
                     </div>
 
-                    <button
+                    <MagneticButton
                       onClick={() => onSelectTrackForAbstract(activeTrack)}
                       className="w-full sm:w-auto px-6 py-3 font-bold text-xs uppercase tracking-widest text-black bg-white hover:bg-[#FFB347] hover:text-black transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,179,71,0.2)]"
                       data-cursor="interactive"
                     >
                       <span>SUBMIT TO TRACK {activeTrack.number}</span>
                       <ChevronRight className="w-4 h-4" />
-                    </button>
+                    </MagneticButton>
                   </div>
                 </div>
               );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { EVENTS } from '../data/symposiumData';
 import { SymposiumEvent } from '../types';
 import { Trophy, Users, Calendar, MapPin, ArrowUpRight, Sparkles, ChevronRight } from 'lucide-react';
@@ -6,6 +6,96 @@ import { Trophy, Users, Calendar, MapPin, ArrowUpRight, Sparkles, ChevronRight }
 interface EventsProps {
   onSelectEvent: (event: SymposiumEvent) => void;
 }
+
+const EventCard: React.FC<{
+  event: SymposiumEvent;
+  onSelect: () => void;
+}> = ({ event, onSelect }) => {
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setMousePos(null);
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onClick={onSelect}
+      className="group p-6 sm:p-7 border border-white/10 bg-[#0B0B0B]/70 flex flex-col justify-between cursor-pointer relative overflow-hidden transition-all duration-300 hover:border-[#FFB347]/80 hover:-translate-y-1.5 backdrop-blur-xl shadow-lg"
+      data-cursor="interactive"
+    >
+      {/* Interactive Cursor Spotlight Glow */}
+      {mousePos && (
+        <div
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(320px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 179, 71, 0.14), transparent 80%)`,
+          }}
+        />
+      )}
+
+      {/* Card Top: Number & Category */}
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-4">
+          <span className="font-mono text-xs font-bold text-[#FFD166] tracking-widest px-2.5 py-1 bg-white/5 border border-white/10 uppercase">
+            {event.number}
+          </span>
+          <span className="text-[10px] font-mono text-[#A7A7A7] uppercase tracking-wider">
+            {event.category}
+          </span>
+        </div>
+
+        <h3 className="text-xl sm:text-2xl font-black text-white mb-3 group-hover:text-[#FFB347] transition-colors leading-snug uppercase">
+          {event.title}
+        </h3>
+
+        <p className="text-xs sm:text-sm text-[#A7A7A7] font-serif italic leading-relaxed mb-6 line-clamp-3">
+          {event.description}
+        </p>
+      </div>
+
+      {/* Card Meta & CTA */}
+      <div className="relative z-10 pt-4 border-t border-white/10 flex flex-col gap-3">
+        {event.prizePool && (
+          <div className="flex items-center gap-2 text-xs font-mono text-[#FFD166]">
+            <Trophy className="w-3.5 h-3.5 text-[#FFB347] shrink-0" />
+            <span className="font-semibold">{event.prizePool}</span>
+          </div>
+        )}
+
+        <div className="flex items-center justify-between text-xs font-mono text-[#A7A7A7]">
+          <div className="flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-neutral-400" />
+            <span>{event.date}</span>
+          </div>
+          {event.teamSize && (
+            <div className="flex items-center gap-1.5">
+              <Users className="w-3.5 h-3.5 text-neutral-400" />
+              <span>{event.teamSize}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="mt-2 flex items-center justify-between text-xs font-mono text-white group-hover:text-[#FFB347] font-medium pt-2 border-t border-white/[0.04]">
+          <span>Explore Guidelines</span>
+          <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const Events: React.FC<EventsProps> = ({ onSelectEvent }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -59,63 +149,14 @@ export const Events: React.FC<EventsProps> = ({ onSelectEvent }) => {
           </div>
         </div>
 
-        {/* Events Grid */}
+        {/* Events Grid with cursor illumination */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredEvents.map((event) => (
-            <div
+            <EventCard
               key={event.id}
-              onClick={() => onSelectEvent(event)}
-              className="group p-6 sm:p-7 border border-white/10 bg-[#0B0B0B]/60 flex flex-col justify-between cursor-pointer relative overflow-hidden transition-all duration-300 hover:border-[#FFB347] hover:-translate-y-1 backdrop-blur-md"
-              data-cursor="interactive"
-            >
-              {/* Card Top: Number & Category */}
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs font-bold text-[#FFD166] tracking-widest px-2.5 py-1 bg-white/5 border border-white/10 uppercase">
-                    {event.number}
-                  </span>
-                  <span className="text-[10px] font-mono text-[#A7A7A7] uppercase tracking-wider">
-                    {event.category}
-                  </span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-black text-white mb-3 group-hover:text-[#FFB347] transition-colors leading-snug uppercase">
-                  {event.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-[#A7A7A7] font-serif italic leading-relaxed mb-6 line-clamp-3">
-                  {event.description}
-                </p>
-              </div>
-
-              {/* Card Meta & CTA */}
-              <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
-                {event.prizePool && (
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#FFD166]">
-                    <Trophy className="w-3.5 h-3.5 text-[#FFB347] shrink-0" />
-                    <span className="font-semibold">{event.prizePool}</span>
-                  </div>
-                )}
-
-                <div className="flex items-center justify-between text-xs font-mono text-[#A7A7A7]">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-neutral-400" />
-                    <span>{event.date}</span>
-                  </div>
-                  {event.teamSize && (
-                    <div className="flex items-center gap-1.5">
-                      <Users className="w-3.5 h-3.5 text-neutral-400" />
-                      <span>{event.teamSize}</span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-2 flex items-center justify-between text-xs font-mono text-white group-hover:text-[#FFB347] font-medium pt-2 border-t border-white/[0.04]">
-                  <span>Explore Guidelines</span>
-                  <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </div>
-              </div>
-            </div>
+              event={event}
+              onSelect={() => onSelectEvent(event)}
+            />
           ))}
         </div>
       </div>

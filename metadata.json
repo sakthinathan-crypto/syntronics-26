@@ -1,6 +1,6 @@
 {
   "name": "NEXORA '26",
-  "description": "International Symposium on Human-Centered Computing. Exploring sustainable, inclusive, and ethical frontiers of technology.",
+  "description": "SYNTRONICS '26 — International Symposium on Human-Centered Computing. Exploring sustainable, inclusive, and ethical frontiers of technology.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -1,7 +1,7 @@
 import { Track, SymposiumEvent, Speaker, TimelineMilestone, ImportantDateItem, Sponsor } from '../types';
 
 export const SYMPOSIUM_META = {
-  name: "NEXORA '26",
+  name: "SYNTRONICS '26",
   edition: "Annual International Symposium on Human-Centered Computing",
   theme: "HUMANIZING TECHNOLOGY",
   themeSubtitle: "Computing for a Sustainable, Inclusive and Ethical Future",
@@ -122,9 +122,9 @@ export const EVENTS: SymposiumEvent[] = [
     coordinator: "Prof. Karen Zhang"
   },
   {
-    id: "nexora-hackathon",
+    id: "syntronics-hackathon",
     number: "EV-02",
-    title: "The Nexora Sprint: 36-Hour Global AI Hackathon",
+    title: "The Syntronics Sprint: 36-Hour Global AI Hackathon",
     category: "Hackathon",
     date: "Oct 12 – 13, 2026 (Continuous)",
     time: "Kickoff: Oct 12, 11:00 AM PST",
@@ -202,7 +202,7 @@ export const EVENTS: SymposiumEvent[] = [
     prizePool: "Open Access Manifesto",
     teamSize: "Open to all attendees",
     description: "A flagship summit debating governance frameworks for superintelligent agent swarms, equitable digital rights, and the ethical accountability of developers.",
-    highlights: ["Global keynote speakers", "Audience live question voting", "Drafting of the Nexora '26 Accord", "Broadcast live globally"],
+    highlights: ["Global keynote speakers", "Audience live question voting", "Drafting of the Syntronics '26 Accord", "Broadcast live globally"],
     coordinator: "Dr. Elena Rostova"
   }
 ];

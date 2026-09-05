@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SPONSORS } from '../data/symposiumData';
-import { ShieldCheck, Download, ExternalLink, Sparkles } from 'lucide-react';
+import { ShieldCheck, Download, ExternalLink, Sparkles, Check } from 'lucide-react';
+import { MagneticButton } from './MagneticButton';
 
 export const Sponsors: React.FC = () => {
   const [downloaded, setDownloaded] = useState(false);
@@ -51,7 +52,7 @@ export const Sponsors: React.FC = () => {
           {titleSponsor.map((s, i) => (
             <div
               key={i}
-              className="max-w-3xl mx-auto p-8 sm:p-10 border border-white/20 bg-[#0B0B0B]/80 text-center relative overflow-hidden group shadow-[0_10px_40px_rgba(0,0,0,0.5)] backdrop-blur-md"
+              className="max-w-3xl mx-auto p-8 sm:p-10 border border-white/20 bg-[#0B0B0B]/80 text-center relative overflow-hidden group shadow-[0_10px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl"
             >
               <div className="inline-flex items-center justify-center w-20 h-20 bg-white/5 border border-white/20 text-[#FFD166] font-mono font-bold text-2xl mb-4 group-hover:scale-105 transition-transform duration-300">
                 {s.logoPlaceholder}
@@ -79,7 +80,7 @@ export const Sponsors: React.FC = () => {
             {[...diamondSponsors, ...goldSponsors].map((s, i) => (
               <div
                 key={i}
-                className="p-6 border border-white/10 bg-[#0B0B0B]/60 text-center flex flex-col items-center justify-between group transition-all duration-300 hover:border-[#FFB347] backdrop-blur-md"
+                className="p-6 border border-white/10 bg-[#0B0B0B]/70 text-center flex flex-col items-center justify-between group transition-all duration-300 hover:border-[#FFB347] backdrop-blur-xl"
               >
                 <div className="w-14 h-14 bg-white/5 border border-white/10 flex items-center justify-center text-[#FFD166] font-mono font-bold text-lg mb-3">
                   {s.logoPlaceholder}
@@ -107,7 +108,7 @@ export const Sponsors: React.FC = () => {
             {[...silverSponsors, ...partners].map((s, i) => (
               <div
                 key={i}
-                className="p-4 border border-white/10 bg-[#0B0B0B]/40 hover:border-white/20 text-center flex flex-col items-center justify-center transition-colors group"
+                className="p-4 border border-white/10 bg-[#0B0B0B]/50 hover:border-white/20 text-center flex flex-col items-center justify-center transition-colors group backdrop-blur-md"
               >
                 <div className="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-neutral-300 font-mono font-bold text-sm mb-2 group-hover:text-[#FFB347]">
                   {s.logoPlaceholder}
@@ -124,25 +125,34 @@ export const Sponsors: React.FC = () => {
         </div>
 
         {/* Call to Action: Become a Sponsor */}
-        <div className="p-8 border border-white/20 bg-white/5 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left backdrop-blur-md">
+        <div className="p-8 border border-white/20 bg-white/5 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left backdrop-blur-xl">
           <div>
             <h4 className="text-xl sm:text-2xl font-black text-white mb-1 flex items-center justify-center sm:justify-start gap-2 uppercase">
               <Sparkles className="w-5 h-5 text-[#FFB347]" />
-              <span>Interested in partnering with NEXORA '26?</span>
+              <span>Interested in partnering with SYNTRONICS '26?</span>
             </h4>
             <p className="text-xs sm:text-sm text-[#A7A7A7] font-serif italic">
               Connect your brand with 500+ top researchers, access elite talent recruitment, and showcase frontier technology.
             </p>
           </div>
 
-          <button
+          <MagneticButton
             onClick={handleDownloadProspectus}
             className="px-6 py-3 border border-white/20 hover:border-[#FFB347] bg-white text-black hover:bg-[#FFB347] text-xs font-bold uppercase tracking-widest flex items-center gap-2 transition-all shrink-0"
             data-cursor="interactive"
           >
-            <Download className="w-4 h-4" />
-            <span>{downloaded ? "Prospectus Package Ready (PDF)" : "Download Sponsorship Deck"}</span>
-          </button>
+            {downloaded ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-800" />
+                <span>Prospectus Saved</span>
+              </>
+            ) : (
+              <>
+                <Download className="w-4 h-4" />
+                <span>Sponsor Prospectus (PDF)</span>
+              </>
+            )}
+          </MagneticButton>
         </div>
       </div>
     </section>

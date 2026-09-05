@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TIMELINE } from '../data/symposiumData';
 import { Calendar, CheckCircle, Clock, Sparkles } from 'lucide-react';
 
 export const TimelineSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [activeIndices, setActiveIndices] = useState<number[]>([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const nodes = sectionRef.current.querySelectorAll('.timeline-milestone');
+      const windowHeight = window.innerHeight;
+
+      const newActives: number[] = [];
+      nodes.forEach((node, idx) => {
+        const rect = node.getBoundingClientRect();
+        // Activate if top of node is past 70% of viewport
+        if (rect.top <= windowHeight * 0.72) {
+          newActives.push(idx);
+        }
+      });
+      setActiveIndices(newActives);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section
       id="timeline"
+      ref={sectionRef}
       className="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06] overflow-hidden z-10"
     >
       {/* Ambient background light */}
@@ -38,26 +64,27 @@ export const TimelineSection: React.FC = () => {
           <div className="flex flex-col gap-12 sm:gap-16">
             {TIMELINE.map((item, idx) => {
               const isEven = idx % 2 === 0;
+              const isScrolledIn = activeIndices.includes(idx);
               const isCompleted = item.status === 'completed';
-              const isActive = item.status === 'active';
+              const isActive = item.status === 'active' || isScrolledIn;
 
               return (
                 <div
                   key={idx}
-                  className={`relative flex flex-col md:flex-row items-start md:items-center ${
+                  className={`timeline-milestone relative flex flex-col md:flex-row items-start md:items-center transition-all duration-500 ${
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
                 >
                   {/* Central Node Badge */}
                   <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
-                    <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-transform duration-300 ${
+                    <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
                       isActive
-                        ? 'border-[#FFD166] bg-[#FF8C42] shadow-[0_0_20px_#FFB347] scale-125'
+                        ? 'border-[#FFD166] bg-[#FF8C42] shadow-[0_0_20px_#FFB347] scale-125 text-black'
                         : isCompleted
                         ? 'border-[#FFB347] bg-neutral-900 text-[#FFD166]'
                         : 'border-neutral-700 bg-neutral-950 text-neutral-500'
                     }`}>
-                      {isActive ? (
+                      {item.status === 'active' ? (
                         <span className="w-2 h-2 rounded-full bg-white animate-ping" />
                       ) : isCompleted ? (
                         <CheckCircle className="w-4 h-4 text-[#FFB347]" />
@@ -69,9 +96,9 @@ export const TimelineSection: React.FC = () => {
 
                   {/* Content Card (Left or Right on desktop) */}
                   <div className={`ml-16 md:ml-0 md:w-1/2 ${isEven ? 'md:pl-12' : 'md:pr-12'}`}>
-                    <div className={`p-6 sm:p-7 bg-[#0B0B0B]/70 border transition-all duration-300 backdrop-blur-md ${
+                    <div className={`p-6 sm:p-7 bg-[#0B0B0B]/70 border transition-all duration-300 backdrop-blur-xl ${
                       isActive
-                        ? 'border-[#FFB347] bg-white/5 shadow-[0_10px_35px_rgba(255,140,66,0.15)]'
+                        ? 'border-[#FFB347] bg-white/[0.08] shadow-[0_10px_35px_rgba(255,140,66,0.15)] -translate-y-1'
                         : 'border-white/10 hover:border-white/20'
                     }`}>
                       {/* Top Tag & Number */}
@@ -101,8 +128,7 @@ export const TimelineSection: React.FC = () => {
                         <span>{item.date}</span>
                       </div>
 
-                      {/* Description */}
-                      <p className="text-xs sm:text-sm text-[#A7A7A7] font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#A7A7A7] font-serif italic leading-relaxed">
                         {item.description}
                       </p>
                     </div>
