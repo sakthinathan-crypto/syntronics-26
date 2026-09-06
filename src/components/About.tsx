@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { SYMPOSIUM_META, INSTITUTION_INFO } from '../data/symposiumData';
-import { BookOpen, Globe2, Shield, Cpu, Building2, Award, Sparkles, CheckCircle2, Calendar, Laptop, MapPin } from 'lucide-react';
+import { BookOpen, Globe2, Shield, Cpu, Building2, Award, Sparkles, Calendar, Laptop, MapPin } from 'lucide-react';
 import { SyntronixLogo } from './SyntronixLogo';
 
 export const About: React.FC = () => {
@@ -179,16 +179,8 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Participation Highlights Pill Badges */}
+            {/* Highlights Badge */}
             <div className="pt-2 flex flex-wrap items-center gap-2.5 text-xs font-mono">
-              <span className="px-3.5 py-1.5 bg-white/5 border border-white/15 uppercase tracking-widest text-[#FF8C42] font-bold flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                ONLINE DAY: 14 OCT (FREE)
-              </span>
-              <span className="px-3.5 py-1.5 bg-white/5 border border-white/15 uppercase tracking-widest text-[#FFB347] font-bold flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                OFFLINE DAY: 15 OCT (₹100 PASS)
-              </span>
               <span className="px-3.5 py-1.5 bg-white/5 border border-white/15 uppercase tracking-widest text-white/70 flex items-center gap-2">
                 <Sparkles className="w-3.5 h-3.5 text-[#FF8C42]" />
                 CASH PRIZES ON EVENT DAY
