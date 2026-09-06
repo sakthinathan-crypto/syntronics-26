@@ -1,15 +1,93 @@
 import React, { useState } from 'react';
-import { ASSETS_CONFIG } from '../data/assetsConfig';
+import { ASSETS_CONFIG, InstitutionImageSlot } from '../data/assetsConfig';
 import { STAFF_COORDINATORS, INSTITUTION_INFO } from '../data/symposiumData';
-import { Building2, Image as ImageIcon, Sparkles, UserCheck, ExternalLink, MapPin, GraduationCap, Award } from 'lucide-react';
+import { Building2, Image as ImageIcon, Sparkles, UserCheck, ExternalLink, MapPin, GraduationCap, Award, X, ZoomIn } from 'lucide-react';
+
+const CampusCardItem: React.FC<{
+  slot: InstitutionImageSlot;
+  onOpen: (slot: InstitutionImageSlot) => void;
+}> = ({ slot, onOpen }) => {
+  // Try relativePath (.jpeg), then .jpg, then fallback placeholder
+  const candidateUrls = React.useMemo(() => {
+    const base = slot.relativePath.replace(/\.(jpeg|jpg)$/i, '');
+    return [
+      slot.relativePath,
+      `${base}.jpeg`,
+      `${base}.jpg`,
+      slot.placeholderFallback
+    ];
+  }, [slot.relativePath, slot.placeholderFallback]);
+
+  const [attemptIndex, setAttemptIndex] = useState(0);
+
+  const currentSrc = candidateUrls[attemptIndex] || slot.placeholderFallback;
+
+  const handleImgError = () => {
+    if (attemptIndex < candidateUrls.length - 1) {
+      setAttemptIndex(prev => prev + 1);
+    }
+  };
+
+  return (
+    <div
+      onClick={() => onOpen(slot)}
+      className="group relative bg-[#0B0B0B]/85 border border-white/10 hover:border-[#FFB347]/60 transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer"
+      data-cursor="interactive"
+    >
+      {/* Image Container */}
+      <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
+        <img
+          src={currentSrc}
+          alt={slot.title}
+          referrerPolicy="no-referrer"
+          onError={handleImgError}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-black/20 to-transparent" />
+
+        {/* Slot Number Pill */}
+        <div className="absolute top-3 left-3 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-[#FFD166] uppercase font-bold flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#FF8C42]" />
+          <span>SLOT {slot.slotNumber}</span>
+        </div>
+
+        {/* Category Pill */}
+        <div className="absolute top-3 right-3 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-neutral-300 uppercase">
+          {slot.category}
+        </div>
+
+        {/* Hover Zoom Icon */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30 backdrop-blur-[2px]">
+          <div className="px-3 py-1.5 bg-black/80 border border-[#FFB347]/50 text-white font-mono text-xs flex items-center gap-1.5 shadow-lg">
+            <ZoomIn className="w-3.5 h-3.5 text-[#FFD166]" />
+            <span>View Photo</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Content Details */}
+      <div className="p-5 flex-1 flex flex-col justify-between">
+        <div>
+          <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-[#FFB347] transition-colors leading-snug">
+            {slot.title}
+          </h3>
+          <p className="text-xs text-[#A7A7A7] font-serif italic leading-relaxed line-clamp-2 mb-4">
+            {slot.description}
+          </p>
+        </div>
+
+        {/* Configurable File Name Indicator */}
+        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
+          <span className="text-neutral-400">File: <span className="text-[#FF8C42]">{slot.filename}</span></span>
+          <span className="text-[10px] text-[#FFD166] uppercase">Active Campus View</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const OurInstitution: React.FC = () => {
-  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
-
-  const handleImageError = (slotId: string) => {
-    setImageErrors(prev => ({ ...prev, [slotId]: true }));
-  };
+  const [activeModalSlot, setActiveModalSlot] = useState<InstitutionImageSlot | null>(null);
 
   return (
     <section
@@ -45,66 +123,20 @@ export const OurInstitution: React.FC = () => {
               <span>EGSPEC NAGAPATTINAM</span>
             </span>
             <span className="text-neutral-400 text-[11px]">
-              Replace images in: <code className="text-[#FFD166]">/public/images/institution/</code>
+              Location: <code className="text-[#FFD166]">/public/images/institution/</code>
             </span>
           </div>
         </div>
 
         {/* 6 Institution Image Slots */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {ASSETS_CONFIG.institutionImages.map((slot) => {
-            const hasError = imageErrors[slot.id];
-            const displaySrc = hasError ? slot.placeholderFallback : slot.relativePath;
-
-            return (
-              <div
-                key={slot.id}
-                className="group relative bg-[#0B0B0B]/85 border border-white/10 hover:border-[#FFB347]/60 transition-all duration-300 overflow-hidden flex flex-col justify-between"
-                data-cursor="interactive"
-              >
-                {/* Image Container */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
-                  <img
-                    src={displaySrc}
-                    alt={slot.title}
-                    referrerPolicy="no-referrer"
-                    onError={() => handleImageError(slot.id)}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-black/20 to-transparent" />
-
-                  {/* Slot Number Pill */}
-                  <div className="absolute top-3 left-3 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-[#FFD166] uppercase font-bold flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF8C42]" />
-                    <span>SLOT {slot.slotNumber}</span>
-                  </div>
-
-                  {/* Category Pill */}
-                  <div className="absolute top-3 right-3 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-neutral-300 uppercase">
-                    {slot.category}
-                  </div>
-                </div>
-
-                {/* Content Details */}
-                <div className="p-5 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-[#FFB347] transition-colors leading-snug">
-                      {slot.title}
-                    </h3>
-                    <p className="text-xs text-[#A7A7A7] font-serif italic leading-relaxed line-clamp-2 mb-4">
-                      {slot.description}
-                    </p>
-                  </div>
-
-                  {/* Configurable File Name Indicator */}
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
-                    <span className="text-neutral-400">File: <span className="text-[#FF8C42]">{slot.filename}</span></span>
-                    <span className="text-[10px] text-neutral-500 uppercase">Configurable Slot</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {ASSETS_CONFIG.institutionImages.map((slot) => (
+            <CampusCardItem
+              key={slot.id}
+              slot={slot}
+              onOpen={(s) => setActiveModalSlot(s)}
+            />
+          ))}
         </div>
 
         {/* Staff Coordinators Section */}
@@ -194,6 +226,57 @@ export const OurInstitution: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Campus Image Full-View Modal Lightbox */}
+      {activeModalSlot && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setActiveModalSlot(null)}
+        >
+          <div 
+            className="relative max-w-4xl w-full bg-[#0B0B0B] border border-white/20 p-4 sm:p-6 flex flex-col gap-4 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <div className="flex items-center gap-3">
+                <span className="px-2.5 py-1 bg-[#FF8C42]/20 border border-[#FF8C42]/40 text-[#FF8C42] font-mono text-xs uppercase font-bold">
+                  SLOT {activeModalSlot.slotNumber}
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-tight">
+                  {activeModalSlot.title}
+                </h3>
+              </div>
+              <button
+                onClick={() => setActiveModalSlot(null)}
+                className="p-1.5 text-neutral-400 hover:text-white bg-white/5 border border-white/10 hover:border-white/30 transition-colors"
+                title="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="relative aspect-[16/10] overflow-hidden bg-black border border-white/10">
+              <img
+                src={activeModalSlot.relativePath}
+                alt={activeModalSlot.title}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = activeModalSlot.placeholderFallback;
+                }}
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-neutral-400">
+              <p className="font-serif italic text-sm text-neutral-300">
+                {activeModalSlot.description}
+              </p>
+              <div className="shrink-0 text-[11px] text-[#FFD166] px-2.5 py-1 bg-white/5 border border-white/10">
+                {activeModalSlot.filename}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
