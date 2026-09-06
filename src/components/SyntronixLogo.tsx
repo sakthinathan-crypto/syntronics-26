@@ -22,6 +22,12 @@ export const SyntronixLogo: React.FC<SyntronixLogoProps> = ({
   if (!pngFailed && variant === 'full') {
     return (
       <div className={`relative inline-flex items-center select-none ${className}`} id={id}>
+        {glow && (
+          <div
+            className="absolute inset-0 -inset-x-4 bg-[#FF8C42]/25 blur-2xl rounded-full pointer-events-none -z-10 scale-110"
+            aria-hidden="true"
+          />
+        )}
         <img
           src={currentSrc}
           alt="SYNTRONIX '26 - Create. Solve. Evolve."
