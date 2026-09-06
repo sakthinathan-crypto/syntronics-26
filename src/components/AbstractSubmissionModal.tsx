@@ -9,7 +9,6 @@ import {
   ArrowLeft,
   Check,
   AlertCircle,
-  ExternalLink,
   Loader2
 } from 'lucide-react';
 import { PAPER_PRESENTATION_50_TOPICS } from '../data/paperTopics';
@@ -595,20 +594,6 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
                 <span className="text-neutral-400">Chosen Topic:</span>
                 <span className="text-white truncate max-w-[200px]">{effectiveTopic}</span>
               </div>
-              {fileDriveUrl && (
-                <div className="flex justify-between items-center pt-2 border-t border-white/10">
-                  <span className="text-neutral-400">Google Drive:</span>
-                  <a
-                    href={fileDriveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#FFD166] hover:text-white underline truncate max-w-[200px] flex items-center gap-1"
-                  >
-                    <span>View Uploaded Paper</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
-              )}
               <div className="flex justify-between">
                 <span className="text-neutral-400">Organizing Dept:</span>
                 <span className="text-neutral-200">Dept of CSE, EGSPEC</span>
