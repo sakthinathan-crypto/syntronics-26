@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
-import { X, Upload, FileText, CheckCircle2, Sparkles, Compass, Lightbulb, ArrowRight } from 'lucide-react';
-import { TRACKS } from '../data/symposiumData';
+import { 
+  Upload, 
+  FileText, 
+  CheckCircle2, 
+  Sparkles, 
+  Download, 
+  ArrowRight, 
+  ArrowLeft,
+  Check
+} from 'lucide-react';
+import { PAPER_PRESENTATION_50_TOPICS } from '../data/paperTopics';
+import { download50TopicsDocument } from '../utils/downloadHelper';
 import { Track } from '../types';
 
 interface AbstractSubmissionModalProps {
@@ -12,28 +22,30 @@ interface AbstractSubmissionModalProps {
 export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = ({
   isOpen,
   onClose,
-  selectedTrack,
 }) => {
-  const [trackId, setTrackId] = useState(selectedTrack ? selectedTrack.id : TRACKS[0].id);
-  const [isCustomTopic, setIsCustomTopic] = useState(selectedTrack?.id === 'track-open-proposal');
-  const [customTopicTitle, setCustomTopicTitle] = useState('');
-  const [title, setTitle] = useState('');
-  const [authors, setAuthors] = useState('');
-  const [email, setEmail] = useState('');
-  const [institution, setInstitution] = useState('');
+  // Field States
+  const [teamName, setTeamName] = useState('');
+  const [leaderName, setLeaderName] = useState('');
+  const [collegeName, setCollegeName] = useState('');
+  const [uniqueId, setUniqueId] = useState('');
+  const [department, setDepartment] = useState('');
+  const [emailId, setEmailId] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  
+  // Topic Selector: 50 Topics OR "OTHER"
+  const [selectedTopicId, setSelectedTopicId] = useState<string>('1');
+  const [customTopic, setCustomTopic] = useState('');
+  
+  // Presentation / Research Title & Abstract Summary
+  const [presentationTitle, setPresentationTitle] = useState('');
   const [abstractText, setAbstractText] = useState('');
   const [fileName, setFileName] = useState<string | null>(null);
+
+  // Success State
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submissionId, setSubmissionId] = useState('');
 
   if (!isOpen) return null;
-
-  const handleTrackChange = (newTrackId: string) => {
-    setTrackId(newTrackId);
-    if (newTrackId === 'track-open-proposal') {
-      setIsCustomTopic(true);
-    }
-  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -43,146 +55,248 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !authors || !email || !abstractText) return;
+    if (!teamName || !leaderName || !collegeName || !emailId || !phoneNumber) return;
 
     const code = `SX26-CFP-${Math.floor(1000 + Math.random() * 9000)}`;
     setSubmissionId(code);
     setIsSubmitted(true);
   };
 
+  const isCustom = selectedTopicId === 'OTHER';
+  const selectedTopicObj = PAPER_PRESENTATION_50_TOPICS.find(t => String(t.id) === selectedTopicId);
+  const effectiveTopic = isCustom ? customTopic : selectedTopicObj?.title;
+
   const wordCount = abstractText.trim() ? abstractText.trim().split(/\s+/).length : 0;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-xl animate-in fade-in duration-300">
-      <div className="relative w-full max-w-2xl bg-[#0B0B0B] border border-white/20 p-6 sm:p-8 shadow-[0_20px_70px_rgba(0,0,0,0.95)] overflow-hidden my-8">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 p-2 text-neutral-400 hover:text-white hover:bg-white/10 transition-colors border border-white/10"
-          data-cursor="interactive"
-          aria-label="Close modal"
-        >
-          <X className="w-5 h-5" />
-        </button>
+    <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-6 md:p-8 overflow-y-auto bg-black/90 backdrop-blur-xl animate-in fade-in duration-300">
+      <div className="relative w-full max-w-3xl bg-[#0B0B0B] border border-white/15 p-6 sm:p-9 md:p-10 shadow-[0_25px_80px_rgba(0,0,0,0.95)] my-6 sm:my-10 md:my-14 transition-all">
+        
+        {/* Top Navigation Bar with ONLY BACK Button */}
+        <div className="flex items-center justify-between pb-4 sm:pb-5 mb-5 sm:mb-6 border-b border-white/10">
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex items-center gap-2 px-3.5 py-2 font-mono text-xs uppercase tracking-widest text-neutral-400 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/15 hover:border-[#FF8C42]/50 hover:shadow-[0_0_15px_rgba(255,140,66,0.2)] transition-all duration-300 group rounded-sm"
+            data-cursor="interactive"
+            aria-label="Return to previous screen"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#FF8C42] group-hover:-translate-x-0.5 transition-all duration-300" />
+            <span className="font-semibold">BACK</span>
+          </button>
+
+          <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+            SYNTRONIX '26 // CFP DESK
+          </span>
+        </div>
 
         {!isSubmitted ? (
           <div>
-            <div className="flex items-center gap-2 font-mono text-[11px] text-[#FF8C42] mb-2 uppercase tracking-[0.25em]">
-              <Sparkles className="w-3.5 h-3.5 text-[#FF8C42]" />
-              <span>SYNTRONIX '26 // RESEARCH ABSTRACT & PROPOSAL DESK</span>
-            </div>
-
-            <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 uppercase tracking-tight">
-              Submit Research Abstract
-            </h3>
-            <p className="text-xs sm:text-sm text-[#A7A7A7] mb-5 font-serif italic">
-              Submit your abstract for double-blind technical evaluation by the CSE editorial board.
-            </p>
-
-            {/* Topic Freedom Notice */}
-            <div className="p-3 bg-[#FF8C42]/10 border border-[#FF8C42]/30 text-xs font-mono text-neutral-200 mb-5 flex items-start gap-2.5">
-              <Lightbulb className="w-4 h-4 text-[#FFD166] shrink-0 mt-0.5" />
-              <span>
-                <strong className="text-white">Author Topic Flexibility:</strong> You may select from suggested topics across our tracks, or check "Propose Custom Topic" to submit your own original idea aligned with <span className="text-[#FFD166]">Humanizing Technology</span>.
-              </span>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-[#F5F5F5] mb-1">
-                    Select Research Track *
-                  </label>
-                  <select
-                    value={trackId}
-                    onChange={(e) => handleTrackChange(e.target.value)}
-                    className="w-full px-3.5 py-2.5 bg-[#141414] border border-white/15 text-sm text-white focus:outline-none focus:border-[#FFB347]"
-                  >
-                    {TRACKS.map((t) => (
-                      <option key={t.id} value={t.id}>
-                        Track {t.number}: {t.title}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="flex items-end pb-1.5">
-                  <label className="flex items-center gap-2 text-xs font-mono text-neutral-300 cursor-pointer p-2.5 bg-white/5 border border-white/10 w-full hover:border-[#FFB347]/50">
-                    <input
-                      type="checkbox"
-                      checked={isCustomTopic}
-                      onChange={(e) => setIsCustomTopic(e.target.checked)}
-                      className="accent-[#FFB347] w-4 h-4"
-                    />
-                    <span>Propose My Own Custom Topic</span>
-                  </label>
-                </div>
+            {/* Modal Header */}
+            <div className="mb-6 sm:mb-7">
+              <div className="flex items-center gap-2 font-mono text-[11px] text-neutral-400 mb-2 uppercase tracking-[0.25em]">
+                <Sparkles className="w-3.5 h-3.5 text-neutral-400" />
+                <span>SYNTRONIX '26 // CALL FOR PAPERS &amp; ABSTRACT DESK</span>
               </div>
 
-              {isCustomTopic && (
-                <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-[#FFD166] mb-1">
-                    Proposed Custom Topic / Subject Area *
-                  </label>
-                  <input
-                    type="text"
-                    required={isCustomTopic}
-                    value={customTopicTitle}
-                    onChange={(e) => setCustomTopicTitle(e.target.value)}
-                    placeholder="e.g. Decentralized Energy Micro-Grids via Edge Computing"
-                    className="w-full px-4 py-2 bg-white/5 border border-[#FFD166]/40 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347]"
-                  />
-                </div>
-              )}
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-2 uppercase tracking-tight">
+                Submit Research Paper / Abstract
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-400 font-serif italic">
+                Official submission portal for Paper Presentation (Day 2 Offline) and Online Article Presentation (Day 1 Online).
+              </p>
+            </div>
 
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[#F5F5F5] mb-1">
-                  Presentation / Paper Title *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Enter full title of your research or presentation"
-                  className="w-full px-4 py-2.5 bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347]"
-                />
-              </div>
+            {/* Download Action Bar - ONLY 1 BUTTON: DOWNLOAD 50 SUGGESTED TOPICS */}
+            <div className="mb-7 sm:mb-8 p-4 bg-white/[0.02] border border-white/10">
+              <button
+                type="button"
+                onClick={download50TopicsDocument}
+                className="w-full sm:w-auto px-4 py-2.5 bg-white/[0.04] border border-white/20 hover:border-[#FF8C42]/70 hover:bg-[#FF8C42]/10 text-neutral-300 hover:text-[#FFD166] text-xs font-mono uppercase tracking-wider font-semibold transition-all duration-300 flex items-center justify-center sm:justify-start gap-2.5 group hover:shadow-[0_0_20px_rgba(255,140,66,0.2)] rounded-sm"
+                title="Download the official 50 suggested paper presentation topics document"
+                data-cursor="interactive"
+              >
+                <Download className="w-4 h-4 text-neutral-400 group-hover:text-[#FF8C42] group-hover:scale-110 transition-all duration-300" />
+                <span>DOWNLOAD 50 SUGGESTED TOPICS</span>
+              </button>
+            </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Submission Form with comfortable spacing */}
+            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+              {/* Row 1: Team Name & Leader Name */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-[#F5F5F5] mb-1">
-                    Author(s) & College/Affiliation *
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                    TEAM NAME *
                   </label>
                   <input
                     type="text"
                     required
-                    value={authors}
-                    onChange={(e) => setAuthors(e.target.value)}
-                    placeholder="e.g., A. Kumar, S. Priya (EGSPEC)"
-                    className="w-full px-4 py-2 bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347]"
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    placeholder="e.g. Neural Vanguard"
+                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-[#F5F5F5] mb-1">
-                    Corresponding Email Address *
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                    LEADER NAME *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={leaderName}
+                    onChange={(e) => setLeaderName(e.target.value)}
+                    placeholder="e.g. Rahul Sharma"
+                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Row 2: College Name & Unique ID */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                    COLLEGE NAME *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={collegeName}
+                    onChange={(e) => setCollegeName(e.target.value)}
+                    placeholder="e.g. EGS Pillay Engineering College"
+                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                    UNIQUE ID (Roll / Reg. No / Student ID) *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={uniqueId}
+                    onChange={(e) => setUniqueId(e.target.value)}
+                    placeholder="e.g. 810022104045"
+                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Row 3: Department, Email ID, Phone Number */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                    DEPARTMENT *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={department}
+                    onChange={(e) => setDepartment(e.target.value)}
+                    placeholder="e.g. Computer Science &amp; Engg"
+                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                    EMAIL ID *
                   </label>
                   <input
                     type="email"
                     required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="author@college.edu"
-                    className="w-full px-4 py-2 bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347]"
+                    value={emailId}
+                    onChange={(e) => setEmailId(e.target.value)}
+                    placeholder="leader@college.edu"
+                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                    PHONE NUMBER *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="e.g. +91 98765 43210"
+                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
                   />
                 </div>
               </div>
 
+              {/* Row 4: Topic Selection (50 Suggested Topics OR Other) */}
+              <div className="pt-3 border-t border-white/10">
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 font-bold">
+                    SELECT TOPIC (50 OFFICIAL TOPICS OR OTHER) *
+                  </label>
+                  <span className="text-[11px] font-mono text-neutral-400">
+                    50 Official Topics available
+                  </span>
+                </div>
+
+                <select
+                  value={selectedTopicId}
+                  onChange={(e) => setSelectedTopicId(e.target.value)}
+                  className="w-full px-3.5 py-2.5 bg-[#121212] border border-white/15 text-sm text-white hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 font-mono rounded-sm"
+                >
+                  <optgroup label="Official 50 Suggested Topics" className="bg-[#141414] text-white">
+                    {PAPER_PRESENTATION_50_TOPICS.map((topic) => (
+                      <option key={topic.id} value={String(topic.id)}>
+                        Topic {String(topic.id).padStart(2, '0')}: {topic.title}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Custom Option" className="bg-[#141414] text-white">
+                    <option value="OTHER">
+                      ★ OTHER / PROPOSE YOUR OWN CUSTOM TOPIC
+                    </option>
+                  </optgroup>
+                </select>
+              </div>
+
+              {/* Custom Topic Input if "OTHER" selected */}
+              {isCustom && (
+                <div className="p-3.5 bg-white/[0.02] border border-white/20 hover:border-[#FFD166]/50 focus-within:border-[#FFB347] transition-all duration-300 animate-in fade-in">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                    ENTER YOUR CUSTOM TOPIC / TITLE *
+                  </label>
+                  <input
+                    type="text"
+                    required={isCustom}
+                    value={customTopic}
+                    onChange={(e) => setCustomTopic(e.target.value)}
+                    placeholder="e.g. Energy-Efficient Swarm Robotics for Disaster Reconnaissance"
+                    className="w-full px-3.5 py-2 bg-black/60 border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 transition-all duration-300 rounded-sm"
+                  />
+                </div>
+              )}
+
+              {/* Presentation / Research Title */}
               <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label className="block text-xs font-mono uppercase tracking-wider text-[#F5F5F5]">
-                    Abstract (Max 500 words) *
+                <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                  PRESENTATION / RESEARCH PAPER TITLE
+                </label>
+                <input
+                  type="text"
+                  value={presentationTitle}
+                  onChange={(e) => setPresentationTitle(e.target.value)}
+                  placeholder="Enter full presentation or research paper title (defaults to chosen topic)"
+                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
+                />
+              </div>
+
+              {/* Abstract Text Area */}
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300">
+                    ABSTRACT SUMMARY (MAX 500 WORDS)
                   </label>
                   <span className={`text-[11px] font-mono ${wordCount > 500 ? 'text-[#FF4D4D]' : 'text-neutral-400'}`}>
                     {wordCount} / 500 words
@@ -190,89 +304,98 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
                 </div>
                 <textarea
                   rows={4}
-                  required
                   value={abstractText}
                   onChange={(e) => setAbstractText(e.target.value)}
-                  placeholder="Outline the domain problem, methodology, practical application, and alignment with Humanizing Technology..."
-                  className="w-full px-4 py-2.5 bg-white/5 border border-white/15 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347] resize-none"
+                  placeholder="Briefly state your objective, proposed technique, results, and relevance to Humanizing Technology..."
+                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 resize-none rounded-sm"
                 />
               </div>
 
-              {/* PDF Draft Upload */}
+              {/* FILE UPLOAD with Monochrome -> Color Hover */}
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[#F5F5F5] mb-1">
-                  Draft PPT / PDF Document (Optional at abstract stage)
+                <label className="block text-xs font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
+                  FILE UPLOAD (PPT / PPTX / PDF / DOCX)
                 </label>
-                <div className="relative border border-dashed border-white/20 hover:border-[#FFB347] p-3 text-center cursor-pointer bg-white/[0.02] transition-colors">
+                <div className="relative border border-dashed border-white/20 hover:border-[#FF8C42]/60 p-4 sm:p-5 text-center cursor-pointer bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300 group rounded-sm hover:shadow-[0_0_20px_rgba(255,140,66,0.15)]">
                   <input
                     type="file"
                     accept=".pdf,.ppt,.pptx,.doc,.docx"
                     onChange={handleFileChange}
                     className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                   />
-                  <div className="flex flex-col items-center justify-center gap-1">
-                    <Upload className="w-4 h-4 text-[#FF8C42]" />
-                    <span className="text-xs text-neutral-300 font-medium">
-                      {fileName ? fileName : "Click or drop file (PDF or PPT, max 25MB)"}
+                  <div className="flex flex-col items-center justify-center gap-1.5">
+                    <Upload className="w-5 h-5 text-neutral-400 group-hover:text-[#FF8C42] group-hover:scale-110 transition-all duration-300" />
+                    <span className="text-xs text-neutral-300 group-hover:text-white font-medium transition-colors">
+                      {fileName ? fileName : "Click or drag draft file here (PDF or PPT, max 25MB)"}
                     </span>
-                    <span className="text-[10px] text-neutral-500 font-mono">For Online Article Presentation, final PPT upload deadline is 13 Oct 2026 via Unstop</span>
+                    <span className="text-[10px] text-neutral-500 font-mono">
+                      Presentation time: 7 minutes + 3 minutes Q&amp;A
+                    </span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-[#FFD166]">
-                  Notification: Continuous Rolling Review
+              {/* Submit Actions with comfortable padding below */}
+              <div className="pt-5 sm:pt-6 pb-2 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-[11px] font-mono text-neutral-400">
+                  Continuous Rolling Review // Certificates &amp; Cash Prizes on Event Day
                 </span>
 
                 <button
                   type="submit"
-                  className="px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white bg-[#FF8C42] hover:bg-[#FF7722] transition-colors shadow-[0_0_20px_rgba(255,140,66,0.3)] flex items-center gap-2"
+                  className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-neutral-200 hover:text-white bg-white/10 hover:bg-[#FF8C42] border border-white/20 hover:border-transparent transition-all duration-300 shadow-none hover:shadow-[0_0_25px_rgba(255,140,66,0.4)] flex items-center justify-center gap-2 group rounded-sm"
                   data-cursor="interactive"
                 >
-                  <span>SUBMIT ABSTRACT</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>SUBMIT CFP PROPOSAL</span>
+                  <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
                 </button>
               </div>
             </form>
           </div>
         ) : (
-          <div className="text-center py-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-[#FF8C42]/15 border border-[#FF8C42]/30 text-[#FF8C42] mb-4">
+          <div className="text-center py-8 sm:py-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-white/5 border border-white/20 text-[#FF8C42] mb-5">
               <CheckCircle2 className="w-8 h-8" />
             </div>
 
             <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 uppercase tracking-tight">
-              Abstract Received
+              CFP Submission Received
             </h3>
-            <p className="text-sm text-[#A7A7A7] max-w-md mx-auto mb-5 font-serif italic">
-              Your submission has entered the CSE symposium peer-review queue. A confirmation has been registered for <span className="text-[#FFD166]">{email}</span>.
+            <p className="text-sm text-neutral-400 max-w-md mx-auto mb-6 font-serif italic">
+              Your paper proposal has been registered into the CSE symposium review queue. A confirmation has been logged for <span className="text-white font-semibold">{emailId}</span>.
             </p>
 
-            <div className="p-4 bg-white/5 border border-white/10 max-w-md mx-auto text-left mb-6 space-y-2 text-xs font-mono">
+            <div className="p-5 bg-white/[0.03] border border-white/10 max-w-md mx-auto text-left mb-8 space-y-2.5 text-xs font-mono">
               <div className="flex justify-between">
                 <span className="text-neutral-400">Submission Code:</span>
                 <span className="font-bold text-[#FF8C42]">{submissionId}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-neutral-400">Paper Title:</span>
-                <span className="text-white truncate max-w-[200px]">{title}</span>
+                <span className="text-neutral-400">Team Name:</span>
+                <span className="text-white truncate max-w-[200px]">{teamName}</span>
               </div>
-              {isCustomTopic && customTopicTitle && (
-                <div className="flex justify-between">
-                  <span className="text-neutral-400">Proposed Topic:</span>
-                  <span className="text-[#FFD166] truncate max-w-[200px]">{customTopicTitle}</span>
-                </div>
-              )}
               <div className="flex justify-between">
-                <span className="text-neutral-400">Review Board:</span>
-                <span className="text-[#FF8C42]">Dept of CSE, EGSPEC</span>
+                <span className="text-neutral-400">Leader:</span>
+                <span className="text-white truncate max-w-[200px]">{leaderName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-neutral-400">College:</span>
+                <span className="text-neutral-200 truncate max-w-[200px]">{collegeName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-neutral-400">Chosen Topic:</span>
+                <span className="text-white truncate max-w-[200px]">{effectiveTopic}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-neutral-400">Organizing Dept:</span>
+                <span className="text-neutral-200">Dept of CSE, EGSPEC</span>
               </div>
             </div>
 
             <button
               onClick={onClose}
-              className="px-8 py-3 text-xs font-bold uppercase tracking-widest text-white bg-[#FF8C42] hover:bg-[#FF7722] transition-all"
+              className="px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white bg-white/10 hover:bg-[#FF8C42] border border-white/20 hover:border-transparent transition-all duration-300 rounded-sm"
+              data-cursor="interactive"
             >
               DONE
             </button>

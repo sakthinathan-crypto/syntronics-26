@@ -189,7 +189,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({
 
             <div className="flex items-center justify-between pt-4 border-t border-white/10">
               <div className="text-xs font-mono text-[#A7A7A7]">
-                SYNTRONICS '26 Plenary Hall // Tech Pavilion & Virtual Hub
+                SYNTRONIX '26 Plenary Hall // Tech Pavilion & Virtual Hub
               </div>
 
               <button

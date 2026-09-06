@@ -79,7 +79,7 @@ export const AudioAmbience: React.FC = () => {
       id="audio-ambience-toggle"
       onClick={toggleSound}
       title={isPlaying ? "Mute ambient frequency" : "Enable futuristic ambient sound"}
-      className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-3.5 py-2.5 rounded-full glass-panel border border-white/10 hover:border-[#FFB347]/50 text-xs font-mono text-[#F5F5F5] transition-all duration-300 hover:scale-105 shadow-xl group backdrop-blur-md"
+      className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/80 border border-white/15 hover:border-[#FFB347]/60 text-xs font-mono text-[#F5F5F5] transition-all duration-300 hover:scale-105 shadow-2xl group backdrop-blur-md"
       data-cursor="interactive"
     >
       <span className="relative flex h-2 w-2">
@@ -92,9 +92,13 @@ export const AudioAmbience: React.FC = () => {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-neutral-600"></span>
         )}
       </span>
-      {isPlaying ? <Volume2 className="w-3.5 h-3.5 text-[#FFB347]" /> : <VolumeX className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white" />}
-      <span className="tracking-wider uppercase text-[10px] text-[#A7A7A7] group-hover:text-white transition-colors">
-        {isPlaying ? "Audio: Active" : "Audio: Muted"}
+      {isPlaying ? (
+        <Volume2 className="w-3.5 h-3.5 text-[#FFB347]" />
+      ) : (
+        <VolumeX className="w-3.5 h-3.5 text-neutral-400 group-hover:text-white" />
+      )}
+      <span className="tracking-widest uppercase text-[10px] text-[#A7A7A7] group-hover:text-white transition-colors">
+        {isPlaying ? "AUDIO: LIVE" : "AUDIO: MUTED"}
       </span>
     </button>
   );

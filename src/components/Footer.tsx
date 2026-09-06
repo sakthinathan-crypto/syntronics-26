@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Mail, MapPin, Globe, Shield, Terminal, Heart, Check, Building2, Phone } from 'lucide-react';
+import { ArrowUp, Mail, MapPin, Globe, Shield, Terminal, Heart, Check, Building2, Phone, Sparkles } from 'lucide-react';
 import { SYMPOSIUM_META, INSTITUTION_INFO } from '../data/symposiumData';
+import { ASSETS_CONFIG } from '../data/assetsConfig';
 import { SyntronixLogo } from './SyntronixLogo';
 
 export const Footer: React.FC = () => {
   const [istTime, setIstTime] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [aegisLogoError, setAegisLogoError] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -81,9 +83,9 @@ export const Footer: React.FC = () => {
               <li><a href="#hero" className="hover:text-[#FFB347] transition-colors">Home Viewport</a></li>
               <li><a href="#about" className="hover:text-[#FFB347] transition-colors">About EGSPEC & CSE</a></li>
               <li><a href="#theme" className="hover:text-[#FFB347] transition-colors">Curatorial Theme</a></li>
-              <li><a href="#tracks" className="hover:text-[#FFB347] transition-colors">Tracks & Open Topics</a></li>
-              <li><a href="#events" className="hover:text-[#FFB347] transition-colors">6 Flagship Events</a></li>
-              <li><a href="#speakers" className="hover:text-[#FFB347] transition-colors">Speakers & Mentors</a></li>
+              <li><a href="#events" className="hover:text-[#FFB347] transition-colors">6 Official Events</a></li>
+              <li><a href="#institution" className="hover:text-[#FFB347] transition-colors">Our Institution</a></li>
+              <li><a href="#timeline" className="hover:text-[#FFB347] transition-colors">Symposium Roadmap</a></li>
             </ul>
           </div>
 
@@ -94,43 +96,43 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="flex flex-col gap-2 text-xs font-medium">
               <li><a href="#dates" className="hover:text-[#FFB347] transition-colors">Dates & Deadlines</a></li>
-              <li><a href="#timeline" className="hover:text-[#FFB347] transition-colors">Symposium Roadmap</a></li>
               <li><a href="#why-participate" className="hover:text-[#FFB347] transition-colors">Cash Prizes & Honors</a></li>
-              <li><a href="#sponsors" className="hover:text-[#FFB347] transition-colors">Industry Patrons</a></li>
-              <li><a href="https://egspec.org" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFD166] transition-colors">EGSPEC Official Site ↗</a></li>
+              <li><a href={SYMPOSIUM_META.links.onlineRegistration} target="_blank" rel="noopener noreferrer" className="hover:text-[#FFD166] transition-colors">Unstop Registration ↗</a></li>
+              <li><a href={SYMPOSIUM_META.links.offlineRegistration} target="_blank" rel="noopener noreferrer" className="hover:text-[#FFD166] transition-colors">Offline Google Form ↗</a></li>
+              <li><a href={SYMPOSIUM_META.links.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-[#FF8C42] transition-colors">Instagram Profile ↗</a></li>
+              <li><a href={INSTITUTION_INFO.websiteUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#FFD166] transition-colors">EGSPEC Official Site ↗</a></li>
             </ul>
           </div>
 
-          {/* Col 4: Newsletter & Back to top */}
+          {/* Col 4: Aegis Academy Logo & Back to top */}
           <div className="lg:col-span-3 flex flex-col justify-between gap-6">
             <div>
               <h4 className="font-mono text-xs font-bold text-[#FF8C42] uppercase tracking-[0.3em] mb-2">
-                Symposium Updates
+                AEGIS ACADEMY
               </h4>
               <p className="text-xs text-[#A7A7A7] font-serif italic mb-3">
-                Receive schedule circulars, shortlisting notifications, and event announcements.
+                Official Academy partner. Logo slot configurable in <code className="text-[#FFD166]">/public/images/aegis-academy-logo.png</code>.
               </p>
-              {subscribed ? (
-                <div className="p-3 bg-[#FF8C42]/15 border border-[#FF8C42]/30 text-[#FF8C42] text-xs font-mono flex items-center gap-2">
-                  <Check className="w-4 h-4" />
-                  <span>Subscribed to SYNTRONIX '26 updates!</span>
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="flex gap-2">
-                  <input
-                    type="email"
-                    required
-                    placeholder="student@college.edu"
-                    className="px-3 py-2 bg-white/5 border border-white/15 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#FFB347] flex-1"
+
+              {/* Aegis Academy Logo Card Placeholder */}
+              <div className="p-3 bg-white/[0.03] border border-white/10 hover:border-[#FFB347]/40 transition-colors flex items-center gap-3">
+                <div className="w-12 h-12 bg-black border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                  <img
+                    src={aegisLogoError ? ASSETS_CONFIG.aegisAcademy.uploadedAssetFallback : ASSETS_CONFIG.aegisAcademy.primaryPath}
+                    alt="Aegis Academy Logo"
+                    onError={() => setAegisLogoError(true)}
+                    className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(255,140,66,0.3)]"
                   />
-                  <button
-                    type="submit"
-                    className="px-4 py-2 bg-[#FF8C42] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#FF7722] transition-colors shadow-[0_0_15px_rgba(255,140,66,0.3)]"
-                  >
-                    Join
-                  </button>
-                </form>
-              )}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+                    Aegis Academy
+                  </span>
+                  <span className="text-[10px] text-neutral-400 font-mono">
+                    Official Rights Holder
+                  </span>
+                </div>
+              </div>
             </div>
 
             <button
@@ -157,9 +159,9 @@ export const Footer: React.FC = () => {
             all copy rights owned by Aegis Academy
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-[#FFD166]">Syntronix '26</span>
+            <span className="text-[#FFD166]">SYNTRONIX '26</span>
             <span>•</span>
-            <span className="text-neutral-400">Department of Computer Science & Engineering</span>
+            <span className="text-neutral-400">Department of Computer Science & Engineering, EGSPEC</span>
           </div>
         </div>
       </div>

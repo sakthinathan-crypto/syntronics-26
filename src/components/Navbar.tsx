@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      const sections = ['hero', 'about', 'theme', 'events', 'speakers', 'timeline', 'dates', 'why-participate', 'sponsors'];
+      const sections = ['hero', 'about', 'theme', 'events', 'institution', 'timeline', 'dates', 'why-participate'];
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -38,14 +38,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
   }, []);
 
   const navLinks = [
-    { label: 'Home', href: '#hero', id: 'hero' },
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Theme', href: '#theme', id: 'theme' },
-    { label: 'Events', href: '#events', id: 'events' },
-    { label: 'Speakers', href: '#speakers', id: 'speakers' },
-    { label: 'Timeline', href: '#timeline', id: 'timeline' },
-    { label: 'Dates', href: '#dates', id: 'dates' },
-    { label: 'Sponsors', href: '#sponsors', id: 'sponsors' },
+    { label: 'HOME', href: '#hero', id: 'hero' },
+    { label: 'ABOUT', href: '#about', id: 'about' },
+    { label: 'THEME', href: '#theme', id: 'theme' },
+    { label: 'EVENTS', href: '#events', id: 'events' },
+    { label: 'SPEAKERS', href: '#institution', id: 'institution' },
+    { label: 'TIMELINE', href: '#timeline', id: 'timeline' },
+    { label: 'DATES', href: '#dates', id: 'dates' },
+    { label: 'SPONSORS', href: '#why-participate', id: 'why-participate' },
   ];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
                 >
                   <span>{link.label}</span>
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#FFD166] to-[#FF8C42] shadow-[0_0_8px_#FF8C42]" />
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-[#FF8C42] shadow-[0_0_8px_#FF8C42]" />
                   )}
                 </a>
               );
@@ -126,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
               className="px-5 py-2 bg-[#FF8C42] text-white text-xs font-bold tracking-widest uppercase hover:bg-[#FF7722] transition-colors flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,140,66,0.35)]"
               data-cursor="interactive"
             >
-              <span>Register</span>
+              <span>REGISTER</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </MagneticButton>
           </div>

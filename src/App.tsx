@@ -7,11 +7,10 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { ThemeSection } from './components/ThemeSection';
 import { Events } from './components/Events';
-import { Speakers } from './components/Speakers';
+import { OurInstitution } from './components/OurInstitution';
 import { TimelineSection } from './components/TimelineSection';
 import { ImportantDates } from './components/ImportantDates';
 import { WhyParticipate } from './components/WhyParticipate';
-import { Sponsors } from './components/Sponsors';
 import { RegistrationCTA } from './components/RegistrationCTA';
 import { Footer } from './components/Footer';
 import { SectionTransition } from './components/SectionTransition';
@@ -20,7 +19,7 @@ import { RegistrationModal } from './components/RegistrationModal';
 import { AbstractSubmissionModal } from './components/AbstractSubmissionModal';
 import { DetailModal } from './components/DetailModal';
 
-import { Track, SymposiumEvent, Speaker } from './types';
+import { Track, SymposiumEvent } from './types';
 
 export default function App() {
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
@@ -29,7 +28,6 @@ export default function App() {
 
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [activeEvent, setActiveEvent] = useState<SymposiumEvent | null>(null);
-  const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
 
   const handleOpenRegister = () => {
     setRegisterModalOpen(true);
@@ -42,13 +40,6 @@ export default function App() {
 
   const handleSelectEvent = (event: SymposiumEvent) => {
     setActiveEvent(event);
-    setActiveSpeaker(null);
-    setDetailModalOpen(true);
-  };
-
-  const handleSelectSpeaker = (speaker: Speaker) => {
-    setActiveSpeaker(speaker);
-    setActiveEvent(null);
     setDetailModalOpen(true);
   };
 
@@ -92,10 +83,10 @@ export default function App() {
         {/* 6 Flagship Events & Competitions */}
         <Events onSelectEvent={handleSelectEvent} />
 
-        <SectionTransition code="04 // PLENARY FACULTY" accent="yellow" />
+        <SectionTransition code="04 // INSTITUTIONAL HERITAGE" accent="yellow" />
 
-        {/* Distinguished Speakers & Keynotes */}
-        <Speakers onSelectSpeaker={handleSelectSpeaker} />
+        {/* Our Institution: 6 Image Slots & Official Staff Coordinators */}
+        <OurInstitution />
 
         <SectionTransition code="05 // SYNCHRONOUS ROADMAP" accent="orange" />
 
@@ -111,11 +102,6 @@ export default function App() {
 
         {/* Why Participate & Scholar Fellowships */}
         <WhyParticipate onOpenRegister={handleOpenRegister} />
-
-        <SectionTransition code="08 // GLOBAL PATRONS" accent="yellow" />
-
-        {/* Dark Glassmorphic Sponsors & Partners */}
-        <Sponsors />
 
         {/* Grand Final Registration CTA */}
         <RegistrationCTA
@@ -143,7 +129,7 @@ export default function App() {
         isOpen={detailModalOpen}
         onClose={() => setDetailModalOpen(false)}
         eventData={activeEvent}
-        speakerData={activeSpeaker}
+        speakerData={null}
         onRegisterInterest={() => {
           setDetailModalOpen(false);
           setRegisterModalOpen(true);

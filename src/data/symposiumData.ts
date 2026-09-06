@@ -3,13 +3,16 @@ import { Track, SymposiumEvent, Speaker, TimelineMilestone, ImportantDateItem, S
 export const INSTITUTION_INFO = {
   collegeName: "EGS PILLAY ENGINEERING COLLEGE",
   collegeTagline: "An Autonomous Institution | Approved by AICTE, Affiliated to Anna University",
-  accreditation: "Accredited by NBA & NAAC 'A' Grade",
+  accreditation: "Accredited by NBA & NAAC 'A++' Grade",
   departmentName: "DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING",
   departmentTagline: "Innovating for Human Progress & Technological Excellence",
   campusLocation: "Nagapattinam – 611 002, Tamil Nadu, India",
   campusMapQuery: "E.G.S. Pillay Engineering College, Nagapattinam",
   contactEmail: "syntronix@egspec.org",
-  contactPhone: "+91 (0) 4365 251112 / Dept of CSE"
+  contactPhone: "+91 (0) 4365 251112 / Dept of CSE",
+  websiteUrl: "https://egspec.org/",
+  mapsUrl: "https://maps.app.goo.gl/ZYQb9saFAJeq94rY7",
+  instagramUrl: "https://www.instagram.com/syntronix_26?utm_source=qr&stkn=YjVjMmJ3bnlid3Ns"
 };
 
 export const SYMPOSIUM_META = {
@@ -22,12 +25,19 @@ export const SYMPOSIUM_META = {
   dates: "14–15 October 2026",
   mode: "HYBRID",
   isoStartDate: "2026-10-14T09:00:00+05:30",
+  links: {
+    onlineRegistration: "https://unstop.com/o/xraF2L6?lb=usevAC8O&utm_medium=Share&utm_source=syntrcse45102&utm_campaign=Conferences",
+    offlineRegistration: "https://forms.gle/8Cv5J5qu1VCjvNMDC9",
+    instagram: "https://www.instagram.com/syntronix_26?utm_source=qr&stkn=YjVjMmJ3bnlid3Ns",
+    collegeWebsite: "https://egspec.org/",
+    mapsLocation: "https://maps.app.goo.gl/ZYQb9saFAJeq94rY7"
+  },
   onlineDetails: {
     date: "14 October 2026",
     mode: "ONLINE",
     platform: "Hosted through the Unstop platform",
     fee: "FREE",
-    unstopEventUrl: "https://unstop.com" // Placeholder to be replaced when published
+    unstopEventUrl: "https://unstop.com/o/xraF2L6?lb=usevAC8O&utm_medium=Share&utm_source=syntrcse45102&utm_campaign=Conferences"
   },
   offlineDetails: {
     date: "15 October 2026",
@@ -35,32 +45,41 @@ export const SYMPOSIUM_META = {
     venue: "EGS Pillay Engineering College, Nagapattinam, Tamil Nadu, India",
     fee: "₹100 per participant",
     foodIncluded: "Food provided as part of registration",
-    includedEvents: "Allows participant to attend 2 events",
-    additionalEventNote: "If attending more than 2 events, applicable additional fee applies",
-    googleFormUrl: "https://forms.google.com" // Placeholder to be replaced when published
+    includedEvents: "Allows participant to attend ANY NUMBER of offline events",
+    additionalEventNote: "No additional event-wise registration fee",
+    googleFormUrl: "https://forms.gle/8Cv5J5qu1VCjvNMDC9"
   },
   eligibility: "Open to students, scholars, researchers & innovators worldwide",
-  teamRules: "Individual participation or teams of up to 3 members where applicable",
+  teamRules: "Individual participation or teams (Up to 3 members; Poster Making up to 2 members)",
   stats: [
     { value: 500, suffix: "+", label: "EXPECTED PARTICIPANTS", detail: "Enthusiastic delegates from across regions" },
-    { value: 50, suffix: "+", label: "EXPECTED COLLEGES", detail: "Academic institutions & universities" },
+    { value: 50, suffix: "+", label: "PARTICIPATING COLLEGES", detail: "Academic institutions & universities" },
     { value: 6, suffix: "", label: "OFFICIAL EVENTS", detail: "1 Online flagship + 5 Offline events" },
-    { value: 6, suffix: "", label: "EXPECTED SPEAKERS", detail: "Distinguished faculty, alumni & luminaries" },
-    { value: 100, suffix: "+", label: "EXPECTED ABSTRACTS", detail: "Manuscripts & presentation submissions" },
-    { value: 50, suffix: "~", label: "SUGGESTED TOPICS", detail: "Or propose your own theme-aligned idea" }
+    { value: 9000, suffix: " ₹", label: "PRIZE POOL / CONTEST", detail: "₹5,000 (1st) • ₹3,000 (2nd) • ₹1,000 (3rd)" },
+    { value: 50, suffix: "", label: "OFFICIAL TOPICS", detail: "50 Suggested Topics or propose custom idea" },
+    { value: 100, suffix: " ₹", label: "OFFLINE ALL-EVENT PASS", detail: "Food included • Attend any events" }
   ]
 };
 
 export const REGISTRATION_CONFIG = {
-  onlineUnstopUrl: "https://unstop.com", // To be replaced after publication
-  offlineGoogleFormUrl: "https://forms.google.com", // To be replaced after publication
-  unstopCfpUrl: "https://unstop.com", // Unstop URL for online submissions
-  googleSheetIntegrationPlaceholder: "https://script.google.com/macros/s/PLACEHOLDER/exec",
+  onlineUnstopUrl: "https://unstop.com/o/xraF2L6?lb=usevAC8O&utm_medium=Share&utm_source=syntrcse45102&utm_campaign=Conferences",
+  offlineGoogleFormUrl: "https://forms.gle/8Cv5J5qu1VCjvNMDC9",
+  instagramUrl: "https://www.instagram.com/syntronix_26?utm_source=qr&stkn=YjVjMmJ3bnlid3Ns",
+  collegeWebsite: "https://egspec.org/",
+  mapsLocation: "https://maps.app.goo.gl/ZYQb9saFAJeq94rY7",
   offlineFeeInRupees: 100,
   offlineFeeDisplay: "₹100 per participant",
   onlineFeeDisplay: "FREE",
-  includedEventsCount: 2,
-  additionalEventsNote: "Additional fee applies for >2 events (configurable)"
+  offlineAccessNote: "Total offline registration fee. Attend ANY number of events with no additional fee.",
+  foodProvided: true
+};
+
+export const PRIZE_STRUCTURE = {
+  firstPrize: "₹5,000",
+  secondPrize: "₹3,000",
+  thirdPrize: "₹1,000",
+  totalPerContest: "₹9,000",
+  certificateNote: "Winners and runners/merit recipients receive hardcopy certificates and cash prizes on the event day."
 };
 
 /* Exactly 6 Official Events */
@@ -76,7 +95,7 @@ export const EVENTS: SymposiumEvent[] = [
     venue: "Hosted through Unstop Platform",
     mode: "ONLINE",
     platform: "Unstop",
-    prizePool: "Cash Prizes & Merit Citations",
+    prizePool: "Cash Prizes & Digital Merit Certificates",
     teamSize: "Individual or Team (Up to 3)",
     feeInfo: "FREE Registration",
     description: "The premier global online event of SYNTRONIX '26 conducted through the Unstop platform. Present pioneering research articles and technological breakthroughs centered on 'Humanizing Technology' from anywhere in the world.",
@@ -84,7 +103,7 @@ export const EVENTS: SymposiumEvent[] = [
       "Conducted entirely online via Unstop",
       "Cash prizes for top presentation teams",
       "Interactive evaluation by academic & industry juries",
-      "Digital participation certificate issued by 17 Oct 2026"
+      "Digital participation certificates issued to all verified attendees"
     ],
     isPlaceholder: false
   },
@@ -98,15 +117,15 @@ export const EVENTS: SymposiumEvent[] = [
     time: "10:00 AM – 01:00 PM IST",
     venue: "CSE Seminar Complex, EGSPEC Campus",
     mode: "OFFLINE",
-    prizePool: "Hardcopy Certificates + Cash Prizes on Event Day",
+    prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
     teamSize: "Individual or Team (Up to 3)",
-    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
     description: "In-person research symposium presentation. Defend your findings on human-centered computing, AI ethics, sustainable architectures, or your self-proposed theme topic before senior faculty and expert evaluators.",
     highlights: [
-      "Rigorous evaluation on novelty, methodology & presentation",
+      "Presentation duration: 7 minutes + 3 minutes Q&A / viva",
+      "50 official suggested topics available or propose your own custom topic",
       "Winners & Runners receive cash prizes + hardcopy certificates on event day",
-      "Opportunity for publication recommendation & academic mentoring",
-      "Offline registration ₹100 includes delicious food banquet"
+      "Offline registration ₹100 includes delicious food banquet with access to any events"
     ],
     isPlaceholder: false
   },
@@ -120,15 +139,15 @@ export const EVENTS: SymposiumEvent[] = [
     time: "11:30 AM – 02:00 PM IST",
     venue: "Main Drawing Hall & Innovation Gallery, EGSPEC",
     mode: "OFFLINE",
-    prizePool: "Hardcopy Certificates + Cash Prizes on Event Day",
-    teamSize: "Individual or Team (Up to 3)",
-    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
+    teamSize: "Individual or Team (Up to 2)",
+    feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
     description: "Translate complex computational and societal challenges into visually arresting, conceptually profound scientific posters. Showcase innovative design thinking where human empathy meets state-of-the-art technology.",
     highlights: [
+      "Team size: Maximum 2 members",
       "Judged on conceptual depth, clarity, visual aesthetics & technical rigor",
       "Interactive Q&A walk-through with visiting evaluators",
-      "Winners receive cash awards and hardcopy certificates at the valedictory",
-      "Standard poster dimensions and guidelines briefed at venue"
+      "Winners receive cash awards and hardcopy certificates on event day"
     ],
     isPlaceholder: false
   },
@@ -142,15 +161,15 @@ export const EVENTS: SymposiumEvent[] = [
     time: "01:30 PM – 03:00 PM IST",
     venue: "Auditorium Hall, EGSPEC Campus",
     mode: "OFFLINE",
-    prizePool: "Hardcopy Certificates + Cash Prizes",
+    prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
     teamSize: "Individual or Team (Up to 3)",
-    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
     description: "Exciting non-technical challenge designed to test creative lateral thinking, collaboration, and spontaneous problem-solving under pressure. (Official title and specific round rules to be announced shortly).",
     highlights: [
       "High-energy interactive challenge for all participants",
+      "Covered by the ₹100 offline registration (no additional fee)",
       "Promotes interdisciplinary thinking and team synergy",
-      "Cash awards and hardcopy certificates for winners and runners",
-      "Final event title and round details will be updated soon"
+      "Cash awards and hardcopy certificates for winners and runners"
     ],
     isPlaceholder: true
   },
@@ -164,15 +183,15 @@ export const EVENTS: SymposiumEvent[] = [
     time: "02:30 PM – 04:00 PM IST",
     venue: "EGSPEC Campus Arena",
     mode: "OFFLINE",
-    prizePool: "Hardcopy Certificates + Cash Prizes",
+    prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
     teamSize: "Individual or Team (Up to 3)",
-    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
     description: "Engaging analytical and communication face-off exploring human instincts, perception, and fast-paced deductive acumen. (Official title and specific round rules to be announced shortly).",
     highlights: [
       "Spirited contest blending cognitive agility with humor and intuition",
+      "Covered by the ₹100 offline registration (no additional fee)",
       "Open to all registered delegates",
-      "Exciting cash awards for standout performances",
-      "Final event title and round details will be updated soon"
+      "Exciting cash awards for standout performances on event day"
     ],
     isPlaceholder: true
   },
@@ -186,15 +205,15 @@ export const EVENTS: SymposiumEvent[] = [
     time: "03:30 PM – 05:00 PM IST",
     venue: "Main Open-Air Amphitheatre / Hall",
     mode: "OFFLINE",
-    prizePool: "Hardcopy Certificates + Cash Prizes",
+    prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
     teamSize: "Individual or Team (Up to 3)",
-    feeInfo: "₹100 (Covers 2 events + Food provided)",
+    feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
     description: "Grand finale non-technical showcase celebrating student expression, strategic communication, and cultural wit. (Official title and specific round rules to be announced shortly).",
     highlights: [
       "Electrifying multi-round finale",
+      "Covered by the ₹100 offline registration (no additional fee)",
       "Immediate audience engagement and live score tallies",
-      "Winners and runners awarded during valedictory session",
-      "Final event title and round details will be updated soon"
+      "Winners and runners awarded during valedictory session on event day"
     ],
     isPlaceholder: true
   }
@@ -374,27 +393,27 @@ export const SPEAKERS: Speaker[] = [
   }
 ];
 
-/* Staff Coordinators & Alumni Placeholders */
+/* Official Staff Coordinators */
 export const STAFF_COORDINATORS: Coordinator[] = [
   {
-    id: "staff-01",
-    name: "Staff Coordinator 01",
-    role: "Symposium Convener",
-    department: "Department of Computer Science and Engineering",
+    id: "convenor-01",
+    name: "Dr. K. Balasubramaniam",
+    role: "Convenor",
+    department: "Head / Department of Computer Science and Engineering",
     contact: "syntronix@egspec.org"
   },
   {
-    id: "staff-02",
-    name: "Staff Coordinator 02",
-    role: "Faculty Co-Convener",
-    department: "Department of Computer Science and Engineering",
+    id: "coord-01",
+    name: "Dr. G. Pushpa",
+    role: "Faculty Coordinator",
+    department: "Assistant Professor / CSE",
     contact: "syntronix@egspec.org"
   },
   {
-    id: "staff-03",
-    name: "Staff Coordinator 03",
-    role: "Technical Committee Head",
-    department: "Department of Computer Science and Engineering",
+    id: "coord-02",
+    name: "Mrs. L. Mohana Priya",
+    role: "Faculty Coordinator",
+    department: "Assistant Professor / CSE",
     contact: "syntronix@egspec.org"
   }
 ];
