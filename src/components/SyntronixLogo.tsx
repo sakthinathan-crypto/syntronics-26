@@ -15,7 +15,7 @@ export const SyntronixLogo: React.FC<SyntronixLogoProps> = ({
   animated = false,
   id = 'syntronix-logo',
 }) => {
-  // Support both custom pasted PNG logos and fallback vector representation
+  const [currentSrc, setCurrentSrc] = useState('/syntronix-logo.png');
   const [pngFailed, setPngFailed] = useState(false);
 
   // If PNG is available in /public, prefer the exact PNG image
@@ -23,12 +23,15 @@ export const SyntronixLogo: React.FC<SyntronixLogoProps> = ({
     return (
       <div className={`relative inline-flex items-center select-none ${className}`} id={id}>
         <img
-          src="/syntronix-logo.png"
+          src={currentSrc}
           alt="SYNTRONIX '26 - Create. Solve. Evolve."
           className="w-full h-full object-contain"
           onError={() => {
-            // Check fallback alternative name or switch to vector
-            setPngFailed(true);
+            if (currentSrc === '/syntronix-logo.png') {
+              setCurrentSrc('/WhatsApp_Image_2026-09-06_at_11.35.02_AM-removebg-preview.png');
+            } else {
+              setPngFailed(true);
+            }
           }}
         />
       </div>

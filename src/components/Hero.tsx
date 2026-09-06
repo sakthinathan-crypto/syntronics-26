@@ -153,7 +153,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
               mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            NATIONAL TECHNICAL<br />
+            INTERNATIONAL TECHNICAL<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-[#FF8C42] to-[#FF4D4D]">
               SYMPOSIUM
             </span>
@@ -373,7 +373,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
 
             <div className="mt-5 pt-4 border-t border-white/10">
               <p className="text-xs text-[#A7A7A7] leading-relaxed italic font-serif">
-                "MAKE IT. SHOW IT. ACHIEVE IT." — National Technical Symposium organized by Dept. of Computer Science & Engineering, E.G.S. Pillay Engineering College, Nagapattinam.
+                "MAKE IT. SHOW IT. ACHIEVE IT." — International Technical Symposium organized by Dept. of Computer Science & Engineering, E.G.S. Pillay Engineering College, Nagapattinam.
               </p>
             </div>
           </div>
