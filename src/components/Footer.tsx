@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Mail, MapPin, Globe, Shield, Terminal, Heart, Check, Building2, Phone } from 'lucide-react';
 import { SYMPOSIUM_META, INSTITUTION_INFO } from '../data/symposiumData';
+import { SyntronixLogo } from './SyntronixLogo';
 
 export const Footer: React.FC = () => {
   const [istTime, setIstTime] = useState('');
@@ -37,12 +38,7 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand & Institution Details */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-9 h-9 bg-gradient-to-tr from-[#FF8C42] to-[#FF6B2B] text-white font-mono font-bold text-sm rounded shadow-[0_0_15px_rgba(255,140,66,0.35)]">
-                SX
-              </div>
-              <span className="text-2xl font-black text-white tracking-tighter uppercase">
-                SYNTRONIX <span className="text-[#FF8C42]">'26</span>
-              </span>
+              <SyntronixLogo className="h-12 sm:h-14 w-auto max-w-[280px]" variant="full" />
             </div>
 
             <div className="text-xs font-mono text-[#FFD166] tracking-wider uppercase font-semibold">
@@ -158,14 +154,12 @@ export const Footer: React.FC = () => {
         {/* Bottom Legal & Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#A7A7A7]">
           <div>
-            © 2026 SYNTRONIX '26. Department of Computer Science and Engineering, EGS Pillay Engineering College.
+            all copy rights owned by Aegis Academy
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-[#FFD166]">Autonomous Institution</span>
+            <span className="text-[#FFD166]">Syntronix '26</span>
             <span>•</span>
-            <span className="text-neutral-400">NAAC 'A++' Accredited</span>
-            <span>•</span>
-            <span className="text-neutral-400">NBA Accredited CSE</span>
+            <span className="text-neutral-400">Department of Computer Science & Engineering</span>
           </div>
         </div>
       </div>

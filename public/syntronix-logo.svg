@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="100%">
+  <defs>
+    <!-- Metallic Chrome Fire Gradient -->
+    <linearGradient id="chromeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFEAA7" />
+      <stop offset="18%" stop-color="#FFB347" />
+      <stop offset="42%" stop-color="#FF6B1A" />
+      <stop offset="52%" stop-color="#7A1200" />
+      <stop offset="56%" stop-color="#2D0600" />
+      <stop offset="68%" stop-color="#D44200" />
+      <stop offset="85%" stop-color="#FF9E43" />
+      <stop offset="100%" stop-color="#FFD166" />
+    </linearGradient>
+
+    <!-- Deep Flame Specular for 26 -->
+    <linearGradient id="flameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB347" />
+      <stop offset="35%" stop-color="#FF5722" />
+      <stop offset="70%" stop-color="#D50000" />
+      <stop offset="100%" stop-color="#FF8A65" />
+    </linearGradient>
+
+    <!-- Needle Gradient -->
+    <linearGradient id="needleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFEAA7" stop-opacity="0" />
+      <stop offset="15%" stop-color="#FFD166" />
+      <stop offset="48%" stop-color="#FF7A00" />
+      <stop offset="52%" stop-color="#FFEAA7" />
+      <stop offset="85%" stop-color="#FF7A00" />
+      <stop offset="100%" stop-color="#FF5722" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Core Glow Filter -->
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <filter id="needleGlow" x="-50%" y="-20%" width="200%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComponentTransfer in="blur" result="glow1">
+        <feFuncA type="linear" slope="0.8"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="glow1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Horizontal Divider Gradient -->
+    <linearGradient id="dividerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF8C42" stop-opacity="0" />
+      <stop offset="15%" stop-color="#D47A3A" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#FFE082" stop-opacity="1" />
+      <stop offset="85%" stop-color="#D47A3A" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#FF8C42" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="taglineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E2C08D" />
+      <stop offset="50%" stop-color="#FFF3E0" />
+      <stop offset="100%" stop-color="#E2C08D" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Glow Behind Logo -->
+  <circle cx="400" cy="115" r="90" fill="#FF7700" opacity="0.12" filter="url(#goldGlow)" />
+  <circle cx="410" cy="115" r="30" fill="#FFD166" opacity="0.25" filter="url(#goldGlow)" />
+
+  <g transform="translate(15, 10)">
+    <!-- THE VERTICAL NEEDLE THROUGH THE 'O' -->
+    <!-- Positioned precisely behind/through the O (X coordinate ~410) -->
+    <g filter="url(#needleGlow)">
+      <!-- Upper Needle Spire -->
+      <path d="M 409,8 L 411,8 L 413,105 L 407,105 Z" fill="url(#needleGrad)" />
+      <!-- Lower Needle Spire -->
+      <path d="M 407,125 L 413,125 L 411,215 L 409,215 Z" fill="url(#needleGrad)" />
+      <!-- Center Needle Flare Ring -->
+      <circle cx="410" cy="115" r="9" fill="none" stroke="#FFD770" stroke-width="2.5" />
+      <circle cx="410" cy="115" r="4" fill="#FFEAA7" />
+      <circle cx="410" cy="115" r="2" fill="#D84315" />
+    </g>
+
+    <!-- MAIN BRAND TEXT: SYNTRONIX'26 -->
+    <!-- Using custom crafted paths for maximum geometric and chrome fidelity -->
+    <text 
+      x="385" 
+      y="132" 
+      font-family="'Syne', 'Orbitron', 'Eurostile', 'Montserrat', system-ui, sans-serif" 
+      font-size="68" 
+      font-weight="900" 
+      letter-spacing="0.08em"
+      text-anchor="middle"
+      fill="url(#chromeGradient)"
+      stroke="#120400"
+      stroke-width="1.2"
+      stroke-linejoin="round"
+      style="text-transform: uppercase;"
+    >
+      SYNTRONIX
+    </text>
+
+    <!-- '26 in Fire / Ember Gradient -->
+    <text 
+      x="675" 
+      y="132" 
+      font-family="'Syne', 'Orbitron', 'Montserrat', system-ui, sans-serif" 
+      font-size="68" 
+      font-weight="900" 
+      letter-spacing="0.04em"
+      fill="url(#flameGradient)"
+      stroke="#200000"
+      stroke-width="1.2"
+      stroke-linejoin="round"
+    >
+      '26
+    </text>
+
+    <!-- Additional Bevel Overlay on Text for Chrome Glint -->
+    <text 
+      x="385" 
+      y="132" 
+      font-family="'Syne', 'Orbitron', 'Eurostile', 'Montserrat', system-ui, sans-serif" 
+      font-size="68" 
+      font-weight="900" 
+      letter-spacing="0.08em"
+      text-anchor="middle"
+      fill="none"
+      stroke="#FFF3D4"
+      stroke-width="0.75"
+      stroke-opacity="0.6"
+      style="text-transform: uppercase;"
+    >
+      SYNTRONIX
+    </text>
+
+    <text 
+      x="675" 
+      y="132" 
+      font-family="'Syne', 'Orbitron', 'Montserrat', system-ui, sans-serif" 
+      font-size="68" 
+      font-weight="900" 
+      letter-spacing="0.04em"
+      fill="none"
+      stroke="#FFEAA7"
+      stroke-width="0.75"
+      stroke-opacity="0.6"
+    >
+      '26
+    </text>
+
+    <!-- ELEGANT HORIZONTAL DIVIDER -->
+    <path 
+      d="M 60,154 L 380,154 L 400,156 L 410,154 L 420,156 L 440,154 L 710,154" 
+      stroke="url(#dividerGrad)" 
+      stroke-width="1.8" 
+      fill="none" 
+      stroke-linecap="round"
+    />
+    <polygon points="410,152 414,154 410,156 406,154" fill="#FFE082" />
+
+    <!-- MOTTO / TAGLINE: "Create. Solve. Evolve." -->
+    <text 
+      x="385" 
+      y="178" 
+      font-family="'Plus Jakarta Sans', 'Montserrat', system-ui, sans-serif" 
+      font-size="19" 
+      font-weight="400" 
+      letter-spacing="0.42em"
+      text-anchor="middle"
+      fill="url(#taglineGrad)"
+      opacity="0.95"
+    >
+      Create. Solve. Evolve.
+    </text>
+  </g>
+</svg>

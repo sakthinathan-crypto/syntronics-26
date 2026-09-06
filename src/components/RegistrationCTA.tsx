@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Sparkles, Building2, Users, Award, Clock } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
 import { SYMPOSIUM_META, INSTITUTION_INFO } from '../data/symposiumData';
+import { SyntronixLogo } from './SyntronixLogo';
 
 interface RegistrationCTAProps {
   onOpenRegister: () => void;
@@ -21,9 +22,14 @@ export const RegistrationCTA: React.FC<RegistrationCTAProps> = ({
 
       <div className="relative max-w-5xl mx-auto text-center">
         {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 mb-4 font-mono text-xs text-[#FF8C42] tracking-[0.4em] uppercase">
+        <div className="inline-flex items-center gap-2 mb-3 font-mono text-xs text-[#FF8C42] tracking-[0.4em] uppercase">
           <Sparkles className="w-3.5 h-3.5 text-[#FF8C42]" />
           <span>JOIN 500+ SCHOLARS, CREATORS & DELEGATES</span>
+        </div>
+
+        {/* Official Logo */}
+        <div className="flex justify-center mb-4">
+          <SyntronixLogo className="h-16 sm:h-20 w-auto max-w-sm" variant="full" glow={true} />
         </div>
 
         {/* Tagline */}

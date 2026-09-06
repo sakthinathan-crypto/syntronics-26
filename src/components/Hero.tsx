@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, FileText, ChevronDown, Terminal, Compass } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
+import { SyntronixLogo } from './SyntronixLogo';
 
 interface HeroProps {
   onOpenRegister: () => void;
@@ -137,18 +138,24 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
             </span>
           </div>
 
+          {/* Official Emblem Logo */}
+          <div
+            className={`mb-5 max-w-xl transition-all duration-700 delay-200 ${
+              mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            <SyntronixLogo className="h-18 sm:h-22 md:h-26 w-auto max-w-full drop-shadow-[0_0_25px_rgba(255,140,66,0.35)]" variant="full" glow={true} />
+          </div>
+
           <h1
             style={{ transform: `scale(${titleScale})`, transformOrigin: 'left center' }}
-            className={`text-5xl sm:text-7xl md:text-8xl lg:text-[94px] xl:text-[114px] font-black leading-[0.88] tracking-tighter mb-8 text-white uppercase select-none transition-all duration-700 delay-300 ${
+            className={`text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.92] tracking-tighter mb-8 text-white uppercase select-none transition-all duration-700 delay-300 ${
               mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            SYNTRONIX<br />
+            NATIONAL TECHNICAL<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-[#FF8C42] to-[#FF4D4D]">
               SYMPOSIUM
-            </span>
-            <span className="text-xl sm:text-3xl font-mono text-[#FFB347] ml-3 align-top font-bold">
-              '26
             </span>
           </h1>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, FileText } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
+import { SyntronixLogo } from './SyntronixLogo';
 
 interface NavbarProps {
   onOpenRegister: () => void;
@@ -70,16 +71,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
           <a
             href="#hero"
             onClick={(e) => scrollToSection(e, '#hero')}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 group transition-opacity hover:opacity-90"
             data-cursor="interactive"
           >
-            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-tr from-[#FF8C42] to-[#FFD166] rounded-full shadow-[0_0_15px_#FFB347] group-hover:scale-110 transition-transform" />
-            <div className="text-xl sm:text-2xl font-black tracking-tighter flex items-center gap-1.5 text-white">
-              <span>SYNTRONICS</span>
-              <span className="text-[#FFB347]">'26</span>
-            </div>
-            <span className="hidden md:inline-block font-mono text-[10px] tracking-[0.3em] uppercase text-[#A7A7A7] border-l border-white/10 pl-3">
-              INT'L SYMPOSIUM
+            <SyntronixLogo className="h-8 sm:h-9 w-auto max-w-[220px] sm:max-w-[260px]" variant="full" />
+            <span className="hidden lg:inline-block font-mono text-[9px] tracking-[0.25em] uppercase text-[#A7A7A7] border-l border-white/10 pl-3">
+              DEPT OF CSE • EGSPEC
             </span>
           </a>
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { SYMPOSIUM_META, INSTITUTION_INFO } from '../data/symposiumData';
 import { BookOpen, Globe2, Shield, Cpu, Building2, Award, Sparkles, CheckCircle2 } from 'lucide-react';
+import { SyntronixLogo } from './SyntronixLogo';
 
 export const About: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -100,6 +101,10 @@ export const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-16">
           {/* Left Column: Bold Institutional Statement & Theme */}
           <div className="lg:col-span-6 flex flex-col gap-5">
+            <div className="flex items-center gap-4 mb-1">
+              <SyntronixLogo className="h-12 sm:h-14 w-auto max-w-[280px]" variant="full" />
+            </div>
+
             <div className="p-4 bg-white/5 border border-white/10 text-xs font-mono text-[#A7A7A7] space-y-1">
               <div className="text-white font-bold flex items-center gap-2">
                 <Building2 className="w-4 h-4 text-[#FFB347]" />

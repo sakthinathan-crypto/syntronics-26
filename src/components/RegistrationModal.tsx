@@ -3,6 +3,7 @@ import { X, Check, ArrowRight, Download, Sparkles, ShieldCheck, QrCode, User, Ma
 import confetti from 'canvas-confetti';
 import { DelegatePass } from '../types';
 import { EVENTS, INSTITUTION_INFO, REGISTRATION_CONFIG, SYMPOSIUM_META } from '../data/symposiumData';
+import { SyntronixLogo } from './SyntronixLogo';
 
 interface RegistrationModalProps {
   isOpen: boolean;
@@ -102,14 +103,17 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
         </button>
 
         {/* Modal Top Institutional Header */}
-        <div className="mb-2">
-          <div className="flex items-center gap-2 font-mono text-[11px] text-[#FF8C42] uppercase tracking-[0.25em]">
-            <Sparkles className="w-3.5 h-3.5 text-[#FF8C42]" />
-            <span>EGS PILLAY ENGINEERING COLLEGE // DEPT OF CSE</span>
+        <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-white/10 pb-3">
+          <div>
+            <div className="flex items-center gap-2 font-mono text-[11px] text-[#FF8C42] uppercase tracking-[0.25em]">
+              <Sparkles className="w-3.5 h-3.5 text-[#FF8C42]" />
+              <span>EGS PILLAY ENGINEERING COLLEGE // DEPT OF CSE</span>
+            </div>
+            <div className="text-white/60 font-mono text-xs tracking-widest mt-0.5">
+              OFFICIAL HYBRID REGISTRATION PORTAL
+            </div>
           </div>
-          <div className="text-white font-mono text-xs font-bold tracking-widest mt-0.5">
-            SYNTRONIX '26 // OFFICIAL HYBRID REGISTRATION
-          </div>
+          <SyntronixLogo className="h-7 w-auto max-w-[180px]" variant="full" />
         </div>
 
         {/* Step 1: Mode Selection (Online vs Offline) */}
@@ -439,15 +443,13 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
             <div className="p-6 bg-[#0B0B0B] border border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.8)] mb-5 relative overflow-hidden">
               <div className="flex items-start justify-between border-b border-white/10 pb-4 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-tr from-[#FF8C42] to-[#FF6B2B] rounded flex items-center justify-center text-white font-mono font-bold text-sm shadow-[0_0_15px_rgba(255,140,66,0.35)]">
-                    SX
-                  </div>
-                  <div>
-                    <div className="font-black text-base text-white uppercase tracking-tight">
-                      SYNTRONIX '26 // EGSPEC CSE
+                  <SyntronixLogo className="h-10 sm:h-12 w-auto max-w-[220px]" variant="full" />
+                  <div className="border-l border-white/10 pl-3 hidden sm:block">
+                    <div className="text-[9px] font-mono text-[#A7A7A7] uppercase tracking-wider">
+                      EGSPEC CSE
                     </div>
                     <div className="text-[10px] font-mono text-[#FFD166]">
-                      15 OCTOBER 2026 // NAGAPATTINAM, TAMIL NADU
+                      15 OCT 2026 // NAGAPATTINAM
                     </div>
                   </div>
                 </div>
