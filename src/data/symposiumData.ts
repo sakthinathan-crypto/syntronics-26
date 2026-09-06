@@ -101,6 +101,7 @@ export const EVENTS: SymposiumEvent[] = [
     description: "The premier global online event of SYNTRONIX '26 conducted through the Unstop platform. Present pioneering research articles and technological breakthroughs centered on 'Humanizing Technology' from anywhere in the world.",
     highlights: [
       "Conducted entirely online via Unstop",
+      "PPT Submission Deadline: 28 September 2026 on Unstop",
       "Cash prizes for top presentation teams",
       "Interactive evaluation by academic & industry juries",
       "Digital participation certificates issued to all verified attendees"
@@ -457,6 +458,15 @@ export const TIMELINE: TimelineMilestone[] = [
   },
   {
     number: "03",
+    dateStr: "28 September 2026",
+    title: "PPT Submission Deadline (Online Event)",
+    subtitle: "Slide Deck Upload on Unstop",
+    description: "Deadline for submitting presentation slide decks for the Online Article Presentation via the Unstop platform on or before 28 September 2026.",
+    status: "upcoming",
+    tag: "Online Event"
+  },
+  {
+    number: "04",
     dateStr: "01 October 2026",
     title: "Registration Deadline",
     subtitle: "Final Date to Register as a Participant",
@@ -465,7 +475,7 @@ export const TIMELINE: TimelineMilestone[] = [
     tag: "Important Deadline"
   },
   {
-    number: "04",
+    number: "05",
     dateStr: "02 October 2026",
     title: "Abstract Submission Deadline",
     subtitle: "Manuscripts Queue Finalizes",
@@ -474,22 +484,13 @@ export const TIMELINE: TimelineMilestone[] = [
     tag: "Submission Closes"
   },
   {
-    number: "05",
+    number: "06",
     dateStr: "04 October 2026",
     title: "Acceptance Notification",
     subtitle: "Review Results Dispatched to Authors",
     description: "Peer-review results and formal acceptance notifications are delivered to all registered authors.",
     status: "upcoming",
     tag: "Notifications"
-  },
-  {
-    number: "06",
-    dateStr: "TBD / Unstop",
-    title: "PPT Submission Deadline",
-    subtitle: "Slide Deck Upload on Unstop",
-    description: "Presentation slide decks to be submitted. Exact deadline date to be determined and announced via Unstop.",
-    status: "upcoming",
-    tag: "Slide Deck"
   },
   {
     number: "07",
@@ -539,6 +540,14 @@ export const IMPORTANT_DATES: ImportantDateItem[] = [
     badge: "CFP ACTIVE"
   },
   {
+    day: "28",
+    month: "SEP",
+    year: "2026",
+    title: "PPT Submission Deadline (Online Event)",
+    description: "Slide deck submissions cutoff for the Online Article Presentation on Unstop.",
+    badge: "ONLINE EVENT"
+  },
+  {
     day: "01",
     month: "OCT",
     year: "2026",
@@ -561,14 +570,6 @@ export const IMPORTANT_DATES: ImportantDateItem[] = [
     title: "Acceptance Notification",
     description: "Evaluation results and acceptance letters communicated to authors.",
     badge: "RESULTS"
-  },
-  {
-    day: "TBD",
-    month: "OCT",
-    year: "2026",
-    title: "PPT Submission Deadline",
-    description: "To be determined through the Unstop platform.",
-    badge: "TBD / UNSTOP"
   },
   {
     day: "14",
