@@ -45,14 +45,8 @@ const CampusCardItem: React.FC<{
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-black/20 to-transparent" />
 
-        {/* Slot Number Pill */}
-        <div className="absolute top-3 left-3 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-[#FFD166] uppercase font-bold flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#FF8C42]" />
-          <span>SLOT {slot.slotNumber}</span>
-        </div>
-
         {/* Category Pill */}
-        <div className="absolute top-3 right-3 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-neutral-300 uppercase">
+        <div className="absolute top-3 right-3 px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-[#FFD166] uppercase">
           {slot.category}
         </div>
 
@@ -71,15 +65,9 @@ const CampusCardItem: React.FC<{
           <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-[#FFB347] transition-colors leading-snug">
             {slot.title}
           </h3>
-          <p className="text-xs text-[#A7A7A7] font-serif italic leading-relaxed line-clamp-2 mb-4">
+          <p className="text-xs text-[#A7A7A7] font-serif italic leading-relaxed line-clamp-2">
             {slot.description}
           </p>
-        </div>
-
-        {/* Configurable File Name Indicator */}
-        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
-          <span className="text-neutral-400">File: <span className="text-[#FF8C42]">{slot.filename}</span></span>
-          <span className="text-[10px] text-[#FFD166] uppercase">Active Campus View</span>
         </div>
       </div>
     </div>
@@ -123,7 +111,7 @@ export const OurInstitution: React.FC = () => {
               <span>EGSPEC NAGAPATTINAM</span>
             </span>
             <span className="text-neutral-400 text-[11px]">
-              Location: <code className="text-[#FFD166]">/public/images/institution/</code>
+              Nagapattinam, Tamil Nadu
             </span>
           </div>
         </div>
@@ -240,7 +228,7 @@ export const OurInstitution: React.FC = () => {
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-3">
                 <span className="px-2.5 py-1 bg-[#FF8C42]/20 border border-[#FF8C42]/40 text-[#FF8C42] font-mono text-xs uppercase font-bold">
-                  SLOT {activeModalSlot.slotNumber}
+                  {activeModalSlot.category}
                 </span>
                 <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-tight">
                   {activeModalSlot.title}
@@ -270,9 +258,6 @@ export const OurInstitution: React.FC = () => {
               <p className="font-serif italic text-sm text-neutral-300">
                 {activeModalSlot.description}
               </p>
-              <div className="shrink-0 text-[11px] text-[#FFD166] px-2.5 py-1 bg-white/5 border border-white/10">
-                {activeModalSlot.filename}
-              </div>
             </div>
           </div>
         </div>

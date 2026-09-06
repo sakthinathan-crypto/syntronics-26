@@ -111,6 +111,8 @@ export const ASSETS_CONFIG = {
     }
   },
 
-  // Future Google Sheet submission endpoint for CFP submissions
-  googleSheetEndpoint: ""
+  // Google Apps Script Web App submission endpoint for CFP submissions
+  googleSheetEndpoint: "https://script.google.com/macros/s/AKfycbxceQnocgEFxAyuUtKk_Au_wWqtwRqzeVazarxxStLVl7DiMrLqhWUOkhKfsyfMCWPO9w/exec"
 };
+
+export const CFP_API_URL = "https://script.google.com/macros/s/AKfycbxceQnocgEFxAyuUtKk_Au_wWqtwRqzeVazarxxStLVl7DiMrLqhWUOkhKfsyfMCWPO9w/exec";

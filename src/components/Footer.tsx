@@ -111,10 +111,10 @@ export const Footer: React.FC = () => {
                 AEGIS ACADEMY
               </h4>
               <p className="text-xs text-[#A7A7A7] font-serif italic mb-3">
-                Official Academy partner. Logo slot configurable in <code className="text-[#FFD166]">/public/images/aegis-academy-logo.png</code>.
+                Official Academy Partner & Knowledge Sponsor for SYNTRONIX '26.
               </p>
 
-              {/* Aegis Academy Logo Card Placeholder */}
+              {/* Aegis Academy Logo Showcase */}
               <div className="p-3 bg-white/[0.03] border border-white/10 hover:border-[#FFB347]/40 transition-colors flex items-center gap-3">
                 <div className="w-12 h-12 bg-black border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
                   <img

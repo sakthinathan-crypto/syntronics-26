@@ -7,11 +7,17 @@ import {
   Download, 
   ArrowRight, 
   ArrowLeft,
-  Check
+  Check,
+  AlertCircle,
+  ExternalLink,
+  Loader2
 } from 'lucide-react';
 import { PAPER_PRESENTATION_50_TOPICS } from '../data/paperTopics';
 import { download50TopicsDocument } from '../utils/downloadHelper';
 import { Track } from '../types';
+
+// Centralized CFP API endpoint constant
+export const CFP_API_URL = "https://script.google.com/macros/s/AKfycbxceQnocgEFxAyuUtKk_Au_wWqtwRqzeVazarxxStLVl7DiMrLqhWUOkhKfsyfMCWPO9w/exec";
 
 interface AbstractSubmissionModalProps {
   isOpen: boolean;
@@ -19,11 +25,14 @@ interface AbstractSubmissionModalProps {
   selectedTrack?: Track | null;
 }
 
+const ALLOWED_EXTENSIONS = ['.pdf', '.ppt', '.pptx', '.doc', '.docx'];
+const MAX_FILE_SIZE_BYTES = 25 * 1024 * 1024; // 25 MB
+
 export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  // Field States
+  // Field States (Exactly 11 fields)
   const [teamName, setTeamName] = useState('');
   const [leaderName, setLeaderName] = useState('');
   const [collegeName, setCollegeName] = useState('');
@@ -39,34 +48,213 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
   // Presentation / Research Title & Abstract Summary
   const [presentationTitle, setPresentationTitle] = useState('');
   const [abstractText, setAbstractText] = useState('');
+  
+  // File Upload State
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
 
-  // Success State
+  // Request & Submission State
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingStep, setSubmittingStep] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submissionId, setSubmissionId] = useState('');
+  const [fileDriveUrl, setFileDriveUrl] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorMessage(null);
     if (e.target.files && e.target.files[0]) {
-      setFileName(e.target.files[0].name);
+      const file = e.target.files[0];
+      const ext = '.' + file.name.split('.').pop()?.toLowerCase();
+      
+      if (!ALLOWED_EXTENSIONS.includes(ext)) {
+        setErrorMessage(`Invalid file format (${ext}). Allowed formats: PPT, PPTX, PDF, DOCX.`);
+        setSelectedFile(null);
+        setFileName(null);
+        return;
+      }
+
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        setErrorMessage(`File size (${(file.size / (1024 * 1024)).toFixed(1)} MB) exceeds the maximum allowed limit of 25 MB.`);
+        setSelectedFile(null);
+        setFileName(null);
+        return;
+      }
+
+      setSelectedFile(file);
+      setFileName(file.name);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!teamName || !leaderName || !collegeName || !emailId || !phoneNumber) return;
+  const convertFileToBase64 = (file: File): Promise<{ fileName: string; mimeType: string; base64: string }> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const result = reader.result as string;
+          const base64Index = result.indexOf(';base64,');
+          let base64 = '';
+          if (base64Index !== -1) {
+            base64 = result.substring(base64Index + 8);
+          } else {
+            base64 = result;
+          }
 
-    const code = `SX26-CFP-${Math.floor(1000 + Math.random() * 9000)}`;
-    setSubmissionId(code);
-    setIsSubmitted(true);
+          let mime = file.type;
+          if (!mime || mime === 'application/octet-stream') {
+            const ext = file.name.split('.').pop()?.toLowerCase();
+            if (ext === 'pdf') mime = 'application/pdf';
+            else if (ext === 'ppt') mime = 'application/vnd.ms-powerpoint';
+            else if (ext === 'pptx') mime = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
+            else if (ext === 'doc') mime = 'application/msword';
+            else if (ext === 'docx') mime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+            else mime = 'application/octet-stream';
+          }
+
+          resolve({
+            fileName: file.name,
+            mimeType: mime,
+            base64: base64
+          });
+        } catch (err) {
+          reject(err);
+        }
+      };
+      reader.onerror = (err) => reject(err);
+      reader.readAsDataURL(file);
+    });
   };
 
   const isCustom = selectedTopicId === 'OTHER';
   const selectedTopicObj = PAPER_PRESENTATION_50_TOPICS.find(t => String(t.id) === selectedTopicId);
   const effectiveTopic = isCustom ? customTopic : selectedTopicObj?.title;
-
   const wordCount = abstractText.trim() ? abstractText.trim().split(/\s+/).length : 0;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage(null);
+
+    // 1. Validate required fields
+    if (!teamName.trim()) {
+      setErrorMessage('Please enter your Team Name.');
+      return;
+    }
+    if (!leaderName.trim()) {
+      setErrorMessage('Please enter the Team Leader Name.');
+      return;
+    }
+    if (!collegeName.trim()) {
+      setErrorMessage('Please enter your College Name.');
+      return;
+    }
+    if (!uniqueId.trim()) {
+      setErrorMessage('Please enter your Unique ID (Roll / Reg. No / Student ID).');
+      return;
+    }
+    if (!department.trim()) {
+      setErrorMessage('Please enter your Department.');
+      return;
+    }
+    if (!emailId.trim()) {
+      setErrorMessage('Please enter your Email ID.');
+      return;
+    }
+    if (!phoneNumber.trim()) {
+      setErrorMessage('Please enter your Phone Number.');
+      return;
+    }
+
+    // 2. Validate Topic
+    const finalTopic = (isCustom ? customTopic.trim() : selectedTopicObj?.title) || '';
+    if (!finalTopic) {
+      setErrorMessage(isCustom ? 'Please enter your custom topic.' : 'Please select a topic from the 50 official topics.');
+      return;
+    }
+
+    // 3. Validate Abstract Summary (Max 500 words)
+    if (!abstractText.trim()) {
+      setErrorMessage('Please enter your Abstract Summary.');
+      return;
+    }
+    if (wordCount > 500) {
+      setErrorMessage(`Abstract summary is ${wordCount} words, which exceeds the maximum limit of 500 words.`);
+      return;
+    }
+
+    // 4. Validate File Upload
+    if (!selectedFile) {
+      setErrorMessage('Please upload your presentation or draft paper (PPT, PPTX, PDF, or DOCX, max 25MB).');
+      return;
+    }
+
+    const finalTitle = presentationTitle.trim() || finalTopic;
+
+    setIsSubmitting(true);
+    setSubmittingStep('Encoding document for transmission...');
+
+    try {
+      // 5. Convert file to transferable format
+      const fileData = await convertFileToBase64(selectedFile);
+
+      // 6. Request Payload matching exact specification
+      const payload = {
+        team_name: teamName.trim(),
+        leader_name: leaderName.trim(),
+        college_name: collegeName.trim(),
+        unique_id: uniqueId.trim(),
+        department: department.trim(),
+        email_id: emailId.trim(),
+        phone_number: phoneNumber.trim(),
+        topic: finalTopic,
+        presentation_research_paper_title: finalTitle,
+        abstract_summary: abstractText.trim(),
+        file: {
+          fileName: fileData.fileName,
+          mimeType: fileData.mimeType,
+          base64: fileData.base64
+        }
+      };
+
+      setSubmittingStep('Transmitting CFP proposal to Google Apps Script...');
+
+      const response = await fetch(CFP_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const responseText = await response.text();
+      let result: { success?: boolean; message?: string; fileUrl?: string } = {};
+      try {
+        result = JSON.parse(responseText);
+      } catch {
+        if (responseText.toLowerCase().includes('success')) {
+          result = { success: true, message: 'Submission received successfully' };
+        } else {
+          throw new Error(responseText || 'Unable to parse response from CFP endpoint.');
+        }
+      }
+
+      if (result.success === true) {
+        const code = `SX26-CFP-${Math.floor(1000 + Math.random() * 9000)}`;
+        setSubmissionId(code);
+        setFileDriveUrl(result.fileUrl || null);
+        setIsSubmitted(true);
+      } else {
+        throw new Error(result.message || 'Submission could not be completed. Please try again.');
+      }
+    } catch (err: any) {
+      console.error('CFP submission error:', err);
+      setErrorMessage(err.message || 'Network or transmission error occurred. Please check your connection and retry.');
+    } finally {
+      setIsSubmitting(false);
+      setSubmittingStep('');
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-6 md:p-8 overflow-y-auto bg-black/90 backdrop-blur-xl animate-in fade-in duration-300">
@@ -224,7 +412,7 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
                     required
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    placeholder="e.g. +91 98765 43210"
+                    placeholder="e.g. +91 90000 11111"
                     className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/15 text-sm text-white placeholder-neutral-500 hover:border-white/35 focus:outline-none focus:border-[#FFB347] focus:ring-1 focus:ring-[#FF8C42]/40 focus:shadow-[0_0_15px_rgba(255,140,66,0.15)] transition-all duration-300 rounded-sm"
                   />
                 </div>
@@ -335,6 +523,17 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
                 </div>
               </div>
 
+              {/* Submission Error Banner */}
+              {errorMessage && (
+                <div className="p-3.5 bg-red-950/40 border border-red-500/50 text-red-200 text-xs font-mono flex items-start gap-2.5 rounded-sm animate-in fade-in">
+                  <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <span className="font-bold text-red-300">Submission Error: </span>
+                    <span>{errorMessage}</span>
+                  </div>
+                </div>
+              )}
+
               {/* Submit Actions with comfortable padding below */}
               <div className="pt-5 sm:pt-6 pb-2 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <span className="text-[11px] font-mono text-neutral-400">
@@ -343,11 +542,21 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
 
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-neutral-200 hover:text-white bg-white/10 hover:bg-[#FF8C42] border border-white/20 hover:border-transparent transition-all duration-300 shadow-none hover:shadow-[0_0_25px_rgba(255,140,66,0.4)] flex items-center justify-center gap-2 group rounded-sm"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-neutral-200 hover:text-white bg-white/10 hover:bg-[#FF8C42] border border-white/20 hover:border-transparent transition-all duration-300 shadow-none hover:shadow-[0_0_25px_rgba(255,140,66,0.4)] flex items-center justify-center gap-2 group rounded-sm disabled:opacity-60 disabled:cursor-not-allowed"
                   data-cursor="interactive"
                 >
-                  <span>SUBMIT CFP PROPOSAL</span>
-                  <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 text-white animate-spin" />
+                      <span>{submittingStep || 'TRANSMITTING CFP...'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>SUBMIT CFP</span>
+                      <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
+                    </>
+                  )}
                 </button>
               </div>
             </form>
@@ -362,7 +571,7 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
               CFP Submission Received
             </h3>
             <p className="text-sm text-neutral-400 max-w-md mx-auto mb-6 font-serif italic">
-              Your paper proposal has been registered into the CSE symposium review queue. A confirmation has been logged for <span className="text-white font-semibold">{emailId}</span>.
+              Your abstract and research paper have been submitted successfully to the SYNTRONIX '26 review queue. A confirmation has been logged for <span className="text-white font-semibold">{emailId}</span>.
             </p>
 
             <div className="p-5 bg-white/[0.03] border border-white/10 max-w-md mx-auto text-left mb-8 space-y-2.5 text-xs font-mono">
@@ -386,6 +595,20 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
                 <span className="text-neutral-400">Chosen Topic:</span>
                 <span className="text-white truncate max-w-[200px]">{effectiveTopic}</span>
               </div>
+              {fileDriveUrl && (
+                <div className="flex justify-between items-center pt-2 border-t border-white/10">
+                  <span className="text-neutral-400">Google Drive:</span>
+                  <a
+                    href={fileDriveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#FFD166] hover:text-white underline truncate max-w-[200px] flex items-center gap-1"
+                  >
+                    <span>View Uploaded Paper</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              )}
               <div className="flex justify-between">
                 <span className="text-neutral-400">Organizing Dept:</span>
                 <span className="text-neutral-200">Dept of CSE, EGSPEC</span>
