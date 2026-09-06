@@ -46,20 +46,21 @@ export const ThemeSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto">
         {/* Section Eyebrow */}
-        <div className="flex items-center gap-2 mb-8 font-mono text-xs text-[#FF8C42] tracking-[0.5em] uppercase">
-          <span className="w-8 h-[1px] bg-[#FF8C42]" />
+        <div className="flex items-center gap-2 mb-6 sm:mb-8 font-mono text-[11px] sm:text-xs text-[#FF8C42] tracking-[0.25em] sm:tracking-[0.5em] uppercase">
+          <span className="w-6 sm:w-8 h-[1px] bg-[#FF8C42] shrink-0" />
           <span>02 // SYMPOSIUM CURATORIAL THEME</span>
         </div>
 
-        {/* Dramatic Large Typography Breakdown with interactive letter illumination */}
-        <div className="mb-16 select-none">
-          <div className="overflow-hidden flex flex-wrap">
+        {/* Dramatic Large Typography Breakdown with interactive letter illumination - Automatically scales and never breaks mid-word */}
+        <div className="mb-12 sm:mb-16 select-none w-full overflow-hidden">
+          {/* Row 1: HUMANIZING */}
+          <div className="flex flex-nowrap items-baseline w-full overflow-hidden">
             {word1.map((char, i) => (
               <span
                 key={i}
                 onMouseEnter={() => setHoveredLetter(i)}
                 onMouseLeave={() => setHoveredLetter(null)}
-                className={`inline-block text-6xl sm:text-8xl md:text-9xl lg:text-[112px] font-black tracking-tighter uppercase leading-[0.85] transition-all duration-300 cursor-default ${
+                className={`inline-block text-[clamp(1.65rem,8.1vw,7rem)] font-black tracking-tighter uppercase leading-[0.9] sm:leading-[0.85] transition-all duration-300 cursor-default shrink-0 ${
                   hoveredLetter === i
                     ? 'text-[#FFD166] scale-110 drop-shadow-[0_0_20px_#FFD166]'
                     : 'text-white'
@@ -70,24 +71,25 @@ export const ThemeSection: React.FC = () => {
             ))}
           </div>
 
-          <div className="overflow-hidden mt-2 flex flex-wrap">
+          {/* Row 2: TECHNOLOGY. */}
+          <div className="flex flex-nowrap items-baseline mt-1 sm:mt-2 w-full overflow-hidden">
             {word2.map((char, i) => (
               <span
                 key={i}
                 onMouseEnter={() => setHoveredLetter(100 + i)}
                 onMouseLeave={() => setHoveredLetter(null)}
-                className={`inline-block text-6xl sm:text-8xl md:text-9xl lg:text-[112px] font-black tracking-tighter uppercase leading-[0.85] transition-all duration-300 cursor-default text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-[#FF8C42] to-[#FF4D4D] ${
+                className={`inline-block text-[clamp(1.65rem,8.1vw,7rem)] font-black tracking-tighter uppercase leading-[0.9] sm:leading-[0.85] transition-all duration-300 cursor-default text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-[#FF8C42] to-[#FF4D4D] shrink-0 ${
                   hoveredLetter === 100 + i ? 'scale-110 brightness-150' : ''
                 }`}
               >
                 {char}
               </span>
             ))}
-            <span className="text-6xl sm:text-8xl md:text-9xl lg:text-[112px] font-black text-[#FF4D4D] leading-[0.85]">.</span>
+            <span className="inline-block text-[clamp(1.65rem,8.1vw,7rem)] font-black text-[#FF4D4D] leading-[0.9] sm:leading-[0.85] shrink-0">.</span>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/10 max-w-3xl">
-            <p className="font-serif italic text-xl sm:text-3xl text-neutral-200 font-light tracking-tight">
+          <div className="mt-6 sm:mt-8 pt-6 border-t border-white/10 max-w-3xl">
+            <p className="font-serif italic text-lg sm:text-2xl md:text-3xl text-neutral-200 font-light tracking-tight">
               Computing for a <span className="text-[#FFB347] font-medium">Sustainable</span>,{' '}
               <span className="text-[#FF8C42] font-medium">Inclusive</span> and{' '}
               <span className="text-[#FF4D4D] font-medium">Ethical</span> Future.
@@ -99,14 +101,14 @@ export const ThemeSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Interactive Thematic Tabs */}
           <div className="lg:col-span-7 flex flex-col justify-between gap-4">
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 p-1.5 bg-white/5 border border-white/10">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-3 p-1.5 bg-white/5 border border-white/10">
               {(['sustainable', 'inclusive', 'ethical'] as const).map((key) => {
                 const isActive = activeTab === key;
                 return (
                   <button
                     key={key}
                     onClick={() => setActiveTab(key)}
-                    className={`py-3 px-3 sm:px-4 text-xs sm:text-sm font-mono tracking-widest uppercase transition-all ${
+                    className={`py-2.5 sm:py-3 px-1.5 sm:px-4 text-[10px] sm:text-xs md:text-sm font-mono tracking-wider sm:tracking-widest uppercase transition-all truncate text-center ${
                       isActive
                         ? 'bg-[#FF8C42] text-white font-bold shadow-[0_0_15px_rgba(255,140,66,0.35)]'
                         : 'text-[#A7A7A7] hover:text-white hover:bg-white/[0.04]'
@@ -120,27 +122,27 @@ export const ThemeSection: React.FC = () => {
             </div>
 
             {/* Active Pillar Card */}
-            <div className="p-8 bg-[#0B0B0B]/70 border border-white/10 relative overflow-hidden backdrop-blur-xl flex-1 flex flex-col justify-between">
+            <div className="p-5 sm:p-8 bg-[#0B0B0B]/70 border border-white/10 relative overflow-hidden backdrop-blur-xl flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-[#FF8C42] uppercase px-3 py-1 bg-white/5 border border-white/10">
+                  <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-[0.2em] sm:tracking-[0.3em] text-[#FF8C42] uppercase px-2.5 sm:px-3 py-1 bg-white/5 border border-white/10">
                     {pillars[activeTab].tag}
                   </span>
-                  <div className="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-[#FFB347]">
-                    {React.createElement(pillars[activeTab].icon, { className: "w-5 h-5" })}
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white/5 border border-white/10 flex items-center justify-center text-[#FFB347] shrink-0 ml-2">
+                    {React.createElement(pillars[activeTab].icon, { className: "w-4 h-4 sm:w-5 sm:h-5" })}
                   </div>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-white mb-4 uppercase tracking-tight">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-3 sm:mb-4 uppercase tracking-tight">
                   {pillars[activeTab].title}
                 </h3>
 
-                <p className="text-sm sm:text-base text-[#A7A7A7] leading-relaxed mb-6 font-light">
+                <p className="text-sm sm:text-base text-[#A7A7A7] leading-relaxed mb-5 sm:mb-6 font-light">
                   {pillars[activeTab].desc}
                 </p>
               </div>
 
-              <div className="p-4 bg-white/5 border border-white/10 text-xs font-mono text-neutral-300 flex items-center gap-3">
+              <div className="p-3.5 sm:p-4 bg-white/5 border border-white/10 text-xs font-mono text-neutral-300 flex items-center gap-3">
                 <Sparkles className="w-4 h-4 text-[#FFD166] shrink-0" />
                 <span className="font-serif italic">{pillars[activeTab].metrics}</span>
               </div>
@@ -148,7 +150,7 @@ export const ThemeSection: React.FC = () => {
           </div>
 
           {/* Interactive Synergy Simulator (Human Pulse vs Silicon Frequency) */}
-          <div className="lg:col-span-5 p-6 sm:p-8 bg-[#0B0B0B]/70 border border-white/10 flex flex-col justify-between relative overflow-hidden backdrop-blur-xl">
+          <div className="lg:col-span-5 p-5 sm:p-8 bg-[#0B0B0B]/70 border border-white/10 flex flex-col justify-between relative overflow-hidden backdrop-blur-xl">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
               <div className="flex items-center gap-2 text-xs font-mono text-[#F5F5F5] uppercase tracking-wider">
                 <Activity className="w-4 h-4 text-[#FF8C42] animate-pulse" />
