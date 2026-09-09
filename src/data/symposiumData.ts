@@ -27,7 +27,7 @@ export const SYMPOSIUM_META = {
   isoStartDate: "2026-10-14T09:00:00+05:30",
   links: {
     onlineRegistration: "https://unstop.com/o/xraF2L6?lb=usevAC8O&utm_medium=Share&utm_source=syntrcse45102&utm_campaign=Conferences",
-    offlineRegistration: "https://forms.gle/8Cv5J5qu1VCjvNMDC9",
+    offlineRegistration: "https://forms.gle/g2jZyi3sNytPFmcU7",
     instagram: "https://www.instagram.com/syntronix_26?utm_source=qr&stkn=YjVjMmJ3bnlid3Ns",
     collegeWebsite: "https://egspec.org/",
     mapsLocation: "https://maps.app.goo.gl/ZYQb9saFAJeq94rY7"
@@ -47,7 +47,7 @@ export const SYMPOSIUM_META = {
     foodIncluded: "Food provided as part of registration",
     includedEvents: "Allows participant to attend ANY NUMBER of offline events",
     additionalEventNote: "No additional event-wise registration fee",
-    googleFormUrl: "https://forms.gle/8Cv5J5qu1VCjvNMDC9"
+    googleFormUrl: "https://forms.gle/g2jZyi3sNytPFmcU7"
   },
   eligibility: "Open to students, scholars, researchers & innovators worldwide",
   teamRules: "Individual participation or teams (Up to 3 members; Poster Making up to 2 members)",
@@ -63,7 +63,7 @@ export const SYMPOSIUM_META = {
 
 export const REGISTRATION_CONFIG = {
   onlineUnstopUrl: "https://unstop.com/o/xraF2L6?lb=usevAC8O&utm_medium=Share&utm_source=syntrcse45102&utm_campaign=Conferences",
-  offlineGoogleFormUrl: "https://forms.gle/8Cv5J5qu1VCjvNMDC9",
+  offlineGoogleFormUrl: "https://forms.gle/g2jZyi3sNytPFmcU7",
   instagramUrl: "https://www.instagram.com/syntronix_26?utm_source=qr&stkn=YjVjMmJ3bnlid3Ns",
   collegeWebsite: "https://egspec.org/",
   mapsLocation: "https://maps.app.goo.gl/ZYQb9saFAJeq94rY7",
@@ -79,7 +79,7 @@ export const PRIZE_STRUCTURE = {
   secondPrize: "₹3,000",
   thirdPrize: "₹1,000",
   totalPerContest: "₹9,000",
-  certificateNote: "Winners and runners/merit recipients receive hardcopy certificates and cash prizes on the event day."
+  certificateNote: "Presentation and Poster winners receive hardcopy certificates and cash prizes on event day. Non-Technical events offer Prize Pool Available with Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)."
 };
 
 /* Exactly 6 Official Events */
@@ -162,15 +162,17 @@ export const EVENTS: SymposiumEvent[] = [
     time: "01:30 PM – 03:00 PM IST",
     venue: "Auditorium Hall, EGSPEC Campus",
     mode: "OFFLINE",
-    prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
+    prizePool: "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)",
     teamSize: "Individual or Team (Up to 3)",
     feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
     description: "Exciting non-technical challenge designed to test creative lateral thinking, collaboration, and spontaneous problem-solving under pressure. (Official title and specific round rules to be announced shortly).",
     highlights: [
+      "Prize Pool Available",
+      "Participation E-Certificate Only",
+      "No Cash Prizes • No Hardcopy Certificates",
       "High-energy interactive challenge for all participants",
       "Covered by the ₹100 offline registration (no additional fee)",
-      "Promotes interdisciplinary thinking and team synergy",
-      "Cash awards and hardcopy certificates for winners and runners"
+      "Promotes interdisciplinary thinking and team synergy"
     ],
     isPlaceholder: true
   },
@@ -184,15 +186,17 @@ export const EVENTS: SymposiumEvent[] = [
     time: "02:30 PM – 04:00 PM IST",
     venue: "EGSPEC Campus Arena",
     mode: "OFFLINE",
-    prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
+    prizePool: "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)",
     teamSize: "Individual or Team (Up to 3)",
     feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
     description: "Engaging analytical and communication face-off exploring human instincts, perception, and fast-paced deductive acumen. (Official title and specific round rules to be announced shortly).",
     highlights: [
+      "Prize Pool Available",
+      "Participation E-Certificate Only",
+      "No Cash Prizes • No Hardcopy Certificates",
       "Spirited contest blending cognitive agility with humor and intuition",
       "Covered by the ₹100 offline registration (no additional fee)",
-      "Open to all registered delegates",
-      "Exciting cash awards for standout performances on event day"
+      "Open to all registered delegates"
     ],
     isPlaceholder: true
   },
@@ -206,15 +210,17 @@ export const EVENTS: SymposiumEvent[] = [
     time: "03:30 PM – 05:00 PM IST",
     venue: "Main Open-Air Amphitheatre / Hall",
     mode: "OFFLINE",
-    prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
+    prizePool: "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)",
     teamSize: "Individual or Team (Up to 3)",
     feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
     description: "Grand finale non-technical showcase celebrating student expression, strategic communication, and cultural wit. (Official title and specific round rules to be announced shortly).",
     highlights: [
+      "Prize Pool Available",
+      "Participation E-Certificate Only",
+      "No Cash Prizes • No Hardcopy Certificates",
       "Electrifying multi-round finale",
       "Covered by the ₹100 offline registration (no additional fee)",
-      "Immediate audience engagement and live score tallies",
-      "Winners and runners awarded during valedictory session on event day"
+      "Immediate audience engagement and live score tallies"
     ],
     isPlaceholder: true
   }
@@ -506,7 +512,7 @@ export const TIMELINE: TimelineMilestone[] = [
     dateStr: "15 October 2026",
     title: "Symposium Day 2 — OFFLINE",
     subtitle: "EGS Pillay Engineering College, Nagapattinam",
-    description: "On-campus Paper Presentation, Poster Making, and 3 Non-Technical events. Food provided. Winners receive hardcopy certificates and cash prizes.",
+    description: "On-campus Paper Presentation, Poster Making, and 3 Non-Technical events. Food provided. Presentation & Poster winners receive hardcopy certificates and cash prizes; Non-Technical participants receive participation e-certificates.",
     status: "upcoming",
     tag: "Offline Symposium"
   },

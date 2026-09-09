@@ -103,9 +103,9 @@ const EventCard: React.FC<{
       {/* Card Meta & CTA */}
       <div className="relative z-10 pt-4 border-t border-white/10 flex flex-col gap-2.5">
         {event.prizePool && (
-          <div className="flex items-center gap-2 text-xs font-mono text-[#FFD166]">
-            <Trophy className="w-3.5 h-3.5 text-[#FFB347] shrink-0" />
-            <span className="font-semibold">{event.prizePool}</span>
+          <div className="flex items-start gap-2 text-xs font-mono text-[#FFD166]">
+            <Trophy className="w-3.5 h-3.5 text-[#FFB347] shrink-0 mt-0.5" />
+            <span className="font-semibold leading-relaxed">{event.prizePool}</span>
           </div>
         )}
 

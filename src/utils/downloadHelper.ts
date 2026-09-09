@@ -75,11 +75,14 @@ Event 02: Paper Presentation (Day 2 - 15 Oct Offline - ₹100 Pass covers all of
 Event 03: Poster Making (Day 2 - 15 Oct Offline - Up to 2 members)
 Event 04-06: Non-Technical Challenges (Day 2 - 15 Oct Offline)
 
-Prize Pool Per Contest:
-- First Prize: ₹5,000
-- Second Prize: ₹3,000
-- Third Prize: ₹1,000
-- Hardcopy Certificates and cash prizes awarded on event day.
+Prize Pool & Certificate Structure:
+- Technical Events (Paper Presentation & Poster Making):
+  • First Prize: ₹5,000 | Second Prize: ₹3,000 | Third Prize: ₹1,000
+  • Hardcopy Certificates and cash prizes awarded on event day.
+- Non-Technical Events:
+  • Prize Pool Available
+  • Participation E-Certificate Only
+  • No Cash Prizes • No Hardcopy Certificates
 
 3. CFP SUBMISSION FIELDS REQUIRED:
 - Team Name
@@ -93,7 +96,7 @@ Prize Pool Per Contest:
 - Draft Abstract / PPT / Document upload
 
 Official Registration Links:
-- Offline (Google Form): https://forms.gle/8Cv5Jqu1VCjvNMDC9
+- Offline (Google Form): https://forms.gle/g2jZyi3sNytPFmcU7
 - Online (Unstop): https://unstop.com/o/xraF2L6?lb=usevAC8O&utm_medium=Share&utm_source=syntrcse45102&utm_campaign=Conferences
 - Instagram: https://www.instagram.com/syntronix_26?utm_source=qr&stkn=YjVjMmJ3bnlid3Ns
 

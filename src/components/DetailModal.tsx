@@ -76,9 +76,9 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                 <span>Fee: {eventData.feeInfo}</span>
               </div>
               {eventData.prizePool && (
-                <div className="flex items-center gap-2 text-[#FFD166] font-bold">
-                  <Trophy className="w-4 h-4 text-[#FFB347]" />
-                  <span>Awards: {eventData.prizePool}</span>
+                <div className="flex items-start gap-2 text-[#FFD166] font-bold">
+                  <Trophy className="w-4 h-4 text-[#FFB347] shrink-0 mt-0.5" />
+                  <span className="leading-snug">Awards: {eventData.prizePool}</span>
                 </div>
               )}
               {eventData.teamSize && (
