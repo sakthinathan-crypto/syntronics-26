@@ -4,13 +4,30 @@ import { ASSETS_CONFIG } from '../data/assetsConfig';
 /**
  * Generates and triggers download of the official 50 Paper Presentation topics document
  */
-export function download50TopicsDocument() {
+export async function download50TopicsDocument() {
+  const pdfPath = ASSETS_CONFIG.documents.paperTopics50.path;
+  try {
+    const res = await fetch(pdfPath, { method: 'HEAD' });
+    if (res.ok && res.status !== 404) {
+      const link = document.createElement('a');
+      link.href = pdfPath;
+      link.download = ASSETS_CONFIG.documents.paperTopics50.filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
+  } catch {
+    // fallback to generated text document
+  }
+
   const content = `================================================================================
 SYNTRONIX '26 — INTERNATIONAL TECHNICAL SYMPOSIUM
 DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
 EGS PILLAY ENGINEERING COLLEGE (AUTONOMOUS), NAGAPATTINAM
 Official Theme: HUMANIZING TECHNOLOGY
 Tagline: MAKE IT. SHOW IT. ACHIEVE IT.
+Dates: 10 & 14 October 2026 | Format: Hybrid
 ================================================================================
 
 OFFICIAL PAPER PRESENTATION — 50 SUGGESTED RESEARCH TOPICS
@@ -48,7 +65,23 @@ Website: https://egspec.org/
 /**
  * Downloads the Official Problem Statement & Submission Guidelines
  */
-export function downloadProblemStatement() {
+export async function downloadProblemStatement() {
+  const pdfPath = ASSETS_CONFIG.documents.problemStatement.path;
+  try {
+    const res = await fetch(pdfPath, { method: 'HEAD' });
+    if (res.ok && res.status !== 404) {
+      const link = document.createElement('a');
+      link.href = pdfPath;
+      link.download = ASSETS_CONFIG.documents.problemStatement.filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
+  } catch {
+    // fallback to generated text document
+  }
+
   const content = `================================================================================
 SYNTRONIX '26 — INTERNATIONAL TECHNICAL SYMPOSIUM
 DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
