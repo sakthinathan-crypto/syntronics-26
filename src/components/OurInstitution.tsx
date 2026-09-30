@@ -148,21 +148,26 @@ export const OurInstitution: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {STAFF_COORDINATORS.map((staff) => {
-              const isConvenor = staff.role.toLowerCase().includes('convenor');
+              const isMainConvenor = staff.role.toLowerCase() === 'convenor';
+              const isCoConvenor = staff.role.toLowerCase().includes('co-convenor');
               return (
                 <div
                   key={staff.id}
                   className={`p-6 border transition-all ${
-                    isConvenor 
-                      ? 'bg-white/[0.04] border-[#FF8C42]/50 shadow-[0_0_20px_rgba(255,140,66,0.1)]' 
+                    isMainConvenor 
+                      ? 'bg-white/[0.04] border-[#FF8C42]/60 shadow-[0_0_20px_rgba(255,140,66,0.15)]' 
+                      : isCoConvenor
+                      ? 'bg-white/[0.03] border-[#FFD166]/40 shadow-[0_0_15px_rgba(255,209,102,0.1)]'
                       : 'bg-white/[0.02] border-white/10 hover:border-white/25'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-4">
                     <span className={`px-2.5 py-1 text-[10px] font-mono uppercase font-bold tracking-widest border ${
-                      isConvenor 
+                      isMainConvenor 
                         ? 'bg-[#FF8C42]/20 text-[#FF8C42] border-[#FF8C42]/40' 
-                        : 'bg-white/5 text-[#FFD166] border-white/15'
+                        : isCoConvenor
+                        ? 'bg-[#FFD166]/15 text-[#FFD166] border-[#FFD166]/40'
+                        : 'bg-white/5 text-neutral-300 border-white/15'
                     }`}>
                       {staff.role}
                     </span>

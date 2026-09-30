@@ -50,9 +50,16 @@ export const RegistrationCTA: React.FC<RegistrationCTAProps> = ({
         </p>
 
         {/* Dates & Mode Highlights */}
-        <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 mb-10 bg-white/5 border border-[#FFB347]/30 text-xs font-mono text-[#FFD166] uppercase tracking-wider">
-          <Clock className="w-3.5 h-3.5 text-[#FF8C42]" />
-          <span>14 OCT (ONLINE VIA UNSTOP) • 15 OCT (OFFLINE AT EGSPEC)</span>
+        <div className="flex flex-col items-center justify-center gap-2 mb-10">
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 bg-white/5 border border-[#FFB347]/30 text-xs font-mono text-[#FFD166] uppercase tracking-wider">
+            <Clock className="w-3.5 h-3.5 text-[#FF8C42]" />
+            <span>DAY 1: 10 OCT (OFFLINE AT EGSPEC) • DAY 2: 14 OCT (ONLINE VIA UNSTOP)</span>
+          </div>
+          <div className="text-[11px] font-mono text-neutral-300 uppercase tracking-widest flex items-center gap-2">
+            <span className="text-[#FF8C42] font-bold">REGISTRATION OPEN UNTIL 09 OCT 2026</span>
+            <span>•</span>
+            <span className="text-white font-bold">ON-SPOT REGISTRATION AVAILABLE AT VENUE</span>
+          </div>
         </div>
 
         {/* Action Buttons with Magnetic hover effect */}

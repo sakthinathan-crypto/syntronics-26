@@ -38,7 +38,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
     email: '',
     phone: '',
     institution: '',
-    selectedEvents: ['offline-paper-presentation', 'offline-poster-making'],
+    selectedEvents: ['offline-paper-presentation', 'offline-prompt-fest'],
   });
 
   const [generatedPass, setGeneratedPass] = useState<DelegatePass | null>(null);
@@ -77,7 +77,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
       phone: formData.phone,
       institution: formData.institution,
       mode: 'OFFLINE',
-      eventsSelected: selectedTitles.length > 0 ? selectedTitles : ['Paper Presentation', 'Poster Making'],
+      eventsSelected: selectedTitles.length > 0 ? selectedTitles : ['Paper Presentation', 'Prompt Fest'],
       foodTokenIncluded: true,
       registeredAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
       qrValue: `https://egspec.org/syntronix26/verify/${passId}`
@@ -145,15 +145,32 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
         {/* Step 1: Mode Selection (Online vs Offline) */}
         {step === 'mode' && (
           <div>
-            <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 uppercase tracking-tight">
-              Select Participation Mode
-            </h3>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+                Select Participation Mode
+              </h3>
+              <span className="px-2.5 py-1 bg-[#FF8C42]/20 border border-[#FF8C42]/40 text-[#FFD166] text-[10px] font-mono uppercase tracking-widest font-bold">
+                REGISTRATION OPEN NOW
+              </span>
+            </div>
+
+            {/* Crucial Registration Information Notice Banner */}
+            <div className="mb-6 p-3.5 bg-white/[0.03] border border-white/10 rounded-sm font-mono text-xs space-y-1">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="text-white font-bold">REGULAR REGISTRATION DEADLINE: <span className="text-[#FF8C42]">09 OCTOBER 2026</span></span>
+                <span className="text-[#FFD166] font-bold">ON-SPOT REGISTRATION: AVAILABLE AT VENUE</span>
+              </div>
+              <p className="text-[11px] text-neutral-400 font-serif italic pt-1">
+                Offline registration: ₹100/person (includes food). Allows participants to participate in all eligible events. Individual participation allowed according to event rules.
+              </p>
+            </div>
+
             <p className="text-xs sm:text-sm text-neutral-400 mb-6 sm:mb-8 font-serif italic">
               Everyone around the world can participate in SYNTRONIX '26. Choose whether you will attend virtually or in-person at our campus in Nagapattinam.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 mb-7 sm:mb-8">
-              {/* Card 1: OFFLINE PARTICIPATION - Monochrome default, Color & Glow on Hover */}
+              {/* Card 1: OFFLINE PARTICIPATION */}
               <div
                 className="p-6 border border-white/15 hover:border-[#FF8C42]/70 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group shadow-[0_4px_25px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(255,140,66,0.2)] rounded-sm"
                 data-cursor="interactive"
@@ -169,10 +186,10 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     </span>
                   </div>
                   <span className="text-[11px] font-mono text-neutral-400 group-hover:text-[#FF8C42] block mb-2 uppercase tracking-wider font-semibold transition-colors duration-300">
-                    15 OCTOBER 2026 // EGSPEC CAMPUS
+                    DAY 01: 10 OCTOBER 2026 // EGSPEC CAMPUS
                   </span>
                   <p className="text-xs text-neutral-400 font-serif italic mb-5">
-                    In-person experience at EGS Pillay Engineering College, Nagapattinam.
+                    In-person experience at E.G.S. Pillay Engineering College, Nagapattinam.
                   </p>
                 </div>
 
@@ -180,11 +197,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   <ul className="space-y-2.5 pt-3 border-t border-white/10 text-[11px] text-neutral-300 font-mono">
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-neutral-400 group-hover:text-[#FFB347] shrink-0 transition-colors duration-300" />
-                      <span><strong className="text-white">₹100 total registration fee</strong></span>
+                      <span><strong className="text-white">Offline registration: ₹100 / person</strong></span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-neutral-400 group-hover:text-[#FFB347] shrink-0 transition-colors duration-300" />
-                      <span><strong className="text-white">Attend ANY number of offline events</strong></span>
+                      <span><strong className="text-white">Participate in all eligible events</strong></span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-neutral-400 group-hover:text-[#FFB347] shrink-0 transition-colors duration-300" />
@@ -192,7 +209,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-neutral-400 group-hover:text-[#FFB347] shrink-0 transition-colors duration-300" />
-                      <span>Hardcopy certificates &amp; cash prizes</span>
+                      <span>Registration open until 09 Oct (On-spot available)</span>
                     </li>
                   </ul>
 
@@ -208,7 +225,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                 </div>
               </div>
 
-              {/* Card 2: ONLINE PARTICIPATION - Monochrome default, Color & Glow on Hover */}
+              {/* Card 2: ONLINE PARTICIPATION */}
               <div
                 className="p-6 border border-white/15 hover:border-[#FFD166]/70 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group shadow-[0_4px_25px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(255,209,102,0.2)] rounded-sm"
                 data-cursor="interactive"
@@ -224,7 +241,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     </span>
                   </div>
                   <span className="text-[11px] font-mono text-neutral-400 group-hover:text-[#FFD166] block mb-2 uppercase tracking-wider font-semibold transition-colors duration-300">
-                    14 OCTOBER 2026 // VIA UNSTOP
+                    DAY 02: 14 OCTOBER 2026 // VIA UNSTOP
                   </span>
                   <p className="text-xs text-neutral-400 font-serif italic mb-5">
                     Virtual access conducted via Unstop platform for international scholars worldwide.
@@ -288,7 +305,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
               </button>
             </div>
             <p className="text-xs sm:text-sm text-neutral-400 mb-5 font-serif italic">
-              Offline pass fee: ₹100 per participant. Food provided. Select 2 events to attend.
+              Offline registration: ₹100 / person. Includes food. Allows participation in all eligible events. Individual participation allowed. Registration open until 09 October 2026 (On-spot available).
             </p>
 
             <div className="space-y-4 mb-5">
@@ -448,7 +465,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                       EGSPEC CSE
                     </div>
                     <div className="text-[10px] font-mono text-neutral-300">
-                      15 OCT 2026 // NAGAPATTINAM
+                      10 OCT 2026 // NAGAPATTINAM
                     </div>
                   </div>
                 </div>

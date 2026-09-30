@@ -17,8 +17,8 @@ export interface SymposiumEvent {
   id: string;
   number: string;
   title: string;
-  category: 'Online Technical' | 'Offline Technical' | 'Non-Technical' | 'Paper Presentation' | 'Poster Making';
-  day: 'Day 1 — 14 Oct (Online)' | 'Day 2 — 15 Oct (Offline)';
+  category: 'Online Technical' | 'Offline Technical' | 'Non-Technical' | 'Paper Presentation' | 'Prompt Fest' | string;
+  day: string;
   date: string;
   time: string;
   venue: string;
@@ -29,6 +29,13 @@ export interface SymposiumEvent {
   feeInfo: string;
   description: string;
   highlights: string[];
+  rounds?: string;
+  duration?: string;
+  winningCriteria?: string;
+  requirements?: string;
+  importantNote?: string;
+  rules?: string[];
+  coordinator?: string;
   isPlaceholder?: boolean;
 }
 

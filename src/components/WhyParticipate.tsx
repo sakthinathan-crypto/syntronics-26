@@ -90,7 +90,7 @@ export const WhyParticipate: React.FC<{ onOpenRegister: () => void }> = ({ onOpe
               Cash Prizes for Presentation Winners & Campus Food Provided
             </h3>
             <p className="text-xs sm:text-sm text-[#A7A7A7] mt-1 font-serif italic max-w-2xl">
-              Hardcopy certificates of merit and cash prizes awarded on-stage on 15 October 2026. Offline attendees enjoy a full complimentary banquet as part of the ₹100 registration fee.
+              Hardcopy certificates of merit and cash prizes awarded on-stage on 10 October 2026. Offline attendees enjoy a full complimentary banquet as part of the ₹100 registration fee.
             </p>
           </div>
 

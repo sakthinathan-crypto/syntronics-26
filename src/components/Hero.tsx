@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
   }, []);
 
   useEffect(() => {
-    const targetDate = new Date('2026-10-14T09:00:00+05:30').getTime();
+    const targetDate = new Date('2026-10-10T09:00:00+05:30').getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -75,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
       title: '01. Online Article Presentation',
       badge: 'ONLINE',
       badgeColor: 'border-[#FF8C42]/50 text-[#FFB347]',
-      detail: 'Day 1 (14 Oct) • Unstop Platform • 100% FREE',
+      detail: 'Day 2 (14 Oct) • Unstop Platform • 100% FREE',
       href: '#events',
     },
     {
@@ -83,39 +83,47 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
       title: '02. Paper Presentation',
       badge: 'OFFLINE',
       badgeColor: 'border-white/20 text-neutral-300',
-      detail: 'Day 2 (15 Oct) • CSE Seminar Complex • Cash Prizes',
+      detail: 'Day 1 (10 Oct) • CSE Seminar Complex • Cash Prizes',
       href: '#events',
     },
     {
       id: '03',
-      title: '03. Poster Making',
+      title: '03. Prompt Fest',
       badge: 'OFFLINE',
       badgeColor: 'border-white/20 text-neutral-300',
-      detail: 'Day 2 (15 Oct) • Innovation Gallery • Creative Challenge',
+      detail: 'Day 1 (10 Oct) • AI Computing Lab • Cash Prizes',
       href: '#events',
     },
     {
       id: '04',
-      title: '04. Non-Technical Event 01',
+      title: '04. Vibe Vista',
       badge: 'OFFLINE',
       badgeColor: 'border-white/20 text-neutral-300',
-      detail: 'Day 2 (15 Oct) • Auditorium • Creative Thinking',
+      detail: 'Day 1 (10 Oct) • Auditorium • Hand Reflex & Number Cup',
       href: '#events',
     },
     {
       id: '05',
-      title: '05. Non-Technical Event 02',
+      title: '05. Frenzy 2K26',
       badge: 'OFFLINE',
       badgeColor: 'border-white/20 text-neutral-300',
-      detail: 'Day 2 (15 Oct) • Campus Arena • Fast-Paced Acumen',
+      detail: 'Day 1 (10 Oct) • Campus Arena • Bottle, Puzzle & Wire',
       href: '#events',
     },
     {
       id: '06',
-      title: '06. Non-Technical Event 03',
+      title: '06. Memory Hunt',
       badge: 'OFFLINE',
       badgeColor: 'border-white/20 text-neutral-300',
-      detail: 'Day 2 (15 Oct) • Grand Amphitheatre • Expressive Finale',
+      detail: 'Day 1 (10 Oct) • Drawing Hall • Visual & Chain Recall',
+      href: '#events',
+    },
+    {
+      id: '07',
+      title: '07. The Imposter Game',
+      badge: 'OFFLINE',
+      badgeColor: 'border-white/20 text-neutral-300',
+      detail: 'Day 1 (10 Oct) • Amphitheatre • Deduction & Bluffing',
       href: '#events',
     },
   ];
@@ -313,7 +321,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
                   <span>DATES</span>
                 </div>
                 <div className="font-serif italic text-2xl sm:text-3xl text-[#FFB347] font-normal leading-tight">
-                  14 – 15 Oct 2026
+                  10 &amp; 14 Oct 2026
                 </div>
               </div>
 
@@ -324,7 +332,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
                   <span>FORMAT</span>
                 </div>
                 <div className="font-serif italic text-2xl sm:text-3xl text-[#FFB347] font-normal leading-tight">
-                  Hybrid (Online &amp; Offline)
+                  Hybrid (Offline &amp; Online)
                 </div>
               </div>
 
@@ -335,7 +343,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
                   <span>VENUE</span>
                 </div>
                 <div className="font-serif italic text-2xl sm:text-3xl text-[#FFB347] font-normal leading-tight">
-                  Unstop &amp; EGSPEC Campus
+                  EGSPEC Campus (Day 1) &amp; Unstop (Day 2)
                 </div>
               </div>
             </div>
@@ -357,14 +365,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
                 <ArrowRight className="w-4 h-4" />
               </button>
 
-              {/* EXPLORE 6 EVENTS */}
+              {/* EXPLORE EVENTS */}
               <a
                 href="#events"
                 className="bg-black/60 hover:bg-white/10 border border-white/20 hover:border-white/40 text-white px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-widest rounded-sm flex items-center gap-2 transition-all"
                 data-cursor="interactive"
               >
                 <FileText className="w-4 h-4 text-[#FFB347]" />
-                <span>EXPLORE 6 EVENTS</span>
+                <span>EXPLORE EVENTS</span>
               </a>
 
               {/* THEME dropdown / scroll */}
@@ -387,10 +395,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
             >
               <div className="flex items-center justify-between text-[10px] sm:text-xs font-mono uppercase tracking-wider mb-3">
                 <span className="text-[#FF8C42] font-semibold">
-                  COUNTDOWN TO DAY 1 (ONLINE)
+                  COUNTDOWN TO DAY 1 (OFFLINE)
                 </span>
                 <span className="text-neutral-400">
-                  14 OCT 2026 // UNSTOP
+                  10 OCT 2026 // EGSPEC CAMPUS
                 </span>
               </div>
 
@@ -442,7 +450,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
               mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            {/* Card 1: SYMPOSIUM EVENTS [01 - 06] */}
+            {/* Card 1: SYMPOSIUM EVENTS [01 - 07] */}
             <div className="p-5 sm:p-6 bg-black/60 border border-white/10 backdrop-blur-md">
               {/* Card Header */}
               <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/10 font-mono text-xs uppercase tracking-wider">
@@ -451,7 +459,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
                   <span>SYMPOSIUM EVENTS</span>
                 </div>
                 <span className="text-[#FFB347] font-semibold tracking-widest">
-                  [01 — 06]
+                  [01 — 07]
                 </span>
               </div>
 
@@ -484,23 +492,23 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onOpenAbstractSubmit
 
             {/* Card 2: Two Side-by-Side Fee Cards */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              {/* Left Fee Card: FREE (Day 1 Online Unstop) */}
-              <div className="p-4 sm:p-5 bg-black/60 border border-white/10 backdrop-blur-md">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-black font-mono text-[#FFD166] mb-1">
-                  FREE
-                </div>
-                <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
-                  DAY 1 ONLINE (UNSTOP)
-                </div>
-              </div>
-
-              {/* Right Fee Card: ₹100 (Day 2 Offline + Food) */}
+              {/* Left Fee Card: ₹100 (Day 1 Offline + Food) */}
               <div className="p-4 sm:p-5 bg-black/60 border border-white/10 backdrop-blur-md">
                 <div className="text-2xl sm:text-3xl md:text-4xl font-black font-mono text-[#FFD166] mb-1">
                   ₹100
                 </div>
                 <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
-                  DAY 2 OFFLINE + FOOD
+                  DAY 1 OFFLINE + FOOD
+                </div>
+              </div>
+
+              {/* Right Fee Card: FREE (Day 2 Online Unstop) */}
+              <div className="p-4 sm:p-5 bg-black/60 border border-white/10 backdrop-blur-md">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-black font-mono text-[#FFD166] mb-1">
+                  FREE
+                </div>
+                <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
+                  DAY 2 ONLINE (UNSTOP)
                 </div>
               </div>
             </div>

@@ -87,7 +87,7 @@ const EventCard: React.FC<{
           {event.description}
         </p>
 
-        {/* Day & Venue pill */}
+        {/* Day, Venue, Rounds & Duration pills */}
         <div className="flex flex-wrap gap-2 text-[11px] font-mono text-neutral-300 mb-4">
           <span className="px-2 py-1 bg-white/5 border border-white/10 flex items-center gap-1.5">
             <Calendar className="w-3 h-3 text-[#FFB347]" />
@@ -97,6 +97,17 @@ const EventCard: React.FC<{
             <MapPin className="w-3 h-3 text-[#FF8C42]" />
             <span className="truncate">{event.venue}</span>
           </span>
+          {event.rounds && (
+            <span className="px-2 py-1 bg-[#FF8C42]/10 border border-[#FF8C42]/30 text-[#FFD166] flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-[#FFB347]" />
+              <span>{event.rounds}</span>
+            </span>
+          )}
+          {event.duration && (
+            <span className="px-2 py-1 bg-white/5 border border-white/10 text-neutral-300">
+              ⏱ {event.duration}
+            </span>
+          )}
         </div>
       </div>
 
@@ -127,12 +138,12 @@ const EventCard: React.FC<{
         {!isOnline && (
           <div className="flex items-center gap-1.5 text-[10px] font-mono text-neutral-400">
             <Utensils className="w-3 h-3 text-[#FF8C42]" />
-            <span>Food provided • Attends 2 events</span>
+            <span>Food provided • Access to all eligible events</span>
           </div>
         )}
 
         <div className="mt-2 flex items-center justify-between text-xs font-mono text-white group-hover:text-[#FFB347] font-medium pt-2 border-t border-white/[0.04]">
-          <span>View Guidelines & Details</span>
+          <span>View Details & Guidelines</span>
           <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </div>
       </div>
@@ -146,10 +157,14 @@ export const Events: React.FC<EventsProps> = ({ onSelectEvent }) => {
   const filteredEvents = EVENTS.filter(event => {
     if (filterMode === 'All') return true;
     if (filterMode === 'Online') return event.mode === 'ONLINE';
-    if (filterMode === 'Offline Tech') return event.mode === 'OFFLINE' && (event.category === 'Paper Presentation' || event.category === 'Poster Making');
+    if (filterMode === 'Offline Tech') return event.mode === 'OFFLINE' && (event.category === 'Paper Presentation' || event.category === 'Prompt Fest' || event.category.includes('Tech'));
     if (filterMode === 'Offline Non-Tech') return event.mode === 'OFFLINE' && event.category === 'Non-Technical';
     return true;
   });
+
+  const onlineCount = EVENTS.filter(e => e.mode === 'ONLINE').length;
+  const offlineTechCount = EVENTS.filter(e => e.mode === 'OFFLINE' && e.category !== 'Non-Technical').length;
+  const nonTechCount = EVENTS.filter(e => e.category === 'Non-Technical').length;
 
   return (
     <section
@@ -168,13 +183,13 @@ export const Events: React.FC<EventsProps> = ({ onSelectEvent }) => {
               <span>03 // OFFICIAL SYMPOSIUM EVENTS</span>
             </div>
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[0.95]">
-              6 FLAGSHIP
+              SYMPOSIUM
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-[#FF8C42] to-[#FF4D4D] ml-3">
                 CHALLENGES.
               </span>
             </h2>
             <p className="text-xs sm:text-sm font-serif italic text-[#A7A7A7] mt-2">
-              1 Online Event via Unstop (Free) + 5 Offline Events at EGSPEC Campus (₹100, Food Included)
+              1 Online Event via Unstop (Free) + 6 Offline Events at EGSPEC Campus (₹100, Food Included)
             </p>
           </div>
 
@@ -191,7 +206,13 @@ export const Events: React.FC<EventsProps> = ({ onSelectEvent }) => {
                 }`}
                 data-cursor="interactive"
               >
-                {mode === 'All' ? `All (6)` : mode === 'Online' ? `Online (1)` : mode === 'Offline Tech' ? `Offline Tech (2)` : `Non-Tech (3)`}
+                {mode === 'All'
+                  ? `All (${EVENTS.length})`
+                  : mode === 'Online'
+                  ? `Online (${onlineCount})`
+                  : mode === 'Offline Tech'
+                  ? `Offline Tech (${offlineTechCount})`
+                  : `Non-Tech (${nonTechCount})`}
               </button>
             ))}
           </div>

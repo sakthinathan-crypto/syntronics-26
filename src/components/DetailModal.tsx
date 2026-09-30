@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Calendar, MapPin, Trophy, Users, User, ArrowRight, ExternalLink, Sparkles, Award, Utensils, CheckCircle2 } from 'lucide-react';
+import { X, Calendar, MapPin, Trophy, Users, User, ArrowRight, ExternalLink, Sparkles, Award, Utensils, CheckCircle2, Clock } from 'lucide-react';
 import { SymposiumEvent, Speaker } from '../types';
 
 interface DetailModalProps {
@@ -71,6 +71,18 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                 <MapPin className="w-4 h-4 text-[#FF8C42]" />
                 <span>{eventData.venue}</span>
               </div>
+              {eventData.rounds && (
+                <div className="flex items-center gap-2 text-neutral-300">
+                  <Sparkles className="w-4 h-4 text-[#FFB347]" />
+                  <span>Rounds: {eventData.rounds}</span>
+                </div>
+              )}
+              {eventData.duration && (
+                <div className="flex items-center gap-2 text-neutral-300">
+                  <Clock className="w-4 h-4 text-[#FFD166]" />
+                  <span>Duration: {eventData.duration}</span>
+                </div>
+              )}
               <div className="flex items-center gap-2 text-[#FFD166] font-bold">
                 <Award className="w-4 h-4 text-[#FFB347]" />
                 <span>Fee: {eventData.feeInfo}</span>
@@ -95,11 +107,23 @@ export const DetailModal: React.FC<DetailModalProps> = ({
               )}
             </div>
 
+            {/* Winning Criteria if present */}
+            {eventData.winningCriteria && (
+              <div className="mb-6 p-3.5 bg-white/[0.03] border border-white/10 text-xs font-mono">
+                <span className="text-[#FFB347] font-bold uppercase tracking-wider block mb-1">
+                  Winning Criteria &amp; Ranking:
+                </span>
+                <p className="text-neutral-300 whitespace-pre-line font-mono text-[11px] leading-relaxed">
+                  {eventData.winningCriteria}
+                </p>
+              </div>
+            )}
+
             {/* Highlights */}
             <div className="mb-6">
               <h4 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#FF8C42] mb-3 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#FFD166]" />
-                <span>Format & Evaluation Guidelines:</span>
+                <span>Format &amp; Evaluation Guidelines:</span>
               </h4>
               <div className="space-y-2">
                 {eventData.highlights.map((h, i) => (
@@ -110,6 +134,14 @@ export const DetailModal: React.FC<DetailModalProps> = ({
                 ))}
               </div>
             </div>
+
+            {/* Requirements if present */}
+            {eventData.requirements && (
+              <div className="mb-4 text-xs font-mono text-neutral-400 p-2.5 bg-white/[0.02] border border-white/10">
+                <span className="text-[#FF8C42] font-semibold">Requirements: </span>
+                <span>{eventData.requirements}</span>
+              </div>
+            )}
 
             {/* Rules */}
             {eventData.rules && eventData.rules.length > 0 && (
@@ -127,7 +159,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({
 
             <div className="flex items-center justify-between pt-4 border-t border-white/10">
               <div className="text-xs font-mono text-[#A7A7A7]">
-                Coordinator: <span className="text-white">{eventData.coordinator}</span>
+                Coordinator: <span className="text-white">{eventData.coordinator || "CSE Dept Coordinators"}</span>
               </div>
 
               <button

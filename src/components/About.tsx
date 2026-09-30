@@ -64,7 +64,7 @@ export const About: React.FC = () => {
     {
       icon: Globe2,
       title: "Hybrid Global Inclusivity",
-      description: "Uniting global minds virtually via Unstop on 14 October and convening in-person scholars on 15 October at EGSPEC campus."
+      description: "Convening in-person scholars on 10 October at EGSPEC campus and uniting global minds virtually via Unstop on 14 October."
     },
     {
       icon: Award,

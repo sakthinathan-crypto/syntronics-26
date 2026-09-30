@@ -55,7 +55,7 @@ DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
 EGS PILLAY ENGINEERING COLLEGE (AUTONOMOUS)
 Official Theme: HUMANIZING TECHNOLOGY
 Tagline: MAKE IT. SHOW IT. ACHIEVE IT.
-Dates: 14–15 October 2026 | Format: Hybrid
+Dates: 10 & 14 October 2026 | Format: Hybrid
 ================================================================================
 
 OFFICIAL CFP PROBLEM STATEMENT & GUIDELINES
@@ -70,13 +70,16 @@ Participants are invited to present breakthroughs in:
 - Data Science, Analytics, Computer Vision & NLP
 
 2. CONTEST CATEGORIES & PRIZES
-Event 01: Online Article Presentation (Day 1 - 14 Oct via Unstop - FREE)
-Event 02: Paper Presentation (Day 2 - 15 Oct Offline - ₹100 Pass covers all offline events)
-Event 03: Poster Making (Day 2 - 15 Oct Offline - Up to 2 members)
-Event 04-06: Non-Technical Challenges (Day 2 - 15 Oct Offline)
+Event 01: Online Article Presentation (Day 2 - 14 Oct via Unstop - FREE)
+Event 02: Paper Presentation (Day 1 - 10 Oct Offline - ₹100 Pass covers all eligible events)
+Event 03: Prompt Fest (Day 1 - 10 Oct Offline - Up to 2 members)
+Event 04: Vibe Vista (Day 1 - 10 Oct Offline - Team of 2)
+Event 05: Frenzy 2K26 (Day 1 - 10 Oct Offline - Team of 2)
+Event 06: Memory Hunt (Day 1 - 10 Oct Offline - 1 or 2 members)
+Event 07: The Imposter Game (Day 1 - 10 Oct Offline - Individual)
 
 Prize Pool & Certificate Structure:
-- Technical Events (Paper Presentation & Poster Making):
+- Technical Events (Paper Presentation & Prompt Fest):
   • First Prize: ₹5,000 | Second Prize: ₹3,000 | Third Prize: ₹1,000
   • Hardcopy Certificates and cash prizes awarded on event day.
 - Non-Technical Events:

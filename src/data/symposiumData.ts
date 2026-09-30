@@ -22,9 +22,9 @@ export const SYMPOSIUM_META = {
   theme: "HUMANIZING TECHNOLOGY",
   themeSubtitle: "Computing for a Sustainable, Inclusive and Ethical Future",
   tagline: "MAKE IT. SHOW IT. ACHIEVE IT.",
-  dates: "14–15 October 2026",
+  dates: "10 & 14 October 2026",
   mode: "HYBRID",
-  isoStartDate: "2026-10-14T09:00:00+05:30",
+  isoStartDate: "2026-10-10T09:00:00+05:30",
   links: {
     onlineRegistration: "https://unstop.com/o/xraF2L6?lb=usevAC8O&utm_medium=Share&utm_source=syntrcse45102&utm_campaign=Conferences",
     offlineRegistration: "https://forms.gle/g2jZyi3sNytPFmcU7",
@@ -33,31 +33,35 @@ export const SYMPOSIUM_META = {
     mapsLocation: "https://maps.app.goo.gl/ZYQb9saFAJeq94rY7"
   },
   onlineDetails: {
+    dayLabel: "DAY 02",
     date: "14 October 2026",
     mode: "ONLINE",
-    platform: "Hosted through the Unstop platform",
+    platform: "Online Article Presentation via Unstop Platform",
     fee: "FREE",
     unstopEventUrl: "https://unstop.com/o/xraF2L6?lb=usevAC8O&utm_medium=Share&utm_source=syntrcse45102&utm_campaign=Conferences"
   },
   offlineDetails: {
-    date: "15 October 2026",
-    mode: "OFFLINE",
-    venue: "EGS Pillay Engineering College, Nagapattinam, Tamil Nadu, India",
-    fee: "₹100 per participant",
-    foodIncluded: "Food provided as part of registration",
-    includedEvents: "Allows participant to attend ANY NUMBER of offline events",
-    additionalEventNote: "No additional event-wise registration fee",
+    dayLabel: "DAY 01",
+    date: "10 October 2026",
+    mode: "OFFLINE / IN PERSON",
+    venue: "E.G.S. Pillay Engineering College, Nagapattinam",
+    fee: "₹100 / PERSON",
+    foodIncluded: "Includes food provided as part of registration",
+    includedEvents: "Allows participants to participate in all eligible events",
+    additionalEventNote: "Individual participation is allowed wherever applicable according to event rules",
+    registrationDeadline: "09 October 2026",
+    onSpotRegistration: "ON-SPOT REGISTRATION AVAILABLE at the Venue",
     googleFormUrl: "https://forms.gle/g2jZyi3sNytPFmcU7"
   },
   eligibility: "Open to students, scholars, researchers & innovators worldwide",
-  teamRules: "Individual participation or teams (Up to 3 members; Poster Making up to 2 members)",
+  teamRules: "Individual participation or teams (Up to 3 members; Prompt Fest up to 2 members; Vibe Vista team of 2; Frenzy 2K26 team of 2; Memory Hunt 1-2 members; Imposter individual)",
   stats: [
     { value: 500, suffix: "+", label: "EXPECTED PARTICIPANTS", detail: "Enthusiastic delegates from across regions" },
     { value: 50, suffix: "+", label: "PARTICIPATING COLLEGES", detail: "Academic institutions & universities" },
-    { value: 6, suffix: "", label: "OFFICIAL EVENTS", detail: "1 Online flagship + 5 Offline events" },
+    { value: 6, suffix: "", label: "OFFLINE EVENTS", detail: "2 Technical + 4 Non-Technical events" },
     { value: 9000, suffix: " ₹", label: "PRIZE POOL / CONTEST", detail: "₹5,000 (1st) • ₹3,000 (2nd) • ₹1,000 (3rd)" },
     { value: 50, suffix: "", label: "OFFICIAL TOPICS", detail: "50 Suggested Topics or propose custom idea" },
-    { value: 100, suffix: " ₹", label: "OFFLINE ALL-EVENT PASS", detail: "Food included • Attend any events" }
+    { value: 100, suffix: " ₹", label: "OFFLINE ALL-EVENT PASS", detail: "₹100/person • Food included • All eligible events" }
   ]
 };
 
@@ -67,10 +71,14 @@ export const REGISTRATION_CONFIG = {
   instagramUrl: "https://www.instagram.com/syntronix_26?utm_source=qr&stkn=YjVjMmJ3bnlid3Ns",
   collegeWebsite: "https://egspec.org/",
   mapsLocation: "https://maps.app.goo.gl/ZYQb9saFAJeq94rY7",
+  status: "REGISTRATION OPEN NOW",
+  regularDeadline: "09 October 2026",
+  onSpotRegistration: "ON-SPOT REGISTRATION AVAILABLE",
+  onSpotNotice: "On-Spot Registration Available at the Venue",
   offlineFeeInRupees: 100,
-  offlineFeeDisplay: "₹100 per participant",
+  offlineFeeDisplay: "₹100 / PERSON",
   onlineFeeDisplay: "FREE",
-  offlineAccessNote: "Total offline registration fee. Attend ANY number of events with no additional fee.",
+  offlineAccessNote: "₹100 registration allows participants to participate in all eligible events. Food included.",
   foodProvided: true
 };
 
@@ -79,17 +87,17 @@ export const PRIZE_STRUCTURE = {
   secondPrize: "₹3,000",
   thirdPrize: "₹1,000",
   totalPerContest: "₹9,000",
-  certificateNote: "Presentation and Poster winners receive hardcopy certificates and cash prizes on event day. Non-Technical events offer Prize Pool Available with Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)."
+  certificateNote: "Paper Presentation and Prompt Fest winners receive hardcopy certificates and cash prizes on event day. Non-Technical events offer Prize Pool Available with Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)."
 };
 
-/* Exactly 6 Official Events */
+/* Official Events: 1 Online + 2 Offline Technical + 4 Offline Non-Technical */
 export const EVENTS: SymposiumEvent[] = [
   {
     id: "online-article-presentation",
     number: "EVENT 01",
     title: "ONLINE ARTICLE PRESENTATION",
     category: "Online Technical",
-    day: "Day 1 — 14 Oct (Online)",
+    day: "Day 2 — 14 Oct (Online)",
     date: "14 October 2026",
     time: "Schedule announced on Unstop",
     venue: "Hosted through Unstop Platform",
@@ -98,6 +106,8 @@ export const EVENTS: SymposiumEvent[] = [
     prizePool: "Cash Prizes & Digital Merit Certificates",
     teamSize: "Individual or Team (Up to 3)",
     feeInfo: "FREE Registration",
+    rounds: "Online Submissions & Live Presentation",
+    duration: "10 minutes presentation + Q&A",
     description: "The premier global online event of SYNTRONIX '26 conducted through the Unstop platform. Present pioneering research articles and technological breakthroughs centered on 'Humanizing Technology' from anywhere in the world.",
     highlights: [
       "Conducted entirely online via Unstop",
@@ -113,116 +123,166 @@ export const EVENTS: SymposiumEvent[] = [
     number: "EVENT 02",
     title: "PAPER PRESENTATION",
     category: "Paper Presentation",
-    day: "Day 2 — 15 Oct (Offline)",
-    date: "15 October 2026",
+    day: "Day 1 — 10 Oct (Offline)",
+    date: "10 October 2026",
     time: "10:00 AM – 01:00 PM IST",
     venue: "CSE Seminar Complex, EGSPEC Campus",
     mode: "OFFLINE",
     prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
     teamSize: "Individual or Team (Up to 3)",
     feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
+    rounds: "1 Presentation Round + Viva",
+    duration: "7 mins presentation + 3 mins Q&A",
     description: "In-person research symposium presentation. Defend your findings on human-centered computing, AI ethics, sustainable architectures, or your self-proposed theme topic before senior faculty and expert evaluators.",
     highlights: [
       "Presentation duration: 7 minutes + 3 minutes Q&A / viva",
       "50 official suggested topics available or propose your own custom topic",
       "Winners & Runners receive cash prizes + hardcopy certificates on event day",
-      "Offline registration ₹100 includes delicious food banquet with access to any events"
+      "Offline registration ₹100 includes delicious food banquet with access to all eligible events"
     ],
     isPlaceholder: false
   },
   {
-    id: "offline-poster-making",
+    id: "offline-prompt-fest",
     number: "EVENT 03",
-    title: "POSTER MAKING",
-    category: "Poster Making",
-    day: "Day 2 — 15 Oct (Offline)",
-    date: "15 October 2026",
-    time: "11:30 AM – 02:00 PM IST",
-    venue: "Main Drawing Hall & Innovation Gallery, EGSPEC",
+    title: "PROMPT FEST",
+    category: "Prompt Fest",
+    day: "Day 1 — 10 Oct (Offline)",
+    date: "10 October 2026",
+    time: "11:30 AM – 01:30 PM IST",
+    venue: "CSE Computing Lab & AI Center, EGSPEC Campus",
     mode: "OFFLINE",
     prizePool: "Cash Prizes: 1st ₹5,000 | 2nd ₹3,000 | 3rd ₹1,000 + Hardcopy Certificates",
     teamSize: "Individual or Team (Up to 2)",
     feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
-    description: "Translate complex computational and societal challenges into visually arresting, conceptually profound scientific posters. Showcase innovative design thinking where human empathy meets state-of-the-art technology.",
+    rounds: "2 Rounds",
+    duration: "45–60 minutes",
+    description: "A high-intensity AI prompt crafting & engineering competition testing participants' skill in designing prompt architectures, context conditioning, and zero-shot/few-shot problem solving across generative models.",
     highlights: [
-      "Team size: Maximum 2 members",
-      "Judged on conceptual depth, clarity, visual aesthetics & technical rigor",
-      "Interactive Q&A walk-through with visiting evaluators",
-      "Winners receive cash awards and hardcopy certificates on event day"
+      "Round 1: Rapid Prompt Optimization & Benchmark Precision",
+      "Round 2: Complex Task Decomposition & Creative Reasoning Challenge",
+      "Live evaluation on prompt effectiveness, token efficiency, and output quality",
+      "Winners receive cash awards and hardcopy certificates on event day",
+      "Covered by ₹100 offline pass (Food Included)"
     ],
     isPlaceholder: false
   },
   {
-    id: "offline-non-tech-01",
+    id: "offline-vibe-vista",
     number: "EVENT 04",
-    title: "NON-TECHNICAL EVENT 01",
+    title: "VIBE VISTA",
     category: "Non-Technical",
-    day: "Day 2 — 15 Oct (Offline)",
-    date: "15 October 2026",
-    time: "01:30 PM – 03:00 PM IST",
+    day: "Day 1 — 10 Oct (Offline)",
+    date: "10 October 2026",
+    time: "01:30 PM – 02:45 PM IST",
     venue: "Auditorium Hall, EGSPEC Campus",
     mode: "OFFLINE",
     prizePool: "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)",
-    teamSize: "Individual or Team (Up to 3)",
+    teamSize: "Team of 2 (Person 1 – Round 1, Person 2 – Round 2)",
     feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
-    description: "Exciting non-technical challenge designed to test creative lateral thinking, collaboration, and spontaneous problem-solving under pressure. (Official title and specific round rules to be announced shortly).",
+    rounds: "2 Rounds",
+    duration: "Round 1 – 10 seconds | Round 2 – 1 minute",
+    description: "VIBE VISTA is a fun-filled non-technical event that tests participants’ reflexes, hand-eye coordination, observation and quick-thinking skills across two exciting levels. Participants compete against the clock, moving from a hand-reflex challenge in Level 1 to a number-identification challenge in Level 2.",
     highlights: [
-      "Prize Pool Available",
-      "Participation E-Certificate Only",
-      "No Cash Prizes • No Hardcopy Certificates",
-      "High-energy interactive challenge for all participants",
-      "Covered by the ₹100 offline registration (no additional fee)",
-      "Promotes interdisciplinary thinking and team synergy"
+      "ROUND 1: Level 1 – Hand & Circle Reflex Game (Closed fist on circle papers, open palm on hand outlines within time limit)",
+      "ROUND 2: Level 2 – Number Cup Game (5 numbered cups 1–5; identify and lift called cup quickly with 3 chances)",
+      "Duration: Round 1 – 10 seconds | Round 2 – 1 minute",
+      "Team Size: 2 (Person 1 – Round 1, Person 2 – Round 2)",
+      "Winning Criteria: Shortest total time with highest speed and accuracy across both levels wins",
+      "Requirements: All materials provided by organizers • Report 10 mins before slot",
+      "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)"
     ],
-    isPlaceholder: true
+    winningCriteria: "Participants are judged based on speed and accuracy across both levels. The team completing both levels correctly in the shortest total time wins.",
+    requirements: "All materials will be provided by the organizers.",
+    importantNote: "Participants should report 10 minutes before their slot.",
+    isPlaceholder: false
   },
   {
-    id: "offline-non-tech-02",
+    id: "offline-frenzy-2k26",
     number: "EVENT 05",
-    title: "NON-TECHNICAL EVENT 02",
+    title: "FRENZY 2K26",
     category: "Non-Technical",
-    day: "Day 2 — 15 Oct (Offline)",
-    date: "15 October 2026",
-    time: "02:30 PM – 04:00 PM IST",
+    day: "Day 1 — 10 Oct (Offline)",
+    date: "10 October 2026",
+    time: "02:30 PM – 03:45 PM IST",
     venue: "EGSPEC Campus Arena",
     mode: "OFFLINE",
     prizePool: "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)",
-    teamSize: "Individual or Team (Up to 3)",
+    teamSize: "Team (2 participants per session)",
     feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
-    description: "Engaging analytical and communication face-off exploring human instincts, perception, and fast-paced deductive acumen. (Official title and specific round rules to be announced shortly).",
+    rounds: "3 Rounds",
+    duration: "2–5 minutes per game",
+    description: "A fun-filled three-round challenge that tests participants’ skill, logic, creativity and quick thinking.",
     highlights: [
-      "Prize Pool Available",
-      "Participation E-Certificate Only",
-      "No Cash Prizes • No Hardcopy Certificates",
-      "Spirited contest blending cognitive agility with humor and intuition",
-      "Covered by the ₹100 offline registration (no additional fee)",
-      "Open to all registered delegates"
+      "ROUND 1: Flip & Freeze (Flip bottle and make it land upright; must remain standing for 5 seconds)",
+      "ROUND 2: Puzzle Solving (Solve puzzles and brain teasers within given time using provided materials)",
+      "ROUND 3: Wire Wizard (Navigate a loop through wire course without touching wire within given time)",
+      "Scoring: 10 pts (Bottle challenge) • 10 pts (Puzzle) • 10 pts (Wire course) • +2 pts (Fastest completion)",
+      "Winning Criteria: Participants are ranked based on their total score across all three rounds",
+      "Requirements: Bottle, puzzle materials and wire-loop setup provided by organizers (No special materials needed)",
+      "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)"
     ],
-    isPlaceholder: true
+    winningCriteria: "• 10 points – Bottle challenge completed successfully\n• 10 points – Puzzle solved correctly\n• 10 points – Wire course completed successfully\n• +2 points – Fastest completion in a round\nRanked based on total score across all three rounds.",
+    requirements: "Bottle, puzzle materials and wire-loop setup will be provided by the organizers. No special materials are required.",
+    isPlaceholder: false
   },
   {
-    id: "offline-non-tech-03",
+    id: "offline-memory-hunt",
     number: "EVENT 06",
-    title: "NON-TECHNICAL EVENT 03",
+    title: "MEMORY HUNT",
     category: "Non-Technical",
-    day: "Day 2 — 15 Oct (Offline)",
-    date: "15 October 2026",
-    time: "03:30 PM – 05:00 PM IST",
-    venue: "Main Open-Air Amphitheatre / Hall",
+    day: "Day 1 — 10 Oct (Offline)",
+    date: "10 October 2026",
+    time: "03:30 PM – 04:45 PM IST",
+    venue: "EGSPEC Drawing Hall / Seminar Complex",
     mode: "OFFLINE",
     prizePool: "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)",
-    teamSize: "Individual or Team (Up to 3)",
+    teamSize: "Team (1 or 2 members • 10–20 participants per session)",
     feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
-    description: "Grand finale non-technical showcase celebrating student expression, strategic communication, and cultural wit. (Official title and specific round rules to be announced shortly).",
+    rounds: "2 Rounds",
+    duration: "15–20 minutes",
+    description: "Participants will play a fun memory-based game by observing, remembering and finding hidden clues. They will solve simple puzzles and complete tasks within a given time.",
     highlights: [
-      "Prize Pool Available",
-      "Participation E-Certificate Only",
-      "No Cash Prizes • No Hardcopy Certificates",
-      "Electrifying multi-round finale",
-      "Covered by the ₹100 offline registration (no additional fee)",
-      "Immediate audience engagement and live score tallies"
+      "ROUND 1: Image Memory (View projected images for 30s; recall and answer questions when hidden)",
+      "ROUND 2: Memory Chain (Observe sequence of 8–12 items/numbers/words; re-arrange mixed list in correct order)",
+      "Winning Criteria: The team with the highest score and correct answers will be the winner",
+      "Requirements: Pen and paper provided by organizers",
+      "Important: Participants must follow instructions. Mobile phones and electronic devices are strictly not allowed",
+      "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)"
     ],
-    isPlaceholder: true
+    winningCriteria: "The team with the highest score and correct answers will be the winner.",
+    requirements: "Pen and paper will be provided by the organizers.",
+    importantNote: "Participants must follow all instructions. Mobile phones and other electronic devices are not allowed during the game.",
+    isPlaceholder: false
+  },
+  {
+    id: "offline-the-imposter-game",
+    number: "EVENT 07",
+    title: "THE IMPOSTER GAME",
+    category: "Non-Technical",
+    day: "Day 1 — 10 Oct (Offline)",
+    date: "10 October 2026",
+    time: "04:30 PM – 05:45 PM IST",
+    venue: "Main Open-Air Amphitheatre / Seminar Hall",
+    mode: "OFFLINE",
+    prizePool: "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)",
+    teamSize: "Individual (3–5 participants per session)",
+    feeInfo: "Covered by ₹100 Offline Pass (Food Included)",
+    rounds: "3 Rounds + Grand Finale",
+    duration: "5–8 minutes per game",
+    description: "The Imposter Game is a fun and engaging non-technical game that tests observation, communication, logical thinking, confidence and bluffing skills. All players except one receive the same secret word. One player is secretly selected as the Imposter and does not know the word. Players give clues and ask questions to identify the Imposter without directly revealing the secret word. After the discussion, players vote for the person they believe is the Imposter. If the Imposter is identified, they get one final chance to guess the secret word.",
+    highlights: [
+      "ROUND 1: Clue Round (Each player gives one short clue related to the secret word)",
+      "ROUND 2: Question & Voting Round (Players ask questions, discuss clues and secretly vote for the Imposter)",
+      "ROUND 3: Imposter Final Guess (If caught, Imposter gets one final chance to guess secret word)",
+      "GRAND FINALE: Top 5 participants qualify for the Grand Finale",
+      "Scoring: 10 pts (Imposter fools everyone) • 10 pts (Players catch Imposter) • 5 pts (Caught Imposter guesses word) • +2 pts (Best clue/bluff)",
+      "Requirements: Secret-word cards provided • No mobile phones or outside assistance allowed",
+      "Prize Pool Available • Participation E-Certificate Only (No Cash Prizes • No Hardcopy Certificates)"
+    ],
+    winningCriteria: "• 10 points – Imposter successfully fools everyone\n• 10 points – Players correctly identify the Imposter\n• 5 points – Imposter is caught but correctly guesses the secret word\n• +2 points – Best clue/bluff",
+    requirements: "Secret-word cards will be provided by the coordinators. No mobile phones or outside assistance are allowed.",
+    isPlaceholder: false
   }
 ];
 
@@ -312,7 +372,7 @@ export const SPEAKERS: Speaker[] = [
     sessionType: "Keynote Address",
     photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
     bio: "Pioneer in moral alignment architectures and computational linguistics. Former principal advisor to the UN Panel on Autonomous Software Systems.",
-    sessionTime: "Oct 12, 10:00 AM PST",
+    sessionTime: "Oct 10, 10:00 AM IST (Day 1 Keynote)",
     socials: {
       linkedin: "https://linkedin.com",
       scholar: "https://scholar.google.com"
@@ -328,7 +388,7 @@ export const SPEAKERS: Speaker[] = [
     sessionType: "Keynote Address",
     photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
     bio: "Architect behind the first 1,000-qubit topological coherence experiment. Author of 'The Geometry of Coherence'.",
-    sessionTime: "Oct 12, 02:00 PM PST",
+    sessionTime: "Oct 10, 02:00 PM IST (Day 1 Plenary)",
     socials: {
       linkedin: "https://linkedin.com",
       twitter: "https://twitter.com"
@@ -344,7 +404,7 @@ export const SPEAKERS: Speaker[] = [
     sessionType: "Plenary Session",
     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
     bio: "Lead inventor of electro-tactile neurohaptic feedback fabrics. Recipient of the ACM SIGCHI Lifetime Innovation Fellowship.",
-    sessionTime: "Oct 13, 09:30 AM PST",
+    sessionTime: "Oct 10, 04:00 PM IST (Day 1 Address)",
     socials: {
       linkedin: "https://linkedin.com",
       scholar: "https://scholar.google.com"
@@ -360,7 +420,7 @@ export const SPEAKERS: Speaker[] = [
     sessionType: "Special Address",
     photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
     bio: "Pioneered carbon-intensity reactive cloud task brokers now saving millions of metric tons of data center emissions annually.",
-    sessionTime: "Oct 13, 01:30 PM PST",
+    sessionTime: "Oct 14, 10:30 AM IST (Day 2 Online)",
     socials: {
       linkedin: "https://linkedin.com",
       twitter: "https://twitter.com"
@@ -376,7 +436,7 @@ export const SPEAKERS: Speaker[] = [
     sessionType: "Fireside Chat",
     photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
     bio: "Co-author of recursive zk-SNARK protocols safeguarding digital identities across millions of sovereign human credentials.",
-    sessionTime: "Oct 14, 11:00 AM PST",
+    sessionTime: "Oct 14, 02:00 PM IST (Day 2 Online)",
     socials: {
       linkedin: "https://linkedin.com",
       scholar: "https://scholar.google.com"
@@ -392,7 +452,7 @@ export const SPEAKERS: Speaker[] = [
     sessionType: "Special Address",
     photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
     bio: "Leading translational research integrating biological cellular computations with low-energy neuromorphic co-processors.",
-    sessionTime: "Oct 14, 03:00 PM PST",
+    sessionTime: "Oct 14, 04:00 PM IST (Day 2 Online)",
     socials: {
       linkedin: "https://linkedin.com",
       twitter: "https://twitter.com"
@@ -406,20 +466,20 @@ export const STAFF_COORDINATORS: Coordinator[] = [
     id: "convenor-01",
     name: "Dr. K. Balasubramaniam",
     role: "Convenor",
-    department: "Head / Department of Computer Science and Engineering",
+    department: "Professor & Head / Department of Computer Science and Engineering",
     contact: "syntronix@egspec.org"
   },
   {
     id: "coord-01",
     name: "Dr. G. Pushpa",
-    role: "Faculty Coordinator",
+    role: "Co-Convenor",
     department: "Assistant Professor / CSE",
     contact: "syntronix@egspec.org"
   },
   {
     id: "coord-02",
     name: "Mrs. L. Mohana Priya",
-    role: "Faculty Coordinator",
+    role: "Co-Convenor",
     department: "Assistant Professor / CSE",
     contact: "syntronix@egspec.org"
   }
@@ -473,15 +533,6 @@ export const TIMELINE: TimelineMilestone[] = [
   },
   {
     number: "04",
-    dateStr: "01 October 2026",
-    title: "Registration Deadline",
-    subtitle: "Final Date to Register as a Participant",
-    description: "Registration concludes for both online (Unstop) and offline participation categories.",
-    status: "upcoming",
-    tag: "Important Deadline"
-  },
-  {
-    number: "05",
     dateStr: "02 October 2026",
     title: "Abstract Submission Deadline",
     subtitle: "Manuscripts Queue Finalizes",
@@ -490,8 +541,8 @@ export const TIMELINE: TimelineMilestone[] = [
     tag: "Submission Closes"
   },
   {
-    number: "06",
-    dateStr: "04 October 2026",
+    number: "05",
+    dateStr: "05 October 2026",
     title: "Acceptance Notification",
     subtitle: "Review Results Dispatched to Authors",
     description: "Peer-review results and formal acceptance notifications are delivered to all registered authors.",
@@ -499,22 +550,31 @@ export const TIMELINE: TimelineMilestone[] = [
     tag: "Notifications"
   },
   {
-    number: "07",
-    dateStr: "14 October 2026",
-    title: "Symposium Day 1 — ONLINE",
-    subtitle: "Hosted through the Unstop Platform",
-    description: "Flagship Online Article Presentation conducted through Unstop with international delegates, jury evaluations, and cash prizes.",
+    number: "06",
+    dateStr: "09 October 2026",
+    title: "Regular Registration Deadline",
+    subtitle: "Online & Offline Portals Conclude (On-Spot Available)",
+    description: "Regular registration cutoff for online and offline participation. Note: On-Spot Registration is also available at the venue on 10 October 2026.",
     status: "upcoming",
-    tag: "Online Symposium"
+    tag: "Registration Deadline"
+  },
+  {
+    number: "07",
+    dateStr: "10 October 2026",
+    title: "Symposium Day 1 — OFFLINE",
+    subtitle: "EGS Pillay Engineering College, Nagapattinam",
+    description: "On-campus Day 1: Paper Presentation, Prompt Fest, and 4 Non-Technical events (Vibe Vista, Frenzy 2K26, Memory Hunt, The Imposter Game). Food banquet included. On-spot registration available.",
+    status: "upcoming",
+    tag: "Day 1 In-Person"
   },
   {
     number: "08",
-    dateStr: "15 October 2026",
-    title: "Symposium Day 2 — OFFLINE",
-    subtitle: "EGS Pillay Engineering College, Nagapattinam",
-    description: "On-campus Paper Presentation, Poster Making, and 3 Non-Technical events. Food provided. Presentation & Poster winners receive hardcopy certificates and cash prizes; Non-Technical participants receive participation e-certificates.",
+    dateStr: "14 October 2026",
+    title: "Symposium Day 2 — ONLINE",
+    subtitle: "Hosted through the Unstop Platform",
+    description: "Flagship Day 2: Online Article Presentation conducted through Unstop with global delegates, jury evaluations, and cash prizes.",
     status: "upcoming",
-    tag: "Offline Symposium"
+    tag: "Day 2 Online"
   },
   {
     number: "09",
@@ -554,14 +614,6 @@ export const IMPORTANT_DATES: ImportantDateItem[] = [
     badge: "ONLINE EVENT"
   },
   {
-    day: "01",
-    month: "OCT",
-    year: "2026",
-    title: "Registration Deadline",
-    description: "Last day to register for SYNTRONIX '26 participation.",
-    badge: "DEADLINE"
-  },
-  {
     day: "02",
     month: "OCT",
     year: "2026",
@@ -570,7 +622,7 @@ export const IMPORTANT_DATES: ImportantDateItem[] = [
     badge: "CRITICAL"
   },
   {
-    day: "04",
+    day: "05",
     month: "OCT",
     year: "2026",
     title: "Acceptance Notification",
@@ -578,22 +630,30 @@ export const IMPORTANT_DATES: ImportantDateItem[] = [
     badge: "RESULTS"
   },
   {
+    day: "09",
+    month: "OCT",
+    year: "2026",
+    title: "Regular Registration Deadline",
+    description: "Registration open until 09 October 2026. On-Spot Registration is also available at the venue.",
+    badge: "09 OCT DEADLINE"
+  },
+  {
+    day: "10",
+    month: "OCT",
+    year: "2026",
+    title: "Symposium Day 1 (OFFLINE)",
+    description: "E.G.S. Pillay Engineering College Campus: Paper Presentation, Prompt Fest & 4 Non-Technical Events. Food included. On-spot registration available.",
+    isMilestone: true,
+    badge: "DAY 1 // OFFLINE"
+  },
+  {
     day: "14",
     month: "OCT",
     year: "2026",
-    title: "Symposium Day 1 (ONLINE)",
-    description: "Online Article Presentation conducted through the Unstop platform.",
+    title: "Symposium Day 2 (ONLINE)",
+    description: "Fully online: Online Article Presentation conducted through the Unstop platform.",
     isMilestone: true,
-    badge: "UNSTOP // ONLINE"
-  },
-  {
-    day: "15",
-    month: "OCT",
-    year: "2026",
-    title: "Symposium Day 2 (OFFLINE)",
-    description: "EGS Pillay Engineering College Campus: Paper Presentation, Poster Making & 3 Non-Technical Events.",
-    isMilestone: true,
-    badge: "CAMPUS // OFFLINE"
+    badge: "DAY 2 // ONLINE"
   },
   {
     day: "17",
@@ -621,13 +681,13 @@ export const WHY_PARTICIPATE = [
   {
     number: "03",
     title: "Flexible Hybrid Participation",
-    description: "Participate online from anywhere in the world on 14 October via Unstop, or join in-person on 15 October at EGSPEC for an energetic campus experience.",
+    description: "Participate in person on 10 October at EGSPEC for 6 exciting offline events with food included, or join online from anywhere in the world on 14 October via Unstop.",
     icon: "Globe"
   },
   {
     number: "04",
     title: "Inclusive Registration & Food",
-    description: "Online event registration is 100% FREE. Offline participation is just ₹100 per person and includes delicious food + entry to 2 events.",
+    description: "Online event registration is 100% FREE. Offline participation is just ₹100 per person and includes delicious food + entry to all eligible offline events.",
     icon: "Award"
   },
   {
