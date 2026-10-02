@@ -273,7 +273,7 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
           </button>
 
           <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
-            SYNTRONIX '26 // CFP DESK
+            SYNTRONIX '26 // PAPER PRESENTATION DESK
           </span>
         </div>
 
@@ -290,7 +290,7 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
                 Submit Research Paper / Abstract
               </h3>
               <p className="text-xs sm:text-sm text-neutral-400 font-serif italic">
-                Official submission portal for Paper Presentation (Day 2 Offline) and Online Article Presentation (Day 1 Online).
+                Official submission portal for Paper Presentation (Day 1 Offline — 10 Oct) and Online Article Presentation (Day 2 Online — 14 Oct).
               </p>
             </div>
 
@@ -300,11 +300,11 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
                 type="button"
                 onClick={download50TopicsDocument}
                 className="w-full sm:w-auto px-4 py-2.5 bg-white/[0.04] border border-white/20 hover:border-[#FF8C42]/70 hover:bg-[#FF8C42]/10 text-neutral-300 hover:text-[#FFD166] text-xs font-mono uppercase tracking-wider font-semibold transition-all duration-300 flex items-center justify-center sm:justify-start gap-2.5 group hover:shadow-[0_0_20px_rgba(255,140,66,0.2)] rounded-sm"
-                title="Download the official 50 suggested paper presentation topics document"
+                title="Download the official 50 suggested paper presentation topics PDF document"
                 data-cursor="interactive"
               >
                 <Download className="w-4 h-4 text-neutral-400 group-hover:text-[#FF8C42] group-hover:scale-110 transition-all duration-300" />
-                <span>DOWNLOAD 50 SUGGESTED TOPICS</span>
+                <span>DOWNLOAD 50 SUGGESTED TOPICS (PDF)</span>
               </button>
             </div>
 
@@ -548,11 +548,11 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-4 h-4 text-white animate-spin" />
-                      <span>{submittingStep || 'TRANSMITTING CFP...'}</span>
+                      <span>{submittingStep || 'TRANSMITTING PAPER...'}</span>
                     </>
                   ) : (
                     <>
-                      <span>SUBMIT CFP</span>
+                      <span>SUBMIT PAPER ABSTRACT</span>
                       <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
                     </>
                   )}
@@ -567,7 +567,7 @@ export const AbstractSubmissionModal: React.FC<AbstractSubmissionModalProps> = (
             </div>
 
             <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 uppercase tracking-tight">
-              CFP Submission Received
+              Paper Submission Received
             </h3>
             <p className="text-sm text-neutral-400 max-w-md mx-auto mb-6 font-serif italic">
               Your abstract and research paper have been submitted successfully to the SYNTRONIX '26 review queue. A confirmation has been logged for <span className="text-white font-semibold">{emailId}</span>.

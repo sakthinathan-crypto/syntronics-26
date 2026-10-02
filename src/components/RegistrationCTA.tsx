@@ -83,7 +83,7 @@ export const RegistrationCTA: React.FC<RegistrationCTAProps> = ({
             data-cursor="interactive"
           >
             <Sparkles className="w-4 h-4 text-[#FFD166]" />
-            <span>SUBMIT RESEARCH ABSTRACT (CFP)</span>
+            <span>PAPER PRESENTATION SUBMISSION</span>
           </MagneticButton>
         </div>
 

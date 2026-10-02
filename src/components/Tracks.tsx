@@ -128,7 +128,7 @@ export const Tracks: React.FC<TracksProps> = ({ onSelectTrackForAbstract }) => {
                           {activeTrack.number}
                         </span>
                         <span className="px-2 py-0.5 text-[9px] font-mono font-bold bg-[#FF8C42]/20 text-[#FFD166] border border-[#FF8C42]/30 uppercase">
-                          CFP ACTIVE
+                          CALL FOR PAPERS
                         </span>
                       </div>
                       <span className="text-xs font-mono text-[#A7A7A7]">

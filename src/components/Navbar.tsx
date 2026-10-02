@@ -107,15 +107,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
 
           {/* Right Action CTAs */}
           <div className="hidden sm:flex items-center gap-3">
-            {/* CFP Button */}
+            {/* Paper Presentation Button */}
             <button
-              id="nav-cfp-button"
+              id="nav-paper-presentation-button"
               onClick={onOpenAbstractSubmit}
               className="px-4 py-2 border border-white/15 text-white/90 text-xs font-bold tracking-widest uppercase hover:bg-white/10 hover:border-white/30 transition-colors flex items-center gap-1.5"
               data-cursor="interactive"
             >
               <FileText className="w-3.5 h-3.5 text-[#FFB347]" />
-              <span>CFP</span>
+              <span>PAPER PRESENTATION</span>
             </button>
 
             {/* Register Pass Button with Magnetic Micro-interaction */}
@@ -150,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono text-[#A7A7A7]">
               <span>EGS PILLAY ENGINEERING COLLEGE // CSE</span>
-              <span className="text-[#FFD166]">14–15 OCT 2026</span>
+              <span className="text-[#FFD166]">10 &amp; 14 OCT 2026</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2 py-2">
@@ -179,7 +179,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegister, onOpenAbstractSu
                 className="w-full py-2.5 border border-white/15 bg-white/[0.04] text-white text-xs font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <FileText className="w-4 h-4 text-[#FFB347]" />
-                <span>Submit Research Abstract (CFP)</span>
+                <span>Paper Presentation Submission</span>
               </button>
 
               <button

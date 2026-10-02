@@ -12,6 +12,8 @@ export async function download50TopicsDocument() {
       const link = document.createElement('a');
       link.href = pdfPath;
       link.download = ASSETS_CONFIG.documents.paperTopics50.filename;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

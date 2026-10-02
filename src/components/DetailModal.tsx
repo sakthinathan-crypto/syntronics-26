@@ -1,6 +1,7 @@
 import React from 'react';
-import { X, Calendar, MapPin, Trophy, Users, User, ArrowRight, ExternalLink, Sparkles, Award, Utensils, CheckCircle2, Clock } from 'lucide-react';
+import { X, Calendar, MapPin, Trophy, Users, User, ArrowRight, ExternalLink, Sparkles, Award, Utensils, CheckCircle2, Clock, Download } from 'lucide-react';
 import { SymposiumEvent, Speaker } from '../types';
+import { download50TopicsDocument } from '../utils/downloadHelper';
 
 interface DetailModalProps {
   isOpen: boolean;
@@ -157,22 +158,36 @@ export const DetailModal: React.FC<DetailModalProps> = ({
               </div>
             )}
 
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10">
               <div className="text-xs font-mono text-[#A7A7A7]">
                 Coordinator: <span className="text-white">{eventData.coordinator || "CSE Dept Coordinators"}</span>
               </div>
 
-              <button
-                onClick={() => {
-                  onClose();
-                  onRegisterInterest?.();
-                }}
-                className="px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white bg-[#FF8C42] hover:bg-[#FF7722] transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(255,140,66,0.3)]"
-                data-cursor="interactive"
-              >
-                <span>REGISTER FOR THIS EVENT</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              <div className="flex flex-wrap items-center gap-3">
+                {eventData.id === 'offline-paper-presentation' && (
+                  <button
+                    type="button"
+                    onClick={() => download50TopicsDocument()}
+                    className="px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-[#FFD166] bg-white/[0.04] hover:bg-white/[0.08] border border-white/20 hover:border-[#FFB347] transition-all flex items-center gap-2 rounded-sm"
+                    data-cursor="interactive"
+                  >
+                    <Download className="w-4 h-4 text-[#FF8C42]" />
+                    <span>Download Topics (PDF)</span>
+                  </button>
+                )}
+
+                <button
+                  onClick={() => {
+                    onClose();
+                    onRegisterInterest?.();
+                  }}
+                  className="px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white bg-[#FF8C42] hover:bg-[#FF7722] transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(255,140,66,0.3)] rounded-sm"
+                  data-cursor="interactive"
+                >
+                  <span>REGISTER FOR THIS EVENT</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         )}

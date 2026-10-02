@@ -123,21 +123,43 @@ export const About: React.FC = () => {
             </p>
 
             <p className="text-[#A7A7A7] text-sm sm:text-base leading-relaxed font-light">
-              Rooted in our motto <span className="text-[#FFD166] font-bold font-mono">"MAKE IT. SHOW IT. ACHIEVE IT."</span>, the symposium bridges theoretical computation with tangible human outcomes through 1 premier online event and 5 high-energy offline campus events.
+              Rooted in our motto <span className="text-[#FFD166] font-bold font-mono">"MAKE IT. SHOW IT. ACHIEVE IT."</span>, the symposium bridges theoretical computation with tangible human outcomes through 1 premier online event and 6 high-energy offline campus events.
             </p>
 
             {/* Official Online & Offline Symposium Dates */}
             <div className="pt-2">
               <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-[#FF8C42] font-semibold mb-2.5 flex items-center gap-2">
                 <Calendar className="w-3.5 h-3.5" />
-                <span>OFFICIAL SYMPOSIUM SCHEDULE & MODES</span>
+                <span>OFFICIAL SYMPOSIUM SCHEDULE &amp; MODES</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {/* Online Date Box */}
+                {/* Offline Date Box (Day 1) */}
                 <div className="p-4 bg-white/[0.04] border border-[#FF8C42]/30 hover:border-[#FF8C42] transition-colors rounded-none relative overflow-hidden group">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold tracking-wider uppercase text-[#FF8C42] bg-[#FF8C42]/10 px-2 py-0.5 border border-[#FF8C42]/20">
-                      <Laptop className="w-3 h-3" /> ONLINE DAY
+                      <MapPin className="w-3 h-3" /> DAY 01 • OFFLINE
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-[#FFD166] bg-[#FFD166]/15 px-2 py-0.5 border border-[#FFD166]/30">
+                      ₹100 • FOOD INCL.
+                    </span>
+                  </div>
+                  <div className="text-xl sm:text-2xl font-black text-white font-mono tracking-tight">
+                    10 OCT 2026
+                  </div>
+                  <div className="text-[11px] font-mono text-[#FFB347] font-semibold mt-1">
+                    In-Person Campus Symposium
+                  </div>
+                  <div className="text-xs text-[#A7A7A7] mt-1 italic font-serif flex items-center gap-1.5">
+                    <Building2 className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
+                    <span className="truncate">EGSPEC Campus, Nagapattinam</span>
+                  </div>
+                </div>
+
+                {/* Online Date Box (Day 2) */}
+                <div className="p-4 bg-white/[0.04] border border-[#FFB347]/30 hover:border-[#FFB347] transition-colors rounded-none relative overflow-hidden group">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold tracking-wider uppercase text-[#FFB347] bg-[#FFB347]/10 px-2 py-0.5 border border-[#FFB347]/20">
+                      <Laptop className="w-3 h-3" /> DAY 02 • ONLINE
                     </span>
                     <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/40 px-2 py-0.5 border border-emerald-500/30">
                       100% FREE
@@ -152,28 +174,6 @@ export const About: React.FC = () => {
                   <div className="text-xs text-[#A7A7A7] mt-1 italic font-serif flex items-center gap-1.5">
                     <Globe2 className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
                     <span>Hosted on Unstop Platform</span>
-                  </div>
-                </div>
-
-                {/* Offline Date Box */}
-                <div className="p-4 bg-white/[0.04] border border-[#FFB347]/30 hover:border-[#FFB347] transition-colors rounded-none relative overflow-hidden group">
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold tracking-wider uppercase text-[#FFB347] bg-[#FFB347]/10 px-2 py-0.5 border border-[#FFB347]/20">
-                      <MapPin className="w-3 h-3" /> OFFLINE DAY
-                    </span>
-                    <span className="text-[10px] font-mono font-bold text-[#FFD166] bg-[#FFD166]/15 px-2 py-0.5 border border-[#FFD166]/30">
-                      ₹100 • FOOD INCL.
-                    </span>
-                  </div>
-                  <div className="text-xl sm:text-2xl font-black text-white font-mono tracking-tight">
-                    15 OCT 2026
-                  </div>
-                  <div className="text-[11px] font-mono text-[#FFB347] font-semibold mt-1">
-                    In-Person Campus Symposium
-                  </div>
-                  <div className="text-xs text-[#A7A7A7] mt-1 italic font-serif flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
-                    <span className="truncate">EGSPEC Campus, Nagapattinam</span>
                   </div>
                 </div>
               </div>
